@@ -1,11 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { Phone, Github, Linkedin, Instagram } from "lucide-react";
+import Link from "next/link";
 
 export default function Contact() {
   return (
-    <section id="contact" className="max-w-3xl mx-auto text-center py-32 px-6">
+    <section
+      id="contact"
+      className="max-w-3xl mx-auto text-center py-20 md:py-32 px-6"
+    >
       {/* Section heading */}
       <motion.p
         initial={{ opacity: 0, y: 10 }}
@@ -14,7 +18,7 @@ export default function Contact() {
         transition={{ duration: 0.6 }}
         className="text-accent font-mono text-sm mb-4"
       >
-        04. What’s Next?
+        04. What's Next?
       </motion.p>
 
       {/* Title */}
@@ -23,7 +27,7 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="text-4xl md:text-5xl font-bold text-light mb-6"
+        className="text-3xl md:text-5xl font-bold text-light mb-6"
       >
         Get In Touch
       </motion.h2>
@@ -34,10 +38,10 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-gray-400 leading-relaxed mb-10 max-w-xl mx-auto"
+        className="text-gray-400 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto text-sm md:text-base"
       >
-        I’m always open to discussing new projects or opportunities. Whether you
-        have a question or just want to say hi, feel free to reach out — I’ll do
+        I'm always open to discussing new projects or opportunities. Whether you
+        have a question or just want to say hi, feel free to reach out — I'll do
         my best to get back to you!
       </motion.p>
 
@@ -48,18 +52,49 @@ export default function Contact() {
         rel="noopener noreferrer"
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.3 }}
-        className="inline-block border border-accent text-accent font-mono px-6 py-3 rounded hover:bg-accent hover:text-dark transition-all duration-300"
+        className="inline-block border border-accent text-accent font-mono px-6 py-3 rounded hover:bg-accent hover:text-dark transition-all duration-300 text-sm md:text-base"
       >
         Say Hello
       </motion.a>
 
       {/* Contact Info */}
-      <div className="mt-10 text-sm text-gray-400">
+      <div className="mt-8 md:mt-10 text-sm text-gray-400">
         <div className="flex justify-center items-center gap-2 text-light">
           <Phone size={16} className="text-accent" />
           <span className="font-mono">+91 94598 99052</span>
         </div>
       </div>
+
+      {/* Social Links - Only visible on mobile */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="md:hidden mt-12 flex justify-center items-center gap-6"
+      >
+        <Link
+          href="https://github.com/gouravkashiv7"
+          target="_blank"
+          className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+        >
+          <Github size={24} />
+        </Link>
+        <Link
+          href="https://www.linkedin.com/in/gourav-kashiv-7203572b2/"
+          target="_blank"
+          className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+        >
+          <Linkedin size={24} />
+        </Link>
+        <Link
+          href="https://www.instagram.com/_viva_la_vida_______/"
+          target="_blank"
+          className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+        >
+          <Instagram size={24} />
+        </Link>
+      </motion.div>
     </section>
   );
 }

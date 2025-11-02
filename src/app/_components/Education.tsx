@@ -17,7 +17,7 @@ export default function Education() {
       ],
     },
     {
-      level: "Secondary Education (Science Stream)",
+      level: "Secondary Education",
       institute: "St. Mary's Senior Secondary School, Kasauli",
       duration: "2016 – 2018",
       details: [
@@ -28,7 +28,7 @@ export default function Education() {
       ],
     },
     {
-      level: "Bachelor of Technology in Computer Science",
+      level: "B.E. in CSE",
       institute: "Chitkara University, Rajpura",
       duration: "2018 – 2022",
       details: [
@@ -40,7 +40,7 @@ export default function Education() {
       ],
     },
     {
-      level: "Master of Technology in Computer Science",
+      level: "M.Tech in CSE",
       institute: "Panjab University, Chandigarh",
       duration: "2023 – 2025",
       details: [
@@ -59,24 +59,26 @@ export default function Education() {
     >
       <div className="w-full">
         {/* Section Header */}
-        <h2 className="text-2xl md:text-3xl font-bold text-light mb-12 flex items-center">
-          <span className="text-accent font-mono text-lg mr-4">02.</span>
+        <h2 className="text-2xl md:text-3xl font-bold text-light mb-8 md:mb-12 flex items-center">
+          <span className="text-accent font-mono text-base md:text-lg mr-3 md:mr-4">
+            02.
+          </span>
           Education
-          <span className="ml-6 h-px bg-gray grow max-w-60"></span>
+          <span className="ml-4 md:ml-6 h-px bg-gray grow max-w-20 md:max-w-60"></span>
         </h2>
 
-        <div className="flex flex-col md:flex-row gap-8 w-full">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 w-full">
           {/* Left side: Institutions list */}
           <div className="md:w-1/4">
-            <ul className="flex md:flex-col gap-0 border-l-2 border-gray/20">
+            <ul className="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible border-l-0 md:border-l-2 border-gray/20 pb-2 md:pb-0">
               {educationData.map((edu, i) => (
                 <li
                   key={i}
                   onClick={() => setActiveIndex(i)}
-                  className={`cursor-pointer py-3 px-4 border-l-2 transition-all duration-300 font-mono text-sm ${
+                  className={`cursor-pointer py-3 px-4 border-b-2 md:border-b-0 md:border-l-2 transition-all duration-300 font-mono text-xs md:text-sm whitespace-nowrap ${
                     activeIndex === i
                       ? "text-accent border-accent bg-accent/5"
-                      : "text-gray border-transparent hover:text-accent hover:bg-accent/5"
+                      : "text-gray border-gray/20 md:border-transparent hover:text-accent hover:bg-accent/5"
                   }`}
                 >
                   {edu.level}
@@ -93,18 +95,21 @@ export default function Education() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <h3 className="text-xl font-bold text-light mb-1">
+              <h3 className="text-lg md:text-xl font-bold text-light mb-1">
                 {educationData[activeIndex].level}
               </h3>
-              <p className="text-accent text-lg mb-2">
+              <p className="text-accent text-base md:text-lg mb-2">
                 {educationData[activeIndex].institute}
               </p>
-              <p className="text-gray text-sm mb-6 font-mono">
+              <p className="text-gray text-xs md:text-sm mb-4 md:mb-6 font-mono">
                 {educationData[activeIndex].duration}
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-2 md:space-y-3">
                 {educationData[activeIndex].details.map((point, i) => (
-                  <li key={i} className="flex items-start gap-3 text-gray">
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-gray text-sm md:text-base"
+                  >
                     <span className="text-accent mt-1 shrink-0">▹</span>
                     <span className="leading-relaxed">{point}</span>
                   </li>

@@ -10,8 +10,12 @@ import Contact from "./_components/Contact";
 export default function Home() {
   return (
     <main>
-      <SocialLinks />
-      <EmailLink />
+      <div className="hidden md:block">
+        <SocialLinks />
+      </div>
+      <div className="hidden md:block">
+        <EmailLink />
+      </div>
       <Navbar />
       <Hero />
       <About />
