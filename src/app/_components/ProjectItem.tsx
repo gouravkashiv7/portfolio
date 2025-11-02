@@ -29,14 +29,14 @@ export default function ProjectItem({
     <motion.div
       className={`flex flex-col ${
         reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-      } gap-8 items-center`}
+      } gap-6 lg:gap-8 items-center`}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      {/* Image Section - More height */}
-      <div className="lg:w-1/2 relative group">
+      {/* Image Section */}
+      <div className="w-full lg:w-1/2 relative group">
         <div className="relative rounded-lg overflow-hidden aspect-14/10">
           <Link
             href={liveLink}
@@ -49,37 +49,41 @@ export default function ProjectItem({
               alt={title}
               width={700}
               height={520}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+              className="w-full h-full object-cover transition-transform duration-500 lg:group-hover:scale-105 cursor-pointer active:scale-105"
             />
           </Link>
-          <div className="absolute inset-0 bg-[#112240]/60 opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
+          <div className="absolute inset-0 bg-[#112240]/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
         </div>
       </div>
 
-      {/* Content Section - Overlapping with higher z-index */}
+      {/* Content Section */}
       <div
-        className={`lg:w-1/2 ${
+        className={`w-full lg:w-1/2 ${
           reverse ? "lg:text-left" : "lg:text-right"
         } relative z-10 lg:-mx-16`}
       >
         {featured && (
-          <p className="text-accent font-mono text-sm mb-2">Featured Project</p>
+          <p className="text-accent font-mono text-xs lg:text-sm mb-2">
+            Featured Project
+          </p>
         )}
 
-        <h3 className="text-2xl font-bold text-light mb-4">{title}</h3>
+        <h3 className="text-xl lg:text-2xl font-bold text-light mb-4">
+          {title}
+        </h3>
 
         <div
-          className={`bg-[#112240] p-6 rounded-lg mb-6 ${
-            reverse ? "lg:text-left" : "lg:text-left"
-          }`}
+          className={`bg-[#112240] p-4 lg:p-6 rounded-lg mb-4 lg:mb-6 text-left`}
         >
-          <p className="text-gray leading-relaxed">{description}</p>
+          <p className="text-gray leading-relaxed text-sm lg:text-base">
+            {description}
+          </p>
         </div>
 
         {/* Tech Stack */}
         <div
-          className={`flex flex-wrap gap-3 mb-6 font-mono text-sm text-gray ${
-            reverse ? "justify-start" : "lg:justify-end"
+          className={`flex flex-wrap gap-2 lg:gap-3 mb-4 lg:mb-6 font-mono text-xs lg:text-sm text-gray ${
+            reverse ? "justify-start" : "lg:justify-end justify-start"
           }`}
         >
           {tech.map((item, index) => (
@@ -90,25 +94,25 @@ export default function ProjectItem({
         {/* Links */}
         <div
           className={`flex gap-4 ${
-            reverse ? "justify-start" : "lg:justify-end"
+            reverse ? "justify-start" : "lg:justify-end justify-start"
           }`}
         >
-          <a
+          <Link
             href={projectLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray hover:text-accent transition-colors duration-300"
+            className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
           >
-            <Github size={20} />
-          </a>
-          <a
+            <Github size={18} className="lg:size-5" />
+          </Link>
+          <Link
             href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray hover:text-accent transition-colors duration-300"
+            className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
           >
-            <ExternalLink size={20} />
-          </a>
+            <ExternalLink size={18} className="lg:size-5" />
+          </Link>
         </div>
       </div>
     </motion.div>
