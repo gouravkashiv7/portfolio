@@ -2,20 +2,48 @@
 import { motion } from "framer-motion";
 import gourav from "../../../public/gourav.jpg";
 import Image from "next/image";
+import {
+  Terminal,
+  Code2,
+  Cpu,
+  Globe2,
+  MapPin,
+  Database,
+  Zap,
+  Layout,
+  GitBranch,
+  Sparkles,
+} from "lucide-react";
 
 export default function About() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
+  const cardVariants: any = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
+  };
+
   return (
     <section
       id="about"
       className="min-h-screen flex items-center px-6 md:px-20 py-20 max-w-5xl mx-auto"
     >
       <div className="w-full">
-        {/* Heading Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-light mb-8 md:mb-12 flex items-center">
             <span className="text-accent font-mono text-base md:text-lg mr-3 md:mr-4">
@@ -26,189 +54,121 @@ export default function About() {
           </h2>
         </motion.div>
 
-        {/* Mobile Image - Shows above text on mobile */}
         <motion.div
-          className="flex justify-center mb-8 lg:hidden"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.1,
-          }}
-          viewport={{ once: true }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto"
         >
-          <MobileImage />
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-          {/* Text Content */}
+          {/* Main Text Card - Takes up 2 columns */}
           <motion.div
-            className="col-span-1 lg:col-span-7"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
+            variants={cardVariants}
+            className="md:col-span-2 glass-card p-8 md:p-10 flex flex-col justify-center group hover:border-accent/30 transition-colors duration-500"
           >
-            <div className="space-y-4 text-gray text-sm md:text-base">
-              <p className="leading-relaxed">
-                Hello! I'm Gourav, a passionate frontend developer specializing
-                in modern web technologies. My journey in web development
-                started with a curiosity about how digital experiences are
-                built, and it has evolved into a love for creating fast,
-                responsive, and user-friendly applications.
+            <div className="space-y-6 text-gray/90 text-sm md:text-base leading-relaxed">
+              <p>
+                Hello! I'm Gourav, a passionate DevOps Developer specializing in
+                scalable cloud infrastructure and deployment automation. My
+                journey in tech started with robust software development and
+                evolved into a love for designing resilient, secure, and highly
+                available systems.
               </p>
-
-              <p className="leading-relaxed">
-                I specialize in the{" "}
-                <span className="text-accent">React ecosystem</span>, with
-                expertise in
-                <span className="text-accent">
-                  {" "}
-                  Next.js, TypeScript, and Tailwind CSS
+              <p>
+                I specialize in modern{" "}
+                <span className="text-accent font-medium">
+                  Cloud Architecture
                 </span>
-                . I'm passionate about writing clean, maintainable code and
-                creating seamless user experiences that make a difference.
-              </p>
-
-              <p className="leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or learning about the
-                latest trends in web development. I'm always excited to take on
-                new challenges and collaborate on interesting projects.
+                , with expertise in{" "}
+                <span className="text-accent font-medium">
+                  AWS, Docker, CI/CD, and Serverless computing
+                </span>
+                . I'm passionate about automating operations and delivering
+                efficient systems. I am currently open to new projects!
               </p>
             </div>
-
-            {/* Skills List */}
-            <motion.div
-              className="mt-6 md:mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <h3 className="text-light text-base md:text-lg mb-3 md:mb-4">
-                Here are a few technologies I've been working with:
-              </h3>
-              <div className="grid grid-cols-2 gap-2 font-mono text-xs md:text-sm text-gray">
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  JavaScript (ES6+)
-                </div>
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  TypeScript
-                </div>
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  React.js
-                </div>
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  Next.js
-                </div>
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  Tailwind CSS
-                </div>
-                <div className="flex items-center">
-                  <span className="text-accent mr-2">▹</span>
-                  Node.js
-                </div>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Desktop Image - Only shows on desktop */}
+          {/* Profile Image Card */}
           <motion.div
-            className="col-span-1 lg:col-span-5 hidden lg:flex justify-center pt-8"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            viewport={{ once: true, margin: "-50px" }}
+            variants={cardVariants}
+            className="glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-0"
           >
-            <DesktopImage />
+            <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10 mix-blend-overlay"></div>
+            <Image
+              src={gourav}
+              alt="Gourav Kashiv"
+              fill
+              className="object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500"
+            />
           </motion.div>
-        </div>
+
+          {/* Technical Arsenal Card */}
+          <motion.div
+            variants={cardVariants}
+            className="md:col-span-2 glass-card p-8 group hover:border-accent/30 transition-colors duration-500"
+          >
+            <h3 className="text-light text-lg font-bold mb-6 flex items-center gap-2">
+              <Terminal size={20} className="text-accent" />
+              Technical Arsenal
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-2 font-mono text-xs md:text-sm text-gray">
+              <div className="flex items-center gap-2">
+                <Code2 size={14} className="text-accent" /> MERN Stack
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe2 size={14} className="text-accent" /> Next.js & TS
+              </div>
+              <div className="flex items-center gap-2">
+                <Cpu size={14} className="text-accent" /> AWS (S3, EC2)
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe2 size={14} className="text-accent" /> Route 53 & Lambda
+              </div>
+              <div className="flex items-center gap-2">
+                <Terminal size={14} className="text-accent" /> Docker & CI/CD
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap size={14} className="text-accent" /> Prompt Engineering
+              </div>
+              <div className="flex items-center gap-2">
+                <Sparkles size={14} className="text-accent" /> Gen AI & LLMs
+              </div>
+              <div className="flex items-center gap-2">
+                <Layout size={14} className="text-accent" /> UI/UX & Framer
+                Motion
+              </div>
+              <div className="flex items-center gap-2">
+                <GitBranch size={14} className="text-accent" /> Git & Open
+                Source
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Location & Status Card */}
+          <motion.div
+            variants={cardVariants}
+            className="glass-card p-8 flex flex-col justify-center items-center text-center group hover:border-accent/30 hover:bg-white/5 transition-all duration-500"
+          >
+            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/10 text-accent mb-4 group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-500">
+              <MapPin size={24} />
+            </div>
+            <h3 className="text-light font-bold mb-1 border-b border-accent/30 pb-1 inline-block">
+              Chandigarh, IN
+            </h3>
+            <p className="text-gray text-xs font-mono mb-4 border-t border-accent/20 pt-2 border-dashed">
+              Panjab University
+            </p>
+            <div className="flex items-center gap-2 text-xs font-mono text-accent bg-accent/10 px-3 py-1.5 rounded-full border border-accent/20">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              </span>
+              Open to work
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
-// Separate component for desktop image with hover effects
-const DesktopImage = () => (
-  <motion.div
-    className="relative group"
-    whileHover={{
-      scale: 1.02,
-      transition: { duration: 0.3 },
-    }}
-  >
-    <motion.div
-      className="w-72 h-72 border-2 border-accent rounded-lg overflow-hidden"
-      initial={{ scale: 0.95, rotateY: -10 }}
-      whileInView={{
-        scale: 1,
-        rotateY: 0,
-        transition: {
-          duration: 0.8,
-          delay: 0.5,
-          ease: "easeOut",
-        },
-      }}
-      whileHover={{
-        borderColor: "#64ffda",
-        boxShadow: "0 0 20px rgba(100, 255, 218, 0.3)",
-        transition: { duration: 0.3 },
-      }}
-    >
-      <Image
-        src={gourav}
-        alt="Gourav Kashiv"
-        width={288}
-        height={288}
-        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-      />
-    </motion.div>
-
-    <motion.div
-      className="w-72 h-72 bg-accent/10 rounded-lg absolute top-3 left-3 -z-10"
-      initial={{ opacity: 0, scale: 0.9, x: -10, y: -10 }}
-      whileInView={{
-        opacity: 1,
-        scale: 1,
-        x: 0,
-        y: 0,
-        transition: {
-          duration: 0.6,
-          delay: 0.7,
-          ease: "easeOut",
-        },
-      }}
-      whileHover={{
-        backgroundColor: "rgba(100, 255, 218, 0.15)",
-        scale: 1.05,
-        transition: { duration: 0.3 },
-      }}
-    />
-  </motion.div>
-);
-
-// Separate component for mobile image without hover effects
-const MobileImage = () => (
-  <div className="relative">
-    <div className="w-48 h-48 border-2 border-accent rounded-lg overflow-hidden">
-      <Image
-        src={gourav}
-        alt="Gourav Kashiv"
-        width={192}
-        height={192}
-        className="w-full h-full object-cover grayscale-0" // No grayscale on mobile
-      />
-    </div>
-    <div className="w-48 h-48 bg-accent/10 rounded-lg absolute top-3 left-3 -z-10" />
-  </div>
-);

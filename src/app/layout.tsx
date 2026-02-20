@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "./_components/CustomCursor";
 import Footer from "./_components/Footer";
+import NoiseOverlay from "./_components/NoiseOverlay";
+import SmoothScrolling from "./_components/SmoothScrolling";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +17,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gourav Kashiv",
-  description: "React and Next.js Developer building modern web experiences",
+  title: "Gourav Kashiv | DevOps Developer",
+  description:
+    "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines. Currently open to new projects.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,10 +33,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
       >
-        {children}
-        <Footer />
+        <SmoothScrolling>
+          <NoiseOverlay />
+          <CustomCursor />
+          {children}
+          <Footer />
+        </SmoothScrolling>
       </body>
     </html>
   );

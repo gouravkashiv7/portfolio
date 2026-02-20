@@ -33,7 +33,7 @@ export default function Education() {
       duration: "2018 – 2022",
       details: [
         "Graduated with distinction (CGPA: 9.58/10) focusing on software engineering principles",
-        "Built multiple full-stack projects using React.js and Node.js",
+        "Built multiple scalable cloud projects using AWS, Node.js, and CI/CD pipelines",
         "Achieved Quarter-finalist in Smart India Hackathon with IoT-based agricultural monitoring system",
         "Secured Semi-finalist position in IICDC for the same project featuring image processing capabilities",
         "Guided team to runners-up position in Octahacks hackathon, demonstrating leadership and technical expertise",
@@ -70,7 +70,7 @@ export default function Education() {
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 w-full">
           {/* Left side: Institutions list */}
           <div className="md:w-1/4">
-            <ul className="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible border-l-0 md:border-l-2 border-gray/20 pb-2 md:pb-0">
+            <ul className="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible border-l-0 md:border-l-2 border-gray/20 pb-2 md:pb-0 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {educationData.map((edu, i) => (
                 <li
                   key={i}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Phone, Github, Linkedin, Instagram } from "lucide-react";
 import Link from "next/link";
+import MagneticButton from "./MagneticButton";
 
 export default function Contact() {
   return (
@@ -46,16 +47,21 @@ export default function Contact() {
       </motion.p>
 
       {/* Contact Button */}
-      <motion.a
-        href="mailto:gouravkashiv3@gmail.com?subject=Hello Gourav!&body=Hi Gourav,%0D%0A%0D%0AI'd like to get in touch with you regarding..."
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ scale: 1.05 }}
-        transition={{ duration: 0.3 }}
-        className="inline-block border border-accent text-accent font-mono px-6 py-3 rounded hover:bg-accent hover:text-dark transition-all duration-300 text-sm md:text-base"
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
       >
-        Say Hello
-      </motion.a>
+        <Link href="/contact" className="inline-block">
+          <MagneticButton className="border border-accent text-accent font-mono px-8 py-4 rounded transition-all duration-300 text-sm md:text-base relative overflow-hidden group hover:border-transparent">
+            <span className="relative z-10 group-hover:text-dark transition-colors duration-300">
+              Say Hello
+            </span>
+            <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0"></div>
+          </MagneticButton>
+        </Link>
+      </motion.div>
 
       {/* Contact Info */}
       <div className="mt-8 md:mt-10 text-sm text-gray-400">

@@ -3,58 +3,84 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants: any = {
+    hidden: { y: 40, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { type: "spring", stiffness: 100, damping: 20 },
+    },
+  };
+
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-0 max-w-5xl mx-auto items-start">
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-accent font-mono mb-4 text-base md:text-lg"
-      >
-        Hi, my name is
-      </motion.p>
-
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="text-4xl md:text-7xl font-bold text-light leading-tight"
-      >
-        Gourav Kashiv.
-      </motion.h1>
-
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        className="text-2xl md:text-6xl font-bold text-gray mt-2 leading-tight"
-      >
-        I build things for the web.
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        className="mt-6 md:mt-8 max-w-lg text-gray text-base md:text-lg leading-relaxed"
-      >
-        I'm a React and Next.js developer specializing in building fast,
-        responsive, and accessible digital experiences. Currently, I'm looking
-        for freelance opportunities to prove my skills and build awesome web
-        products.
-      </motion.p>
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 max-w-5xl mx-auto items-start relative overflow-visible">
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-accent/20 rounded-full blur-3xl -z-10 mix-blend-screen opacity-50 pointer-events-none animate-pulse"></div>
+      <div
+        className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-screen opacity-40 pointer-events-none animate-pulse"
+        style={{ animationDelay: "1s" }}
+      ></div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full relative z-10"
       >
-        <Link
-          href="#projects"
-          className="inline-block mt-8 md:mt-12 px-6 md:px-8 py-3 md:py-4 border border-accent text-accent font-mono text-sm rounded hover:bg-accent hover:text-dark transition-all duration-300"
+        <div className="overflow-hidden mb-4">
+          <motion.p
+            variants={itemVariants}
+            className="text-accent font-mono text-base md:text-lg"
+          >
+            Hi, my name is
+          </motion.p>
+        </div>
+
+        <div className="overflow-hidden mb-2">
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-light leading-[1.1] tracking-tight"
+          >
+            Gourav Kashiv.
+          </motion.h1>
+        </div>
+
+        <div className="overflow-hidden">
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray leading-[1.1] tracking-tight"
+          >
+            I build scalable infrastructure.
+          </motion.h2>
+        </div>
+
+        <motion.p
+          variants={itemVariants}
+          className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed"
         >
-          Check out my work!
-        </Link>
+          I'm a DevOps Developer specializing in building scalable cloud infra,
+          modern CI/CD pipelines, and secure serverless architectures. Currently
+          open to new projects and opportunities.
+        </motion.p>
+
+        <motion.div variants={itemVariants} className="mt-12">
+          <Link
+            href="#projects"
+            className="relative px-8 py-4 border border-accent/50 text-accent font-mono text-sm rounded bg-transparent overflow-hidden group inline-block interactive hover:border-accent transition-colors duration-300"
+          >
+            <span className="relative z-10 group-hover:text-dark transition-colors duration-500">
+              Check out my work!
+            </span>
+            <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );
