@@ -1,5 +1,6 @@
 "use client";
 
+// @ts-ignore
 import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function SmoothScrolling({

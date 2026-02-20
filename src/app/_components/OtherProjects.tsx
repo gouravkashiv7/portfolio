@@ -132,7 +132,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="bg-lightBg/50 rounded-lg p-6 border border-gray-800 hover:border-accent/30 transition-all duration-300 hover:transform hover:-translate-y-2 group h-full flex flex-col"
+    className="glass-card p-6 border border-gray-800/50 hover:border-accent/30 transition-all duration-300 hover:transform hover:-translate-y-2 group h-full flex flex-col"
   >
     <div className="flex justify-between items-start mb-4">
       <div className="text-accent">

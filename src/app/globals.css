@@ -7,6 +7,7 @@
 
 @theme inline {
   --color-dark: #0a192f;
+  --color-light-bg: #112240;
   --color-accent: #64ffda;
   --color-light: #ccd6f6;
   --color-gray: #8892b0;
@@ -75,10 +76,10 @@ a {
 /* Glassmorphism Utilities */
 @layer utilities {
   .glass {
-    @apply bg-[#0a192f]/70 backdrop-blur-md border border-[#ccd6f6]/10;
+    @apply bg-dark/70 backdrop-blur-md border border-light/10;
   }
   .glass-card {
-    @apply bg-white/[0.02] backdrop-blur-lg border border-white/5 rounded-2xl;
+    @apply bg-dark/40 backdrop-blur-lg border border-white/5 rounded-2xl;
   }
 }
 

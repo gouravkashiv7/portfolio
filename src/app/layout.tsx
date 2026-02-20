@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "./_components/CustomCursor";
-import Footer from "./_components/Footer";
-import NoiseOverlay from "./_components/NoiseOverlay";
-import SmoothScrolling from "./_components/SmoothScrolling";
+import CustomCursor from "@/app/_components/CustomCursor";
+import Footer from "@/app/_components/Footer";
+import NoiseOverlay from "@/app/_components/NoiseOverlay";
+import SmoothScrolling from "@/app/_components/SmoothScrolling";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
