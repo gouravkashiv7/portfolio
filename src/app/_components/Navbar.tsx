@@ -1,42 +1,79 @@
 "use client";
-import Link from "next/link";
+import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect, useState } from "react";
 
+const links = ["About", "Education", "Projects", "Contact"];
+
 export default function Navbar() {
-  const links = ["About", "Education", "Projects", "Contact"];
   const [activeLink, setActiveLink] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       // Show/hide navbar based on scroll direction
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and past 100px - hide navbar
         setShowNavbar(false);
       } else {
-        // Scrolling up - show navbar
         setShowNavbar(true);
       }
 
       // Set border visibility based on scroll position
       setIsScrolled(currentScrollY > 10);
-
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
 
-  // Close mobile menu when clicking on a link
-  const handleLinkClick = (section: string) => {
+    // Scroll Spy for sections
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -70% 0px" },
+    );
+
+    links.forEach((link) => {
+      const el = document.getElementById(link.toLowerCase());
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
+  }, []); // removed lastScrollY from dependency to prevent excessive re-renders!
+
+  // Smooth scroll and handle click
+  const handleScrollTo = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    section: string,
+  ) => {
+    e.preventDefault();
     setActiveLink(section);
     setIsMobileMenuOpen(false);
+    window.history.pushState(null, "", `#${section}`);
+
+    // Smooth scroll to element
+    const el = document.getElementById(section);
+    if (el) {
+      if (lenis) {
+        lenis.scrollTo(el, { offset: -80 });
+      } else {
+        const y = el.getBoundingClientRect().top + window.scrollY - 80; // offset for fixed header
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -56,9 +93,9 @@ export default function Navbar() {
 
             return (
               <li key={link}>
-                <Link
+                <a
                   href={`#${section}`}
-                  onClick={() => setActiveLink(section)}
+                  onClick={(e) => handleScrollTo(e, section)}
                   className={`transition-colors font-mono text-sm flex items-center gap-1 ${
                     isActive ? "text-accent" : "text-light hover:text-accent"
                   }`}
@@ -66,7 +103,7 @@ export default function Navbar() {
                   <span className="text-accent">0{i + 1}.</span>
                   <span>{link}</span>
                   <span className="text-gray">。</span>
-                </Link>
+                </a>
               </li>
             );
           })}
@@ -118,10 +155,10 @@ export default function Navbar() {
             const isActive = activeLink === section;
 
             return (
-              <Link
+              <a
                 key={link}
                 href={`#${section}`}
-                onClick={() => handleLinkClick(section)}
+                onClick={(e) => handleScrollTo(e, section)}
                 className={`text-2xl font-mono transition-all duration-300 flex items-center gap-2 ${
                   isActive
                     ? "text-accent scale-110"
@@ -130,7 +167,7 @@ export default function Navbar() {
               >
                 <span className="text-accent">0{i + 1}.</span>
                 <span>{link}</span>
-              </Link>
+              </a>
             );
           })}
           <a

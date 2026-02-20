@@ -1,8 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
-import Link from "next/link";
-
+import { useLenis } from "@studio-freight/react-lenis";
+import { motion, type Variants } from "framer-motion";
 export default function Hero() {
+  const lenis = useLenis();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -11,7 +12,7 @@ export default function Hero() {
     },
   };
 
-  const itemVariants: any = {
+  const itemVariants: Variants = {
     hidden: { y: 40, opacity: 0 },
     visible: {
       y: 0,
@@ -71,15 +72,29 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="mt-12">
-          <Link
-            href="#projects"
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState(null, "", "#projects");
+              const el = document.getElementById("projects");
+              if (el) {
+                if (lenis) {
+                  lenis.scrollTo(el, { offset: -80 });
+                } else {
+                  const y =
+                    el.getBoundingClientRect().top + window.scrollY - 80;
+                  window.scrollTo({ top: y, behavior: "smooth" });
+                }
+              }
+            }}
             className="relative px-8 py-4 border border-accent/50 text-accent font-mono text-sm rounded bg-transparent overflow-hidden group inline-block interactive hover:border-accent transition-colors duration-300"
           >
             <span className="relative z-10 group-hover:text-dark transition-colors duration-500">
               Check out my work!
             </span>
             <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
-          </Link>
+          </button>
         </motion.div>
       </motion.div>
     </section>
