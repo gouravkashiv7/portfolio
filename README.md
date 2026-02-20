@@ -69,4 +69,4 @@ I am **Gourav Kashiv**, a passionate **DevOps Developer** specializing in buildi
 
 Feel free to explore my projects or reach out to me for collaboration via my integrated contact hub!
 
-[Check out my live portfolio](https://gouravkashiv.vercel.app)
+[Check out my live portfolio](https://www.gouravkashiv.com)
