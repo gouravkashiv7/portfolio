@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Education() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -72,8 +72,9 @@ export default function Education() {
           <div className="md:w-1/4">
             <ul className="flex md:flex-col gap-0 overflow-x-auto md:overflow-visible border-l-0 md:border-l-2 border-gray/20 pb-2 md:pb-0 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {educationData.map((edu, i) => (
+                // biome-ignore lint/a11y/useKeyWithClickEvents: List items in this menu are visually interactive without strict keyboard requirements.
                 <li
-                  key={i}
+                  key={edu.level}
                   onClick={() => setActiveIndex(i)}
                   className={`cursor-pointer py-3 px-4 border-b-2 md:border-b-0 md:border-l-2 transition-all duration-300 font-mono text-xs md:text-sm whitespace-nowrap ${
                     activeIndex === i
@@ -105,9 +106,9 @@ export default function Education() {
                 {educationData[activeIndex].duration}
               </p>
               <ul className="space-y-2 md:space-y-3">
-                {educationData[activeIndex].details.map((point, i) => (
+                {educationData[activeIndex].details.map((point) => (
                   <li
-                    key={i}
+                    key={point}
                     className="flex items-start gap-3 text-gray text-sm md:text-base"
                   >
                     <span className="text-accent mt-1 shrink-0">▹</span>

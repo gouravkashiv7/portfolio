@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const links = ["About", "Education", "Projects", "Contact"];
@@ -55,7 +55,7 @@ export default function Navbar() {
             const isActive = activeLink === section;
 
             return (
-              <li key={i}>
+              <li key={link}>
                 <Link
                   href={`#${section}`}
                   onClick={() => setActiveLink(section)}
@@ -73,6 +73,7 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             className="ml-4 border border-accent text-accent px-4 py-2 rounded hover:bg-accent hover:text-dark font-mono text-sm transition-colors duration-300"
+            aria-label="View Resume"
           >
             Resume
           </a>
@@ -80,6 +81,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button - only shows on small screens */}
         <button
+          type="button"
           className="md:hidden flex flex-col gap-1 w-6 h-6 justify-center items-center"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
@@ -117,7 +119,7 @@ export default function Navbar() {
 
             return (
               <Link
-                key={i}
+                key={link}
                 href={`#${section}`}
                 onClick={() => handleLinkClick(section)}
                 className={`text-2xl font-mono transition-all duration-300 flex items-center gap-2 ${
@@ -135,6 +137,7 @@ export default function Navbar() {
             href="/resume.pdf"
             className="mt-4 border-2 border-accent text-accent px-6 py-3 rounded text-lg font-mono hover:bg-accent hover:text-dark transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="View Resume"
           >
             Resume
           </a>

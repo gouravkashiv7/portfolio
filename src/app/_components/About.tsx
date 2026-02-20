@@ -1,22 +1,22 @@
 "use client";
+import type { Variants } from "framer-motion";
 import { motion } from "framer-motion";
-import gourav from "../../../public/gourav.jpg";
-import Image from "next/image";
 import {
-  Terminal,
   Code2,
   Cpu,
-  Globe2,
-  MapPin,
-  Database,
-  Zap,
-  Layout,
   GitBranch,
+  Globe2,
+  Layout,
+  MapPin,
   Sparkles,
+  Terminal,
+  Zap,
 } from "lucide-react";
+import Image from "next/image";
+import gourav from "../../../public/gourav.jpg";
 
 export default function About() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -24,7 +24,7 @@ export default function About() {
     },
   };
 
-  const cardVariants: any = {
+  const cardVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,

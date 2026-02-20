@@ -24,7 +24,34 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.png",
   },
+  openGraph: {
+    title: "Gourav Kashiv | DevOps Developer",
+    description:
+      "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines.",
+    url: "https://www.gouravkashiv.com",
+    siteName: "Gourav Kashiv Portfolio",
+    images: [
+      {
+        url: "/resume.pdf", // Ideally this should be a proper OG image
+        width: 1200,
+        height: 630,
+        alt: "Gourav Kashiv - DevOps Developer Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gourav Kashiv | DevOps Developer",
+    description:
+      "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines. Currently open to new projects.",
+    images: ["/resume.pdf"], // Ideally this should be a proper Twitter card image
+  },
 };
+
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export default function RootLayout({
   children,
@@ -42,6 +69,8 @@ export default function RootLayout({
           {children}
           <Footer />
         </SmoothScrolling>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

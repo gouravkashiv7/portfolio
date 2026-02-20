@@ -52,7 +52,7 @@ export default function ProjectItem({
               className="w-full h-full object-cover transition-transform duration-500 lg:group-hover:scale-105 cursor-pointer active:scale-105"
             />
           </Link>
-          <div className="absolute inset-0 bg-[#112240]/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
+          <div className="absolute inset-0 bg-light-bg/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
         </div>
       </div>
 
@@ -73,7 +73,7 @@ export default function ProjectItem({
         </h3>
 
         <div
-          className={`bg-[#112240] p-4 lg:p-6 rounded-lg mb-4 lg:mb-6 text-left`}
+          className={`bg-light-bg p-4 lg:p-6 rounded-lg mb-4 lg:mb-6 text-left`}
         >
           <p className="text-gray leading-relaxed text-sm lg:text-base">
             {description}
@@ -86,8 +86,8 @@ export default function ProjectItem({
             reverse ? "justify-start" : "lg:justify-end justify-start"
           }`}
         >
-          {tech.map((item, index) => (
-            <span key={index}>{item}</span>
+          {tech.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
 

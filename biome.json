@@ -7,7 +7,11 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.next", "!dist", "!build"]
+    "includes": ["**/*.js", "**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.json"]
+  },
+  "css": {
+    "formatter": { "enabled": false },
+    "linter": { "enabled": false }
   },
   "formatter": {
     "enabled": true,

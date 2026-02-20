@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Github, Linkedin, Instagram } from "lucide-react";
+import { Github, Instagram, Linkedin, Phone } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 

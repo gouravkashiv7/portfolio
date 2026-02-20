@@ -1,11 +1,11 @@
+import About from "./_components/About";
+import Contact from "./_components/Contact";
+import Education from "./_components/Education";
+import EmailLink from "./_components/EmailLink";
 import Hero from "./_components/Hero";
 import Navbar from "./_components/Navbar";
-import SocialLinks from "./_components/SocialLinks";
-import EmailLink from "./_components/EmailLink";
-import About from "./_components/About";
-import Education from "./_components/Education";
 import Projects from "./_components/Projects";
-import Contact from "./_components/Contact";
+import SocialLinks from "./_components/SocialLinks";
 
 export default function Home() {
   return (

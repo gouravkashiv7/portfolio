@@ -49,7 +49,7 @@ export default function ContactPage() {
         setToastMessage("Email app not found. Copied to clipboard!");
 
         // Safer clipboard copy with fallback
-        if (navigator.clipboard && navigator.clipboard.writeText) {
+        if (navigator.clipboard?.writeText) {
           navigator.clipboard
             .writeText("gouravkashiv@zohomail.in")
             .catch(() => {

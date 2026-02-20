@@ -1,11 +1,11 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Github,
-  ExternalLink,
-  Folder,
   ChevronDown,
   ChevronUp,
+  ExternalLink,
+  Folder,
+  Github,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -93,7 +93,7 @@ const OtherProjects = () => {
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedProjects.map((project, index) => (
-          <ProjectCard key={index} project={project} index={index} />
+          <ProjectCard key={project.title} project={project} index={index} />
         ))}
       </div>
 
@@ -170,7 +170,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
 
     <div className="flex flex-wrap gap-2 mt-auto">
       {project.tech.map((tech, techIndex) => (
-        <span key={techIndex} className="text-xs text-gray-400 font-mono">
+        <span key={tech} className="text-xs text-gray-400 font-mono">
           {tech}
         </span>
       ))}
