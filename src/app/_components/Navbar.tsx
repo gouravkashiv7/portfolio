@@ -1,6 +1,5 @@
 "use client";
 import { useLenis } from "@studio-freight/react-lenis";
-import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const links = ["About", "Education", "Projects", "Contact"];
@@ -77,60 +76,6 @@ export default function Navbar() {
     }
   };
 
-  const menuVariants: Variants = {
-    initial: {
-      scaleY: 0,
-    },
-    animate: {
-      scaleY: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.12, 0, 0.39, 0],
-      },
-    },
-    exit: {
-      scaleY: 0,
-      transition: {
-        delay: 0.5,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-
-  const containerVariants: Variants = {
-    initial: {
-      transition: {
-        staggerChildren: 0.09,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.09,
-        staggerDirection: 1,
-      },
-    },
-  };
-
-  const linkVariants: Variants = {
-    initial: {
-      y: "30vh",
-      transition: {
-        duration: 0.5,
-        ease: [0.37, 0, 0.63, 1],
-      },
-    },
-    open: {
-      y: 0,
-      transition: {
-        ease: [0, 0.55, 0.45, 1],
-        duration: 0.7,
-      },
-    },
-  };
-
   return (
     <>
       <nav
@@ -140,7 +85,7 @@ export default function Navbar() {
             : "border-b border-gray/5 shadow-md shadow-accent/2"
         } ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}
       >
-        {/* Desktop Navigation - unchanged from original */}
+        {/* Desktop Navigation */}
         <ul className="hidden md:flex gap-8 items-center">
           {links.map((link, i) => {
             const section = link.toLowerCase();
@@ -164,6 +109,8 @@ export default function Navbar() {
           })}
           <a
             href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-4 border border-accent text-accent px-4 py-2 rounded hover:bg-accent hover:text-dark font-mono text-sm transition-colors duration-300"
             aria-label="View Resume"
           >
@@ -171,86 +118,106 @@ export default function Navbar() {
           </a>
         </ul>
 
-        {/* Mobile Menu Button - Framer Motion */}
+        {/* Mobile Menu Button  */}
         <button
           type="button"
-          className="md:hidden flex flex-col gap-1.5 justify-center items-center z-70 relative w-8 h-8"
+          className="md:hidden flex flex-col gap-1.5 justify-center items-center z-70 relative w-8 h-8 group"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          <motion.span
-            animate={
-              isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }
-            }
-            className="w-6 h-0.5 bg-accent block transition-colors"
+          <span
+            className={`w-6 h-0.5 bg-accent block transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen
+                ? "rotate-45 translate-y-2 opacity-80"
+                : "group-hover:opacity-80"
+            }`}
           />
-          <motion.span
-            animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-6 h-0.5 bg-accent block transition-colors"
+          <span
+            className={`w-6 h-0.5 bg-accent block transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen
+                ? "opacity-0"
+                : "group-hover:opacity-80 group-hover:w-5"
+            }`}
           />
-          <motion.span
-            animate={
-              isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }
-            }
-            className="w-6 h-0.5 bg-accent block transition-colors"
+          <span
+            className={`w-6 h-0.5 bg-accent block transition-all duration-300 ease-in-out ${
+              isMobileMenuOpen
+                ? "-rotate-45 -translate-y-2 opacity-80"
+                : "group-hover:opacity-80"
+            }`}
           />
         </button>
       </nav>
 
-      {/* Mobile Menu Overlay with Framer Motion */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            variants={menuVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="fixed inset-0 bg-dark z-50 md:hidden origin-top flex flex-col justify-center items-center backdrop-blur-xl bg-opacity-95"
-          >
-            <motion.div
-              variants={containerVariants}
-              initial="initial"
-              animate="open"
-              exit="initial"
-              className="flex flex-col items-center gap-8 overflow-hidden h-full justify-center w-full"
-            >
-              {links.map((link, i) => {
-                const section = link.toLowerCase();
-                const isActive = activeLink === section;
+      {/* Mobile Menu Overlay - CSS Transitions only */}
+      <div
+        className={`fixed inset-0  bg-dark/95 backdrop-blur-xl z-50 md:hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          isMobileMenuOpen
+            ? "opacity-100 pointer-events-auto shadow-2xl shadow-accent/10 delay-100"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center justify-center h-full w-full gap-8">
+          {links.map((link, i) => {
+            const section = link.toLowerCase();
+            const isActive = activeLink === section;
 
-                return (
-                  <div key={link} className="overflow-hidden">
-                    <motion.a
-                      variants={linkVariants}
-                      href={`#${section}`}
-                      onClick={(e) => handleScrollTo(e, section)}
-                      className={`text-4xl font-mono flex items-center gap-4 transition-colors ${
-                        isActive
-                          ? "text-accent"
-                          : "text-light hover:text-accent"
-                      }`}
-                    >
-                      <span className="text-sm text-accent">0{i + 1}.</span>
-                      <span>{link}</span>
-                    </motion.a>
-                  </div>
-                );
-              })}
-              <div className="overflow-hidden mt-8">
-                <motion.a
-                  variants={linkVariants}
-                  href="/resume.pdf"
-                  className="border border-accent text-accent px-8 py-4 rounded text-xl font-mono hover:bg-accent hover:text-dark transition-colors duration-300"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  aria-label="View Resume"
-                >
-                  Resume
-                </motion.a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            // Stagger animation delays for each link
+            const delay = (i + 1) * 75;
+
+            return (
+              <a
+                key={link}
+                href={`#${section}`}
+                onClick={(e) => handleScrollTo(e, section)}
+                style={{
+                  transitionDelay: isMobileMenuOpen ? `${delay}ms` : "0ms",
+                  transitionProperty: "opacity, transform",
+                }}
+                className={`text-4xl font-mono flex items-center gap-4 transition-all duration-300 p-2 hover:scale-110 ease-out ${
+                  isActive
+                    ? "text-accent translate-x-2"
+                    : "text-light hover:text-accent hover:translate-x-2"
+                } ${
+                  isMobileMenuOpen
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
+                <span className="text-sm text-accent opacity-70">
+                  0{i + 1}.
+                </span>
+                <span>{link}</span>
+              </a>
+            );
+          })}
+
+          <div
+            className={`mt-4 relative group transition-all duration-500 ease-out ${
+              isMobileMenuOpen
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+            style={{
+              transitionDelay: isMobileMenuOpen
+                ? `${(links.length + 1) * 75}ms`
+                : "0ms",
+            }}
+          >
+            <div className="absolute inset-0 bg-accent/20 blur-xl rounded-lg group-hover:bg-accent/40 transition-colors duration-300"></div>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block border border-accent/50 text-accent px-10 py-4 rounded-lg text-xl font-mono bg-dark/50 hover:bg-accent hover:text-dark hover:border-accent transition-all duration-300 backdrop-blur-sm"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="View Resume"
+            >
+              Resume
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
