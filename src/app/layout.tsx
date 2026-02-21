@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/app/_components/CustomCursor";
 import Footer from "@/app/_components/Footer";
 import NoiseOverlay from "@/app/_components/NoiseOverlay";
 import SmoothScrolling from "@/app/_components/SmoothScrolling";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -53,6 +53,8 @@ export const metadata: Metadata = {
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import Preloader from "@/app/_components/Preloader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,8 +63,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
       >
+        <Preloader />
         <SmoothScrolling>
           <NoiseOverlay />
           <CustomCursor />

@@ -35,7 +35,7 @@ export default function Education() {
       duration: "2023 – 2025",
       icon: <GraduationCap size={24} className="text-accent" />,
       details: [
-        "Currently pursuing advanced studies in computer science",
+        "Completed advanced studies in computer science",
         "Research focus on Large Language Models and generative AI",
         "Published research paper on text-to-video generative models",
         "Exploring cutting-edge AI technologies and their applications",

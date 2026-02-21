@@ -81,7 +81,7 @@ export default function ProjectItem({
             href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full h-full"
+            className="block w-full h-full cursor-view"
           >
             <Image
               src={image}

@@ -1,6 +1,6 @@
 "use client";
 import { useLenis } from "@studio-freight/react-lenis";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MagneticButton from "./MagneticButton";
 
@@ -8,7 +8,6 @@ const links = ["About", "Education", "Projects", "Contact"];
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("");
-  const [isScrolled, setIsScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState("");
@@ -28,7 +27,6 @@ export default function Navbar() {
       }
 
       // Set border visibility based on scroll position
-      setIsScrolled(currentScrollY > 10);
       lastScrollY = currentScrollY;
     };
 
@@ -91,7 +89,7 @@ export default function Navbar() {
         >
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center relative gap-1">
-            {links.map((link, i) => {
+            {links.map((link) => {
               const section = link.toLowerCase();
               const isActive = activeLink === section;
               const isHovered = hoveredLink === section;
@@ -193,70 +191,99 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* Mobile Menu Overlay - CSS Transitions only */}
-      <div
-        className={`fixed inset-0  bg-dark/95 backdrop-blur-xl z-50 md:hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          isMobileMenuOpen
-            ? "opacity-100 pointer-events-auto shadow-2xl shadow-accent/10 delay-100"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full w-full gap-8">
-          {links.map((link, i) => {
-            const section = link.toLowerCase();
-            const isActive = activeLink === section;
-
-            // Stagger animation delays for each link
-            const delay = (i + 1) * 75;
-
-            return (
-              <a
-                key={link}
-                href={`#${section}`}
-                onClick={(e) => handleScrollTo(e, section)}
-                style={{
-                  transitionDelay: isMobileMenuOpen ? `${delay}ms` : "0ms",
-                  transitionProperty: "opacity, transform",
-                }}
-                className={`text-4xl font-medium flex items-center justify-center transition-all duration-300 p-2 hover:scale-105 ease-out ${
-                  isActive ? "text-accent" : "text-light/70 hover:text-white"
-                } ${
-                  isMobileMenuOpen
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
-              >
-                <span>{link}</span>
-              </a>
-            );
-          })}
-
-          <div
-            className={`mt-4 relative group transition-all duration-500 ease-out ${
-              isMobileMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-            style={{
-              transitionDelay: isMobileMenuOpen
-                ? `${(links.length + 1) * 75}ms`
-                : "0ms",
+      {/* Mobile Menu Overlay - Powered by Framer Motion */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              y: -20,
+              transition: { delay: 0.2, duration: 0.3 },
             }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-dark/95 backdrop-blur-xl z-50 md:hidden flex flex-col items-center justify-center p-4 shadow-2xl shadow-accent/10"
           >
-            <div className="absolute inset-0 bg-accent/20 blur-xl rounded-lg group-hover:bg-accent/40 transition-colors duration-300"></div>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative block border border-accent/50 text-accent px-10 py-4 rounded-lg text-xl font-mono bg-dark/50 hover:bg-accent hover:text-dark hover:border-accent transition-all duration-300 backdrop-blur-sm"
-              onClick={() => setIsMobileMenuOpen(false)}
-              aria-label="View Resume"
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 0.2,
+                  },
+                },
+                hidden: {
+                  transition: {
+                    staggerChildren: 0.05,
+                    staggerDirection: -1,
+                  },
+                },
+              }}
+              className="flex flex-col items-center justify-center h-full w-full gap-8"
             >
-              Resume
-            </a>
-          </div>
-        </div>
-      </div>
+              {links.map((link) => {
+                const section = link.toLowerCase();
+                const isActive = activeLink === section;
+
+                return (
+                  <motion.a
+                    key={link}
+                    href={`#${section}`}
+                    onClick={(e) => handleScrollTo(e, section)}
+                    variants={{
+                      hidden: { opacity: 0, y: 40 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          type: "spring",
+                          stiffness: 100,
+                          damping: 15,
+                        },
+                      },
+                    }}
+                    className={`text-4xl font-medium flex items-center justify-center transition-colors duration-300 p-2 ${
+                      isActive
+                        ? "text-accent"
+                        : "text-light/70 hover:text-white"
+                    }`}
+                  >
+                    <span>{link}</span>
+                  </motion.a>
+                );
+              })}
+
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    transition: { type: "spring", stiffness: 100, damping: 15 },
+                  },
+                }}
+                className="mt-4 relative group"
+              >
+                <div className="absolute inset-0 bg-accent/20 blur-xl rounded-lg group-hover:bg-accent/40 transition-colors duration-300"></div>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block border border-accent/50 text-accent px-10 py-4 rounded-lg text-xl font-mono bg-dark/50 hover:bg-accent hover:text-dark hover:border-accent transition-all duration-300 backdrop-blur-sm"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label="View Resume"
+                >
+                  Resume
+                </a>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

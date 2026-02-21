@@ -118,7 +118,7 @@ export default function About() {
             variants={cardVariants}
             whileTap={{ scale: 0.98 }}
             tabIndex={0}
-            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full cursor-pointer outline-none"
+            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full cursor-pointer outline-none cursor-view"
           >
             <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 group-active:translate-y-0 group-focus:translate-y-0 transition-transform duration-500 z-10 mix-blend-overlay"></div>
             <Image
@@ -190,18 +190,28 @@ export default function About() {
               {isTechExpanded ? (
                 /* Full Grid View */
                 <motion.div
+                  layout
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full justify-items-center"
                 >
                   {techStack.map((item, index) => (
-                    <div
+                    <motion.div
+                      layout
                       key={`${item.name}-${index}`}
-                      className="flex items-center justify-center w-full gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
+                      tabIndex={0}
+                      className="group flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left w-full gap-2 sm:gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent focus:text-accent hover:border-accent/40 focus:border-accent/40 hover:bg-accent/10 focus:bg-accent/10 transition-colors duration-300 cursor-pointer outline-none"
                     >
-                      <span className="text-accent shrink-0">{item.icon}</span>
-                      <span className="truncate">{item.name}</span>
-                    </div>
+                      <motion.span layout className="text-accent shrink-0">
+                        {item.icon}
+                      </motion.span>
+                      <motion.span
+                        layout
+                        className="truncate w-full group-hover:whitespace-normal group-hover:overflow-visible group-focus:whitespace-normal group-focus:overflow-visible group-hover:text-clip group-focus:text-clip"
+                      >
+                        {item.name}
+                      </motion.span>
+                    </motion.div>
                   ))}
                 </motion.div>
               ) : (
