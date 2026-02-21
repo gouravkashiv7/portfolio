@@ -18,16 +18,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.gouravkashiv.com"),
-  title: "Gourav Kashiv | DevOps Developer",
+  title: "Gourav Kashiv | Fullstack Developer",
   description:
-    "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines. Currently open to new projects.",
+    "Fullstack Developer specializing in the MERN stack, Next.js, and DevOps practices like CI/CD and AWS deployments. Currently open to new projects.",
   icons: {
     icon: "/favicon.png",
   },
   openGraph: {
     title: "Gourav Kashiv | DevOps Developer",
     description:
-      "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines.",
+      "Fullstack Developer specializing in the MERN stack, Next.js, and DevOps practices.",
     url: "https://www.gouravkashiv.com",
     siteName: "Gourav Kashiv Portfolio",
     images: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         url: "/resume.pdf", // Ideally this should be a proper OG image
         width: 1200,
         height: 630,
-        alt: "Gourav Kashiv - DevOps Developer Portfolio",
+        alt: "Gourav Kashiv - Fullstack Developer Portfolio",
       },
     ],
     locale: "en_US",

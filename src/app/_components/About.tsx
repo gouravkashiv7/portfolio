@@ -68,23 +68,23 @@ export default function About() {
           >
             <div className="space-y-6 text-gray/90 text-sm md:text-base leading-relaxed">
               <p>
-                Hello! I'm Gourav, a passionate DevOps Developer specializing in
-                scalable cloud infrastructure and deployment automation. My
-                journey in tech started with robust software development and
-                evolved into a love for designing resilient, secure, and highly
-                available systems.
+                Hello! I'm Gourav, a passionate Fullstack Developer with
+                expertise in the MERN stack. I love building responsive,
+                user-friendly applications and have a strong background in
+                DevOps, ensuring seamless deployments and scalable cloud
+                infrastructure. I'm passionate about my work and known for my
+                speed and efficiency.
               </p>
               <p>
-                I specialize in modern{" "}
+                I specialize in the{" "}
                 <span className="text-accent font-medium">
-                  Cloud Architecture
+                  MERN Stack, Next.js, and DevOps
                 </span>
                 , with expertise in{" "}
                 <span className="text-accent font-medium">
-                  AWS, Docker, CI/CD, and Serverless computing
+                  AWS EC2, Docker, CI/CD, and Serverless computing
                 </span>
-                . I'm passionate about automating operations and delivering
-                efficient systems. I am currently open to new projects!
+                . I am currently open to new projects and opportunities!
               </p>
             </div>
           </motion.div>

@@ -58,7 +58,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-4xl sm:text-6xl md:text-7xl font-bold text-gray leading-[1.1] tracking-tight"
           >
-            I build scalable infrastructure.
+            I build modern web applications.
           </motion.h2>
         </div>
 
@@ -66,9 +66,10 @@ export default function Hero() {
           variants={itemVariants}
           className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed"
         >
-          I'm a DevOps Developer specializing in building scalable cloud infra,
-          modern CI/CD pipelines, and secure serverless architectures. Currently
-          open to new projects and opportunities.
+          I am a Fullstack Developer with expertise in the MERN stack. I also
+          specialize in DevOps practices like CI/CD pipelines, Docker, and AWS
+          EC2 deployments. I love this work, I am fast, and I am currently open
+          to new projects and opportunities!
         </motion.p>
 
         <motion.div variants={itemVariants} className="mt-12">
