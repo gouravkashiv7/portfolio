@@ -68,12 +68,11 @@ export default function About() {
           >
             <div className="space-y-6 text-gray/90 text-sm md:text-base leading-relaxed">
               <p>
-                Hello! I'm Gourav, a passionate Fullstack Developer with
-                expertise in the MERN stack. I love building responsive,
-                user-friendly applications and have a strong background in
-                DevOps, ensuring seamless deployments and scalable cloud
-                infrastructure. I'm passionate about my work and known for my
-                speed and efficiency.
+                Hello! I'm Gourav, a passionate Full-Stack Engineer and MERN
+                Specialist. I love building responsive, user-friendly
+                applications and have a strong background in DevOps, ensuring
+                seamless deployments and scalable cloud infrastructure. I'm
+                passionate about my work and known for my speed and efficiency.
               </p>
               <p>
                 I specialize in the{" "}
