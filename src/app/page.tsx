@@ -1,11 +1,15 @@
+import dynamic from "next/dynamic";
 import About from "./_components/About";
-import Contact from "./_components/Contact";
-import Education from "./_components/Education";
 import EmailLink from "./_components/EmailLink";
 import Hero from "./_components/Hero";
 import Navbar from "./_components/Navbar";
-import Projects from "./_components/Projects";
 import SocialLinks from "./_components/SocialLinks";
+
+const Education = dynamic(() => import("./_components/Education"), {
+  ssr: true,
+});
+const Projects = dynamic(() => import("./_components/Projects"), { ssr: true });
+const Contact = dynamic(() => import("./_components/Contact"), { ssr: true });
 
 export default function Home() {
   return (

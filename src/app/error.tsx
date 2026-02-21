@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useEffect } from "react";
 import MagneticButton from "./_components/MagneticButton";
 
@@ -19,7 +19,7 @@ export default function Error({
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center z-10 relative">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -47,7 +47,7 @@ export default function Error({
             </button>
           </MagneticButton>
         </div>
-      </motion.div>
+      </m.div>
     </main>
   );
 }

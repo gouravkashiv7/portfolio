@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { type ReactNode, useRef, useState } from "react";
 
 interface MagneticButtonProps {
@@ -41,7 +41,7 @@ export default function MagneticButton({
   const { x, y } = position;
 
   const content = (
-    <motion.div
+    <m.div
       className={`inline-flex items-center justify-center interactive ${className}`}
       ref={ref}
       onMouseMove={handleMouse}
@@ -51,7 +51,7 @@ export default function MagneticButton({
       onClick={onClick}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 
   if (href) {

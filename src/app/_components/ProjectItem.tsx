@@ -1,5 +1,5 @@
 "use client";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { m, useMotionValue, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,7 +56,7 @@ export default function ProjectItem({
   };
 
   return (
-    <motion.div
+    <m.div
       className={`flex flex-col ${
         reverse ? "lg:flex-row-reverse" : "lg:flex-row"
       } gap-6 lg:gap-8 items-center`}
@@ -67,7 +67,7 @@ export default function ProjectItem({
     >
       {/* Image Section */}
       <div className="w-full lg:w-1/2 relative group perspective-1000">
-        <motion.div
+        <m.div
           className="relative rounded-lg overflow-hidden aspect-14/10 transform-style-3d"
           style={{
             rotateX,
@@ -88,6 +88,7 @@ export default function ProjectItem({
               alt={title}
               width={700}
               height={520}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
               className="w-full h-full object-cover cursor-pointer"
             />
           </Link>
@@ -95,7 +96,7 @@ export default function ProjectItem({
 
           {/* Edge glare effect */}
           <div className="absolute inset-0 rounded-lg shadow-[inset_0_0_20px_rgba(255,255,255,0.1)] pointer-events-none border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Content Section */}
@@ -157,6 +158,6 @@ export default function ProjectItem({
           </Link>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ChevronDown,
   ChevronUp,
@@ -77,7 +77,7 @@ const OtherProjects = () => {
   const displayedProjects = showAll ? otherProjects : otherProjects.slice(0, 3);
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2 }}
@@ -100,7 +100,7 @@ const OtherProjects = () => {
       {/* Show More/Less Button */}
       {otherProjects.length > 3 && (
         <div className="flex justify-center mt-12">
-          <motion.button
+          <m.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -118,16 +118,16 @@ const OtherProjects = () => {
                 <ChevronDown size={16} />
               </>
             )}
-          </motion.button>
+          </m.button>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 };
 
 // Separate ProjectCard component for better organization
 const ProjectCard = ({ project, index }: ProjectCardProps) => (
-  <motion.div
+  <m.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -175,7 +175,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
         </span>
       ))}
     </div>
-  </motion.div>
+  </m.div>
 );
 
 export default OtherProjects;

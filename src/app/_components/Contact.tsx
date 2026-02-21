@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Github, Instagram, Linkedin, Phone } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
@@ -13,7 +13,7 @@ export default function Contact() {
     >
       {/* Animated Glowing Background Orbs */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/5 blur-[120px] rounded-full pointer-events-none z-0" />
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -28,7 +28,7 @@ export default function Contact() {
 
       <div className="relative z-10">
         {/* Section heading */}
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,10 +36,10 @@ export default function Contact() {
           className="text-accent font-mono text-sm mb-4"
         >
           04. What's Next?
-        </motion.p>
+        </m.p>
 
         {/* Title */}
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -47,10 +47,10 @@ export default function Contact() {
           className="text-3xl md:text-5xl font-bold text-light mb-6"
         >
           Get In Touch
-        </motion.h2>
+        </m.h2>
 
         {/* Description */}
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -60,10 +60,10 @@ export default function Contact() {
           I'm always open to discussing new projects or opportunities. Whether
           you have a question or just want to say hi, feel free to reach out —
           I'll do my best to get back to you!
-        </motion.p>
+        </m.p>
 
         {/* Contact Button */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -77,7 +77,7 @@ export default function Contact() {
               <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out z-0"></div>
             </MagneticButton>
           </Link>
-        </motion.div>
+        </m.div>
 
         {/* Contact Info */}
         <div className="mt-8 md:mt-10 text-sm text-gray-400">
@@ -88,7 +88,7 @@ export default function Contact() {
         </div>
 
         {/* Social Links - Only visible on mobile */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -116,7 +116,7 @@ export default function Contact() {
           >
             <Instagram size={24} />
           </Link>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { ArrowLeft, Mail, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -77,13 +77,13 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 relative">
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="w-full max-w-4xl mx-auto flex flex-col items-center z-10"
       >
-        <motion.div variants={itemVariants} className="mb-12 md:mb-16">
+        <m.div variants={itemVariants} className="mb-12 md:mb-16">
           <Link
             href="/"
             className="inline-flex items-center text-gray hover:text-accent transition-colors font-mono text-sm group"
@@ -94,9 +94,9 @@ export default function ContactPage() {
             />
             Back to Home
           </Link>
-        </motion.div>
+        </m.div>
 
-        <motion.div variants={itemVariants} className="text-center mb-16">
+        <m.div variants={itemVariants} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-light mb-6 tracking-tight">
             Let's Start a <span className="text-accent">Conversation</span>
           </h1>
@@ -104,9 +104,9 @@ export default function ContactPage() {
             Choose your preferred method to get in touch. I'm always open to
             discussing new projects, creative ideas, or opportunities.
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-2xl"
         >
@@ -154,22 +154,22 @@ export default function ContactPage() {
               </span>
             </span>
           </MagneticButton>
-        </motion.div>
+        </m.div>
 
         {/* Toast Notification */}
         <AnimatePresence>
           {toastMessage && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
               className="fixed top-10 right-6 md:top-10 md:right-10 bg-accent text-dark px-6 py-3 rounded-full font-mono text-sm shadow-[0_0_20px_rgba(100,255,218,0.3)] z-50 flex items-center"
             >
               {toastMessage}
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
     </main>
   );
 }

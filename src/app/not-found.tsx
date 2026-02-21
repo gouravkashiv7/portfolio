@@ -1,13 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import MagneticButton from "./_components/MagneticButton";
 
 export default function NotFound() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-6 text-center z-10 relative">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -29,7 +29,7 @@ export default function NotFound() {
             Return Home
           </Link>
         </MagneticButton>
-      </motion.div>
+      </m.div>
     </main>
   );
 }

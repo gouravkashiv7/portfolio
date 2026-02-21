@@ -1,10 +1,5 @@
 "use client";
-import {
-  AnimatePresence,
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { AnimatePresence, m, useScroll, useTransform } from "framer-motion";
 import {
   Award,
   BookOpen,
@@ -91,7 +86,7 @@ export default function Education() {
     >
       <div className="w-full">
         {/* Section Header */}
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -103,14 +98,14 @@ export default function Education() {
           </span>
           Education
           <span className="ml-4 md:ml-6 h-px bg-gray grow max-w-20 md:max-w-60"></span>
-        </motion.h2>
+        </m.h2>
 
         <div className="relative w-full">
           {/* Vertical Timeline Background Line */}
           <div className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-white/10 -translate-x-1/2 z-0" />
 
           {/* Vertical Timeline Animated Line */}
-          <motion.div
+          <m.div
             className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-linear-to-b from-accent/80 to-accent/20 -translate-x-1/2 z-0 origin-top shadow-[0_0_15px_rgba(100,255,218,0.5)]"
             style={{ scaleY }}
           />
@@ -121,7 +116,7 @@ export default function Education() {
                 const isEven = index % 2 === 0;
 
                 return (
-                  <motion.div
+                  <m.div
                     key={edu.duration}
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -132,7 +127,7 @@ export default function Education() {
                     }`}
                   >
                     {/* Glowing Node on Timeline */}
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-100px" }}
@@ -140,7 +135,7 @@ export default function Education() {
                       className="absolute left-5 md:left-1/2 w-10 h-10 rounded-full bg-dark border-2 border-accent text-accent flex items-center justify-center -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(100,255,218,0.3)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] hover:bg-accent/10 cursor-default"
                     >
                       {edu.icon}
-                    </motion.div>
+                    </m.div>
 
                     {/* Content Card */}
                     <div
@@ -148,7 +143,7 @@ export default function Education() {
                         isEven ? "md:pr-12" : "md:pl-12"
                       }`}
                     >
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
@@ -191,9 +186,9 @@ export default function Education() {
                             ))}
                           </ul>
                         </div>
-                      </motion.div>
+                      </m.div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </AnimatePresence>

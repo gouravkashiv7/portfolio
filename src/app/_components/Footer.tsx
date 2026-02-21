@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowUp, Github, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
@@ -41,9 +41,9 @@ export default function Footer() {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 w-full">
           {/* Social Links */}
-          <div className="flex gap-4 order-2 md:order-1 md:w-1/3 justify-center md:justify-start">
+          <div className="hidden md:flex gap-4 order-2 md:order-1 md:w-1/3 justify-center md:justify-start">
             {socials.map((social, i) => (
-              <motion.div
+              <m.div
                 key={social.name}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -61,12 +61,12 @@ export default function Footer() {
                     <span>{social.icon}</span>
                   </MagneticButton>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
           {/* Back to top abstract button */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -85,7 +85,7 @@ export default function Footer() {
                 />
               </button>
             </MagneticButton>
-          </motion.div>
+          </m.div>
 
           <div className="order-3 hidden md:flex md:w-1/3 justify-end items-center">
             <span className="text-light text-xs font-mono opacity-50 block text-right">

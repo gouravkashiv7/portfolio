@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { domAnimation, LazyMotion } from "framer-motion";
 import CustomCursor from "@/app/_components/CustomCursor";
 import Footer from "@/app/_components/Footer";
 import NoiseOverlay from "@/app/_components/NoiseOverlay";
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Gourav Kashiv Portfolio",
     images: [
       {
-        url: "/resume.pdf", // Ideally this should be a proper OG image
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Gourav Kashiv - Full-Stack Engineer Portfolio",
@@ -46,8 +47,12 @@ export const metadata: Metadata = {
     title: "Gourav Kashiv | DevOps Developer",
     description:
       "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines. Currently open to new projects.",
-    images: ["/resume.pdf"], // Ideally this should be a proper Twitter card image
+    images: ["/og-image.png"],
   },
+};
+
+export const viewport = {
+  themeColor: "#0a192f",
 };
 
 import { Analytics } from "@vercel/analytics/react";
@@ -66,12 +71,14 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
       >
         <Preloader />
-        <SmoothScrolling>
-          <NoiseOverlay />
-          <CustomCursor />
-          {children}
-          <Footer />
-        </SmoothScrolling>
+        <LazyMotion features={domAnimation} strict>
+          <SmoothScrolling>
+            <NoiseOverlay />
+            <CustomCursor />
+            {children}
+            <Footer />
+          </SmoothScrolling>
+        </LazyMotion>
         <Analytics />
         <SpeedInsights />
       </body>

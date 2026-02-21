@@ -1,6 +1,6 @@
 "use client";
 import { useLenis } from "@studio-freight/react-lenis";
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 export default function Hero() {
   const lenis = useLenis();
 
@@ -29,41 +29,41 @@ export default function Hero() {
         style={{ animationDelay: "1s" }}
       ></div>
 
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="w-full relative z-10"
       >
         <div className="overflow-hidden mb-4 md:-ml-8 lg:-ml-24">
-          <motion.p
+          <m.p
             variants={itemVariants}
             className="text-accent font-mono text-base md:text-lg"
           >
             Hi, my name is
-          </motion.p>
+          </m.p>
         </div>
 
         <div className="overflow-hidden mb-2">
-          <motion.h1
+          <m.h1
             variants={itemVariants}
             className="text-4xl sm:text-6xl md:text-7xl font-bold text-light leading-[1.1] tracking-tight"
           >
             Gourav Kashiv.
-          </motion.h1>
+          </m.h1>
         </div>
 
         <div className="overflow-hidden">
-          <motion.h2
+          <m.h2
             variants={itemVariants}
             className="text-lg sm:text-2xl md:text-3xl font-bold text-gray leading-[1.1] tracking-tight"
           >
             Full-Stack Engineer | MERN Specialist | DevOps & Cloud
             Infrastructure
-          </motion.h2>
+          </m.h2>
         </div>
 
-        <motion.p
+        <m.p
           variants={itemVariants}
           className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed"
         >
@@ -71,9 +71,9 @@ export default function Hero() {
           is MERN (MongoDB, Express, React, Node.js), and I own the entire
           deployment pipeline—CI/CD, containerization with Docker, and AWS EC2
           infrastructure.
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6"
         >
@@ -101,17 +101,17 @@ export default function Hero() {
               Automated testing, monitoring, and scalable infrastructure
             </p>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.p
+        <m.p
           variants={itemVariants}
           className="mt-12 text-gray/60 text-sm font-mono italic"
         >
           Currently available for new projects and opportunities. Let&apos;s
           build something that lasts.
-        </motion.p>
+        </m.p>
 
-        <motion.div variants={itemVariants} className="mt-8">
+        <m.div variants={itemVariants} className="mt-8">
           <button
             type="button"
             onClick={(e) => {
@@ -135,8 +135,8 @@ export default function Hero() {
             </span>
             <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-0"></div>
           </button>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import type { Variants } from "framer-motion";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Code2,
   Cpu,
@@ -56,7 +56,7 @@ export default function About() {
       className="min-h-screen flex items-center px-6 md:px-20 py-20 max-w-6xl mx-auto"
     >
       <div className="w-full">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -69,9 +69,9 @@ export default function About() {
             About Me
             <span className="ml-4 md:ml-6 h-px bg-gray grow max-w-20 md:max-w-60"></span>
           </h2>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -79,7 +79,7 @@ export default function About() {
           className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 auto-rows-auto"
         >
           {/* Main Text Card - Large */}
-          <motion.div
+          <m.div
             variants={cardVariants}
             className="md:col-span-4 lg:col-span-4 glass-card p-8 md:p-10 flex flex-col justify-center group hover:border-accent/40 transition-colors duration-500 relative overflow-hidden"
           >
@@ -111,10 +111,10 @@ export default function About() {
                 .
               </p>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Profile Image Card - Tall */}
-          <motion.div
+          <m.div
             variants={cardVariants}
             whileTap={{ scale: 0.98 }}
             tabIndex={0}
@@ -125,12 +125,13 @@ export default function About() {
               src={gourav}
               fill
               alt="Gourav Kashiv"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover rounded-xl filter grayscale group-hover:grayscale-0 group-active:grayscale-0 group-focus:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 group-active:scale-105 group-focus:scale-105"
             />
-          </motion.div>
+          </m.div>
 
           {/* Location & Status Card */}
-          <motion.div
+          <m.div
             variants={cardVariants}
             className="md:col-span-4 lg:col-span-4 glass-card p-6 flex flex-col justify-center items-center text-center group hover:border-accent/40 hover:bg-white/5 transition-all duration-500 relative overflow-hidden"
           >
@@ -151,10 +152,10 @@ export default function About() {
               </span>
               Open to work
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Tech Card - Wide */}
-          <motion.div
+          <m.div
             variants={cardVariants}
             className={`md:col-span-4 lg:col-span-6 glass-card p-6 flex flex-col justify-start group hover:border-accent/40 transition-all duration-500 overflow-hidden relative ${isTechExpanded ? "h-auto" : ""}`}
           >
@@ -189,35 +190,35 @@ export default function About() {
 
               {isTechExpanded ? (
                 /* Full Grid View */
-                <motion.div
+                <m.div
                   layout
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full justify-items-center"
                 >
                   {techStack.map((item, index) => (
-                    <motion.div
+                    <m.div
                       layout
                       key={`${item.name}-${index}`}
                       tabIndex={0}
                       className="group flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left w-full gap-2 sm:gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent focus:text-accent hover:border-accent/40 focus:border-accent/40 hover:bg-accent/10 focus:bg-accent/10 transition-colors duration-300 cursor-pointer outline-none"
                     >
-                      <motion.span layout className="text-accent shrink-0">
+                      <m.span layout className="text-accent shrink-0">
                         {item.icon}
-                      </motion.span>
-                      <motion.span
+                      </m.span>
+                      <m.span
                         layout
                         className="truncate w-full group-hover:whitespace-normal group-hover:overflow-visible group-focus:whitespace-normal group-focus:overflow-visible group-hover:text-clip group-focus:text-clip"
                       >
                         {item.name}
-                      </motion.span>
-                    </motion.div>
+                      </m.span>
+                    </m.div>
                   ))}
-                </motion.div>
+                </m.div>
               ) : (
                 /* Infinite Marquee View */
                 <div className="flex overflow-hidden relative w-full">
-                  <motion.div
+                  <m.div
                     className="flex gap-4 whitespace-nowrap min-w-max"
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{
@@ -236,12 +237,12 @@ export default function About() {
                         {item.name}
                       </div>
                     ))}
-                  </motion.div>
+                  </m.div>
                 </div>
               )}
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

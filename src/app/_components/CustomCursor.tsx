@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function CustomCursor() {
@@ -49,7 +49,7 @@ export default function CustomCursor() {
   if (isTouchDevice) return null;
 
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-100 flex items-center justify-center overflow-hidden"
       style={{
         mixBlendMode: cursorText ? "normal" : "difference",
@@ -64,14 +64,14 @@ export default function CustomCursor() {
       transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     >
       {cursorText && (
-        <motion.span
+        <m.span
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-[10px] font-mono font-bold uppercase tracking-wider"
         >
           {cursorText}
-        </motion.span>
+        </m.span>
       )}
-    </motion.div>
+    </m.div>
   );
 }

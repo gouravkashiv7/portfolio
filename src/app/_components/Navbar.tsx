@@ -1,6 +1,6 @@
 "use client";
 import { useLenis } from "@studio-freight/react-lenis";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useState } from "react";
 import MagneticButton from "./MagneticButton";
 
@@ -103,7 +103,7 @@ export default function Navbar() {
                 >
                   {/* Sliding Active/Hover Indicator */}
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="navbar-active-indicator"
                       className="absolute inset-0 bg-accent/10 rounded-full"
                       transition={{
@@ -114,7 +114,7 @@ export default function Navbar() {
                     />
                   )}
                   {isHovered && !isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="navbar-hover-indicator"
                       className="absolute inset-0 bg-white/5 rounded-full"
                       transition={{
@@ -194,7 +194,7 @@ export default function Navbar() {
       {/* Mobile Menu Overlay - Powered by Framer Motion */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{
@@ -205,7 +205,7 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 bg-dark/95 backdrop-blur-xl z-50 md:hidden flex flex-col items-center justify-center p-4 shadow-2xl shadow-accent/10"
           >
-            <motion.div
+            <m.div
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -230,7 +230,7 @@ export default function Navbar() {
                 const isActive = activeLink === section;
 
                 return (
-                  <motion.a
+                  <m.a
                     key={link}
                     href={`#${section}`}
                     onClick={(e) => handleScrollTo(e, section)}
@@ -253,11 +253,11 @@ export default function Navbar() {
                     }`}
                   >
                     <span>{link}</span>
-                  </motion.a>
+                  </m.a>
                 );
               })}
 
-              <motion.div
+              <m.div
                 variants={{
                   hidden: { opacity: 0, scale: 0.8 },
                   visible: {
@@ -279,9 +279,9 @@ export default function Navbar() {
                 >
                   Resume
                 </a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </m.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

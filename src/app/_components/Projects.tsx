@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import OtherProjects from "./OtherProjects";
 import ProjectItem from "./ProjectItem";
 
@@ -11,7 +11,7 @@ export default function Projects() {
     >
       <div className="w-full">
         {/* Section Header */}
-        <motion.h2
+        <m.h2
           className="text-2xl md:text-3xl font-bold text-light mb-16 flex items-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -21,7 +21,7 @@ export default function Projects() {
           <span className="text-accent font-mono text-lg mr-4">03.</span>
           Some Things I've Built
           <span className="ml-6 h-px bg-gray-400 grow max-w-60"></span>
-        </motion.h2>
+        </m.h2>
 
         {/* Featured Projects Grid */}
         <div className="space-y-28">
