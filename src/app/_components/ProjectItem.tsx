@@ -1,8 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import type { MouseEvent } from "react";
 
 interface ProjectItemProps {
   title: string;
@@ -25,6 +26,35 @@ export default function ProjectItem({
   featured = false,
   reverse = false,
 }: ProjectItemProps) {
+  // 3D Tilt Effect State
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const rotateX = useTransform(y, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(x, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+
+    // Calculate mouse position relative to center of element (range -0.5 to 0.5)
+    const width = rect.width;
+    const height = rect.height;
+
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
     <motion.div
       className={`flex flex-col ${
@@ -36,8 +66,17 @@ export default function ProjectItem({
       viewport={{ once: true }}
     >
       {/* Image Section */}
-      <div className="w-full lg:w-1/2 relative group">
-        <div className="relative rounded-lg overflow-hidden aspect-14/10">
+      <div className="w-full lg:w-1/2 relative group perspective-1000">
+        <motion.div
+          className="relative rounded-lg overflow-hidden aspect-14/10 transform-style-3d"
+          style={{
+            rotateX,
+            rotateY,
+            transition: "all 0.1s ease", // Smooth out rapid tiny movements
+          }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <Link
             href={liveLink}
             target="_blank"
@@ -49,11 +88,14 @@ export default function ProjectItem({
               alt={title}
               width={700}
               height={520}
-              className="w-full h-full object-cover transition-transform duration-500 lg:group-hover:scale-105 cursor-pointer active:scale-105"
+              className="w-full h-full object-cover cursor-pointer"
             />
           </Link>
-          <div className="absolute inset-0 bg-light-bg/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
-        </div>
+          <div className="absolute inset-0 bg-light-bg/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none rounded-lg" />
+
+          {/* Edge glare effect */}
+          <div className="absolute inset-0 rounded-lg shadow-[inset_0_0_20px_rgba(255,255,255,0.1)] pointer-events-none border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </motion.div>
       </div>
 
       {/* Content Section */}
