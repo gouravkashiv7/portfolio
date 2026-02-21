@@ -6,16 +6,21 @@ import {
   Cpu,
   GitBranch,
   Globe2,
+  Grid,
   Layout,
   MapPin,
+  MoreHorizontal,
   Sparkles,
   Terminal,
   Zap,
 } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 import gourav from "../../../public/gourav.jpg";
 
 export default function About() {
+  const [isTechExpanded, setIsTechExpanded] = useState(false);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -111,14 +116,16 @@ export default function About() {
           {/* Profile Image Card - Tall */}
           <motion.div
             variants={cardVariants}
-            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full"
+            whileTap={{ scale: 0.98 }}
+            tabIndex={0}
+            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full cursor-pointer outline-none"
           >
-            <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-10 mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 group-active:translate-y-0 group-focus:translate-y-0 transition-transform duration-500 z-10 mix-blend-overlay"></div>
             <Image
               src={gourav}
               fill
               alt="Gourav Kashiv"
-              className="object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+              className="object-cover rounded-xl filter grayscale group-hover:grayscale-0 group-active:grayscale-0 group-focus:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105 group-active:scale-105 group-focus:scale-105"
             />
           </motion.div>
 
@@ -146,42 +153,82 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Tech Marquee Card - Wide */}
+          {/* Tech Card - Wide */}
           <motion.div
             variants={cardVariants}
-            className="md:col-span-4 lg:col-span-6 glass-card p-6 flex flex-col justify-center group hover:border-accent/40 transition-colors duration-500 overflow-hidden relative"
+            className={`md:col-span-4 lg:col-span-6 glass-card p-6 flex flex-col justify-start group hover:border-accent/40 transition-all duration-500 overflow-hidden relative ${isTechExpanded ? "h-auto" : ""}`}
           >
-            <h3 className="text-light text-sm font-bold mb-4 flex items-center gap-2 opacity-80 uppercase tracking-wider font-mono">
-              <Cpu size={16} className="text-accent" />
-              Technical Arsenal
-            </h3>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-light text-sm font-bold flex items-center gap-2 opacity-80 uppercase tracking-wider font-mono">
+                <Cpu size={16} className="text-accent" />
+                Technical Arsenal
+              </h3>
 
-            {/* Gradient masks for smooth fading edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-dark/90 to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-dark/90 to-transparent z-10"></div>
-
-            {/* Infinite Marquee Container */}
-            <div className="flex overflow-hidden relative">
-              <motion.div
-                className="flex gap-4 whitespace-nowrap min-w-max"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                  repeat: Infinity,
-                  ease: "linear",
-                  duration: 20, // Adjust speed here
-                }}
+              <button
+                type="button"
+                onClick={() => setIsTechExpanded(!isTechExpanded)}
+                className="text-accent hover:text-white border border-accent/30 hover:bg-accent/10 p-2 rounded-full transition-colors flex items-center justify-center cursor-pointer"
+                title={isTechExpanded ? "Show Marquee" : "Show All"}
               >
-                {/* Double the array for seamless looping */}
-                {[...techStack, ...techStack].map((item, index) => (
-                  <div
-                    key={`${item.name}-${index}`}
-                    className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full font-mono text-xs md:text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
+                {isTechExpanded ? (
+                  <MoreHorizontal size={16} />
+                ) : (
+                  <Grid size={16} />
+                )}
+              </button>
+            </div>
+
+            <div className="relative w-full">
+              {/* Gradient masks for smooth fading edges - only visible in marquee mode */}
+              {!isTechExpanded && (
+                <>
+                  <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-dark/90 to-transparent z-10 pointer-events-none"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-dark/90 to-transparent z-10 pointer-events-none"></div>
+                </>
+              )}
+
+              {isTechExpanded ? (
+                /* Full Grid View */
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 w-full justify-items-center"
+                >
+                  {techStack.map((item, index) => (
+                    <div
+                      key={`${item.name}-${index}`}
+                      className="flex items-center justify-center w-full gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
+                    >
+                      <span className="text-accent shrink-0">{item.icon}</span>
+                      <span className="truncate">{item.name}</span>
+                    </div>
+                  ))}
+                </motion.div>
+              ) : (
+                /* Infinite Marquee View */
+                <div className="flex overflow-hidden relative w-full">
+                  <motion.div
+                    className="flex gap-4 whitespace-nowrap min-w-max"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      ease: "linear",
+                      duration: 20, // Adjust speed here
+                    }}
                   >
-                    <span className="text-accent">{item.icon}</span>
-                    {item.name}
-                  </div>
-                ))}
-              </motion.div>
+                    {/* Double the array for seamless looping */}
+                    {[...techStack, ...techStack].map((item, index) => (
+                      <div
+                        key={`${item.name}-${index}`}
+                        className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full font-mono text-xs md:text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
+                      >
+                        <span className="text-accent">{item.icon}</span>
+                        {item.name}
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

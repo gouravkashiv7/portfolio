@@ -35,7 +35,7 @@ export default function Hero() {
         animate="visible"
         className="w-full relative z-10"
       >
-        <div className="overflow-hidden mb-4">
+        <div className="overflow-hidden mb-4 md:-ml-8 lg:-ml-24">
           <motion.p
             variants={itemVariants}
             className="text-accent font-mono text-base md:text-lg"
