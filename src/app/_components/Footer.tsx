@@ -88,7 +88,7 @@ export default function Footer() {
           </m.div>
 
           <div className="order-3 hidden md:flex md:w-1/3 justify-end items-center">
-            <span className="text-light text-xs font-mono opacity-50 block text-right">
+            <span className="text-gray-400 text-xs font-mono block text-right">
               Thanks for scrolling
             </span>
           </div>

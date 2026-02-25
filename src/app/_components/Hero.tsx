@@ -80,7 +80,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Speed</span>
             </h3>
-            <p className="text-gray/70 text-xs font-mono">
+            <p className="text-gray-300 text-xs font-mono">
               Rapid prototyping to production-ready builds
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Ownership</span>
             </h3>
-            <p className="text-gray/70 text-xs font-mono">
+            <p className="text-gray-300 text-xs font-mono">
               From database schema to cloud deployment
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Reliability</span>
             </h3>
-            <p className="text-gray/70 text-xs font-mono">
+            <p className="text-gray-300 text-xs font-mono">
               Automated testing, monitoring, and scalable infrastructure
             </p>
           </div>

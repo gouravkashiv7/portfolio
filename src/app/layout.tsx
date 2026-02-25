@@ -6,7 +6,7 @@ import CustomCursor from "@/app/_components/CustomCursor";
 import Footer from "@/app/_components/Footer";
 import NoiseOverlay from "@/app/_components/NoiseOverlay";
 import SmoothScrolling from "@/app/_components/SmoothScrolling";
-import SplineBackground from "@/app/_components/SplineBackground";
+import SplineBackgroundClient from "@/app/_components/SplineBackgroundClient";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -75,7 +75,7 @@ export default function RootLayout({
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
       >
         <Preloader />
-        <SplineBackground />
+        <SplineBackgroundClient />
         <LazyMotion features={domAnimation} strict>
           <SmoothScrolling>
             <NoiseOverlay />
