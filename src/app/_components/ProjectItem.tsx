@@ -82,6 +82,7 @@ export default function ProjectItem({
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full h-full cursor-view"
+            aria-label={`View live site for ${title}`}
           >
             <Image
               src={image}
@@ -145,6 +146,7 @@ export default function ProjectItem({
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
+            aria-label={`View GitHub repository for ${title}`}
           >
             <Github size={18} className="lg:size-5" />
           </Link>
@@ -153,6 +155,7 @@ export default function ProjectItem({
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
+            aria-label={`View live site for ${title}`}
           >
             <ExternalLink size={18} className="lg:size-5" />
           </Link>

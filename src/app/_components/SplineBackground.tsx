@@ -6,7 +6,7 @@ export default function SplineBackground() {
   return (
     <div className="fixed inset-0 w-full h-full -z-100 pointer-events-none bg-dark">
       {/* Reduced opacity to ensure text on the page remains readable */}
-      <div className="absolute inset-0 opacity-25 md:opacity-30 pointer-events-auto">
+      <div className="absolute inset-0 opacity-25 md:opacity-30 pointer-events-none md:pointer-events-auto">
         <Spline
           scene="https://prod.spline.design/NclPhMpkns9u1xM9/scene.splinecode"
           className="w-full h-full object-cover"

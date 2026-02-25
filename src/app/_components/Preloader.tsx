@@ -37,10 +37,10 @@ export default function Preloader() {
             initial={{ opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
             transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-dark overflow-hidden"
+            className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-dark overflow-hidden"
           >
             {/* Ambient Tech Orbs */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-accent/20 blur-[120px] rounded-full animate-pulse pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 h-75 md:w-150 md:h-150 bg-accent/20 blur-[120px] rounded-full animate-pulse pointer-events-none" />
 
             {/* Noise overlay specific to Preloader to match brand depth */}
             <div
@@ -91,7 +91,7 @@ export default function Preloader() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="w-full h-[1px] bg-light-bg relative overflow-hidden"
+                  className="w-full h-px bg-light-bg relative overflow-hidden"
                 >
                   <m.div
                     className="absolute top-0 left-0 h-full bg-accent"

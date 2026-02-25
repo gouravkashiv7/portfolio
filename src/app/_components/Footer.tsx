@@ -98,7 +98,7 @@ export default function Footer() {
         <div className="w-full h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-6" />
 
         {/* Copyright & signature */}
-        <div className="flex flex-col sm:flex-row justify-between items-center w-full text-xs font-mono text-gray/60 px-2 leading-relaxed text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row justify-between items-center w-full text-xs font-mono text-gray-400 px-2 leading-relaxed text-center sm:text-left">
           <p className="mb-2 sm:mb-0">
             © {currentYear} Gourav Kashiv. All rights reserved.
           </p>

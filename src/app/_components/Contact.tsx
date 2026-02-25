@@ -99,6 +99,7 @@ export default function Contact() {
             href="https://github.com/gouravkashiv7"
             target="_blank"
             className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+            aria-label="GitHub Profile"
           >
             <Github size={24} />
           </Link>
@@ -106,6 +107,7 @@ export default function Contact() {
             href="https://www.linkedin.com/in/gourav-kashiv-7203572b2/"
             target="_blank"
             className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+            aria-label="LinkedIn Profile"
           >
             <Linkedin size={24} />
           </Link>
@@ -113,6 +115,7 @@ export default function Contact() {
             href="https://www.instagram.com/_viva_la_vida_______/"
             target="_blank"
             className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
+            aria-label="Instagram Profile"
           >
             <Instagram size={24} />
           </Link>

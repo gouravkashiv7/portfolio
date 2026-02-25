@@ -37,7 +37,7 @@ export default function Hero() {
         animate="visible"
         className="w-full relative z-10"
       >
-        <div className="overflow-hidden mb-4 md:-ml-8 lg:-ml-24">
+        <div className="overflow-hidden mb-4">
           <m.p
             variants={itemVariants}
             className="text-accent font-mono text-base md:text-lg"
@@ -65,15 +65,12 @@ export default function Hero() {
           </m.h2>
         </div>
 
-        <m.p
-          variants={itemVariants}
-          className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed"
-        >
+        <p className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed">
           I architect and ship modern web applications end-to-end. My core stack
           is MERN (MongoDB, Express, React, Node.js), and I own the entire
           deployment pipeline—CI/CD, containerization with Docker, and AWS EC2
           infrastructure.
-        </m.p>
+        </p>
 
         <m.div
           variants={itemVariants}
@@ -107,7 +104,7 @@ export default function Hero() {
 
         <m.p
           variants={itemVariants}
-          className="mt-12 text-gray/60 text-sm font-mono italic"
+          className="mt-12 text-gray-400 text-sm font-mono italic"
         >
           Currently available for new projects and opportunities. Let&apos;s
           build something that lasts.

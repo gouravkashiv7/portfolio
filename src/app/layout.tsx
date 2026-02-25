@@ -68,6 +68,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://unpkg.com" />
+      </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
       >
@@ -81,8 +84,8 @@ export default function RootLayout({
             <Footer />
           </SmoothScrolling>
         </LazyMotion>
-        <Analytics />
-        <SpeedInsights />
+        {process.env.NODE_ENV === "production" && <Analytics />}
+        {process.env.NODE_ENV === "production" && <SpeedInsights />}
       </body>
     </html>
   );
