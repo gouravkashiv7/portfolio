@@ -1,6 +1,7 @@
 "use client";
 import { useLenis } from "@studio-freight/react-lenis";
 import { m, type Variants } from "framer-motion";
+
 export default function Hero() {
   const lenis = useLenis();
 
@@ -23,6 +24,7 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col pt-32 md:pt-40 justify-center px-6 md:px-12 lg:px-24 max-w-5xl mx-auto items-start relative overflow-visible">
+      {/* Existing Background glowing orbs */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-accent/20 rounded-full blur-3xl -z-10 mix-blend-screen opacity-50 pointer-events-none animate-pulse"></div>
       <div
         className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-screen opacity-40 pointer-events-none animate-pulse"
