@@ -8,7 +8,7 @@ export default function SplineBackground() {
       {/* Reduced opacity to ensure text on the page remains readable */}
       <div className="absolute inset-0 opacity-25 md:opacity-30 pointer-events-none md:pointer-events-auto">
         <Spline
-          scene="https://prod.spline.design/NclPhMpkns9u1xM9/scene.splinecode"
+          scene="https://prod.spline.design/OBRwitHW0RS-IMXY/scene.splinecode"
           className="w-full h-full object-cover"
         />
       </div>
