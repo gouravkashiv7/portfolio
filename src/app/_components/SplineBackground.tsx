@@ -7,10 +7,12 @@ export default function SplineBackground() {
     <div className="fixed inset-0 w-full h-full -z-100 pointer-events-none bg-dark">
       {/* Reduced opacity to ensure text on the page remains readable */}
       <div className="absolute inset-0 opacity-25 md:opacity-30 pointer-events-none md:pointer-events-auto">
-        <Spline
-          scene="https://prod.spline.design/OBRwitHW0RS-IMXY/scene.splinecode"
-          className="w-full h-full object-cover"
-        />
+        <div className="w-full h-full transform scale-[1.3] -translate-x-10 sm:scale-125 sm:translate-x-0 md:scale-100 md:translate-x-0 transition-transform duration-700">
+          <Spline
+            scene="https://prod.spline.design/OBRwitHW0RS-IMXY/scene.splinecode"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
 
       {/* Protective gradients for top (nav) and bottom (footer) edges */}

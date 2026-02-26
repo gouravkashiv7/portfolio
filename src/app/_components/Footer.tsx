@@ -87,7 +87,16 @@ export default function Footer() {
             </MagneticButton>
           </m.div>
 
-          <div className="order-3 hidden md:flex md:w-1/3 justify-end items-center">
+          <div className="order-3 hidden md:flex md:w-1/3 justify-end items-center gap-4 border-r border-white/10 pr-4 mr-4">
+            <Link
+              href="/contact"
+              className="text-gray-400 hover:text-accent font-mono text-sm transition-colors duration-300"
+              aria-label="Go to Contact Page"
+            >
+              Contact
+            </Link>
+          </div>
+          <div className="order-4 hidden md:flex items-center">
             <span className="text-gray-400 text-xs font-mono block text-right">
               Thanks for scrolling
             </span>
@@ -99,9 +108,7 @@ export default function Footer() {
 
         {/* Copyright & signature */}
         <div className="flex flex-col sm:flex-row justify-between items-center w-full text-xs font-mono text-gray-400 px-2 leading-relaxed text-center sm:text-left">
-          <p className="mb-2 sm:mb-0">
-            © {currentYear} Gourav Kashiv. All rights reserved.
-          </p>
+          <p className="mb-2 sm:mb-0">© {currentYear} | Gourav Kashiv.</p>
           <p className="flex items-center justify-center gap-1.5">
             Designed & Built with{" "}
             <span className="text-accent animate-pulse">❤</span>

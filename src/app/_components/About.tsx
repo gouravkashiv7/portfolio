@@ -116,9 +116,7 @@ export default function About() {
           {/* Profile Image Card - Tall */}
           <m.div
             variants={cardVariants}
-            whileTap={{ scale: 0.98 }}
-            tabIndex={0}
-            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full cursor-pointer outline-none cursor-view"
+            className="md:col-span-2 lg:col-span-2 row-span-2 glass-card p-2 relative overflow-hidden group min-h-75 md:min-h-full outline-none"
           >
             <div className="absolute inset-0 bg-accent/20 translate-y-full group-hover:translate-y-0 group-active:translate-y-0 group-focus:translate-y-0 transition-transform duration-500 z-10 mix-blend-overlay"></div>
             <Image

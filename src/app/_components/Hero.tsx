@@ -113,6 +113,7 @@ export default function Hero() {
         <m.div variants={itemVariants} className="mt-8">
           <button
             type="button"
+            aria-label="Scroll to projects section"
             onClick={(e) => {
               e.preventDefault();
               window.history.pushState(null, "", "#projects");

@@ -23,6 +23,23 @@ export const metadata: Metadata = {
   title: "Gourav Kashiv | Full-Stack Engineer | MERN Specialist",
   description:
     "Full-Stack Engineer specializing in MERN stack and Cloud Infrastructure. End-to-end architect owning CI/CD pipelines, Docker, and AWS EC2 deployments.",
+  keywords: [
+    "Gourav Kashiv",
+    "Full-Stack Engineer",
+    "Software Developer",
+    "MERN Stack",
+    "Next.js",
+    "React",
+    "Node.js",
+    "DevOps",
+    "Cloud Infrastructure",
+    "AWS",
+    "Docker",
+    "CI/CD",
+  ],
+  alternates: {
+    canonical: "https://www.gouravkashiv.com",
+  },
   icons: {
     icon: "/favicon.png",
   },

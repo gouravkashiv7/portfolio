@@ -44,16 +44,27 @@ export default function Projects() {
           />
           <ProjectItem
             title="The Retreat Operations Manager"
-            description="A modern React SPA for retreat management — powered by Supabase, React Query, and Styled Components, with seamless routing and full light/dark mode support."
+            description="A comprehensive React internal management system & guest portal. Key features include live availability syncing with external OTAs (MMT/Goibibo) via Edge Functions, a digital menu for guest ordering with real-time status tracking, and automated PDF receipt generation for stays and orders."
             tech={[
               "React",
               "React Query",
               "React Router",
               "Styled Components",
               "Supabase",
+              "Edge Functions",
+              "Framer Motion",
+              "iCal API",
               "Context API",
+              "Gemini AI",
+              "react-image-crop",
             ]}
             image="/theoperations.png"
+            images={[
+              "/theoperations.png",
+              "/theoperations2.png",
+              "/theoperations3.png",
+              "/theoperations4.png",
+            ]}
             projectLink="https://github.com/gouravkashiv7/the-retreat-operations-manager"
             liveLink="https://the-retreat-operations-manager.vercel.app/"
             featured={true}
