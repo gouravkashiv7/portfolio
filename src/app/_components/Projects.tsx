@@ -29,6 +29,7 @@ export default function Projects() {
             title="Kasauli Coder"
             description="A comprehensive digital agency and tech community ecosystem. Features high-performance SaaS development, automated content workflows, and a technical learning platform with integrated hackathons and career acceleration programs. Includes a sophisticated blog ecosystem for technical knowledge sharing."
             tech={[
+              "MERN Stack",
               "Next.js",
               "React",
               "Tailwind CSS",
@@ -59,7 +60,14 @@ export default function Projects() {
               "NextAuth.js",
               "Context API",
             ]}
-            image="/theretreat.png"
+            image="/theretreat_home.png"
+            images={[
+              "/theretreat_home.png",
+              "/theretreat_retreats.png",
+              "/theretreat_rooms.png",
+              "/theretreat_location.png",
+              "/theretreat_amenities.png",
+            ]}
             projectLink="https://github.com/gouravkashiv7/the-retreat-cottage"
             liveLink="https://the-retreat-cottage.vercel.app"
             featured={true}
