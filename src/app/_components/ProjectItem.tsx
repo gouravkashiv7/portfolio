@@ -197,10 +197,10 @@ export default function ProjectItem({
             <button
               type="button"
               onClick={(e) => {
-                e.preventDefault();
                 setIsFullscreen(true);
               }}
-              className="absolute top-2 right-2 z-5 w-9 h-9 rounded-full bg-dark/50 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-dark/70 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+              style={{ transform: "translateZ(20px)" }}
+              className="absolute top-2 right-2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
               aria-label="View fullscreen"
             >
               <Expand size={16} />
@@ -212,10 +212,10 @@ export default function ProjectItem({
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.preventDefault();
                     goPrev();
                   }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-5 w-9 h-9 rounded-full bg-dark/50 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-dark/70 opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                  style={{ transform: "translateY(-50%) translateZ(20px)" }}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={18} />
@@ -223,10 +223,10 @@ export default function ProjectItem({
                 <button
                   type="button"
                   onClick={(e) => {
-                    e.preventDefault();
                     goNext();
                   }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-5 w-9 h-9 rounded-full bg-dark/50 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-dark/70 opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                  style={{ transform: "translateY(-50%) translateZ(20px)" }}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
                   aria-label="Next image"
                 >
                   <ChevronRight size={18} />
