@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { ArrowUp, Github, Instagram, Linkedin } from "lucide-react";
+import { ArrowUp, Github, Linkedin, X } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 
@@ -24,12 +24,12 @@ export default function Footer() {
     {
       name: "LinkedIn",
       icon: <Linkedin size={18} />,
-      url: "https://www.linkedin.com/in/gourav-kashiv",
+      url: "https://www.linkedin.com/in/gouravkashiv7/",
     },
     {
-      name: "Instagram",
-      icon: <Instagram size={18} />,
-      url: "https://www.instagram.com/gourav_kashiv7",
+      name: "X",
+      icon: <X size={18} />,
+      url: "https://x.com/KashivGourav",
     },
   ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { m } from "framer-motion";
-import { Github, Instagram, Linkedin, Phone } from "lucide-react";
+import { Github, Linkedin, Phone, X } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 
@@ -104,7 +104,7 @@ export default function Contact() {
             <Github size={24} />
           </Link>
           <Link
-            href="https://www.linkedin.com/in/gourav-kashiv-7203572b2/"
+            href="https://www.linkedin.com/in/gouravkashiv7/"
             target="_blank"
             className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
             aria-label="LinkedIn Profile"
@@ -112,12 +112,12 @@ export default function Contact() {
             <Linkedin size={24} />
           </Link>
           <Link
-            href="https://www.instagram.com/_viva_la_vida_______/"
+            href="https://x.com/KashivGourav"
             target="_blank"
             className="text-accent p-2 rounded-full transition-all duration-300 hover:bg-accent/10 active:bg-accent/20 active:scale-95"
-            aria-label="Instagram Profile"
+            aria-label="X (Twitter) Profile"
           >
-            <Instagram size={24} />
+            <X size={24} />
           </Link>
         </m.div>
       </div>

@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin } from "lucide-react";
+import { Github, Linkedin, X } from "lucide-react";
 import Link from "next/link";
 
 export default function SocialLinks() {
@@ -13,7 +13,7 @@ export default function SocialLinks() {
         <Github size={20} />
       </Link>
       <Link
-        href="https://www.linkedin.com/in/gourav-kashiv-7203572b2/"
+        href="https://www.linkedin.com/in/gouravkashiv7/"
         target="_blank"
         className="text-gray hover:text-accent transition-colors duration-300"
         aria-label="LinkedIn Profile"
@@ -21,12 +21,12 @@ export default function SocialLinks() {
         <Linkedin size={20} />
       </Link>
       <Link
-        href="https://www.instagram.com/_viva_la_vida_______/"
+        href="https://x.com/KashivGourav"
         target="_blank"
         className="text-gray hover:text-accent transition-colors duration-300"
-        aria-label="Instagram Profile"
+        aria-label="X (Twitter) Profile"
       >
-        <Instagram size={20} />
+        <X size={20} />
       </Link>
       <div className="w-px h-24 bg-gray mt-4"></div>
     </div>
