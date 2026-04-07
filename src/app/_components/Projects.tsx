@@ -50,6 +50,32 @@ export default function Projects() {
             reverse={false}
           />
           <ProjectItem
+            title="St. Bede's ERP System"
+            description="A comprehensive institutional ERP system developed and deployed during my internship. Manages critical operations for St. Bede's College including centralized student and faculty records, academic course management, and institutional branding tools. Architected and managed the end-to-end deployment on AWS for high availability and performance."
+            tech={[
+              "AWS (EC2, S3)",
+              "React",
+              "Node.js",
+              "Express",
+              "MongoDB",
+              "Tailwind CSS",
+              "Lucide React",
+            ]}
+            image="/erp_dashboard.png"
+            images={[
+              "/erp_dashboard.png",
+              "/erp_academics.png",
+              "/erp_branding.png",
+              "/erp_faculty.png",
+              "/erp_students.png",
+              "/erp_reports.png",
+            ]}
+            projectLink="https://stbedes.campusevo.com/"
+            liveLink="https://stbedes.campusevo.com/"
+            featured={true}
+            reverse={true}
+          />
+          <ProjectItem
             title="The Retreat Cottage"
             description="Advanced booking system with real-time availability tracking, user authentication, and admin panel. Features interactive calendar that disables booked dates, secure payment processing, booking management, and instant confirmation system."
             tech={[
@@ -71,7 +97,7 @@ export default function Projects() {
             projectLink="https://github.com/gouravkashiv7/the-retreat-cottage"
             liveLink="https://the-retreat-cottage.vercel.app"
             featured={true}
-            reverse={true}
+            reverse={false}
           />
           <ProjectItem
             title="The Retreat Operations Manager"
@@ -99,7 +125,7 @@ export default function Projects() {
             projectLink="https://github.com/gouravkashiv7/the-retreat-operations-manager"
             liveLink="https://the-retreat-operations-manager.vercel.app/"
             featured={true}
-            reverse={false}
+            reverse={true}
           />
         </div>
 
