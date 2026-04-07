@@ -26,6 +26,29 @@ export default function Projects() {
         {/* Featured Projects Grid */}
         <div className="space-y-28">
           <ProjectItem
+            title="Kasauli Coder"
+            description="A comprehensive digital agency and tech community ecosystem. Features high-performance SaaS development, automated content workflows, and a technical learning platform with integrated hackathons and career acceleration programs. Includes a sophisticated blog ecosystem for technical knowledge sharing."
+            tech={[
+              "Next.js",
+              "React",
+              "Tailwind CSS",
+              "Lucide React",
+              "Framer Motion",
+            ]}
+            image="/kasaulicoder_home.png"
+            images={[
+              "/kasaulicoder_home.png",
+              "/kasaulicoder_programs.png",
+              "/kasaulicoder_projects.png",
+              "/kasaulicoder_blogs.png",
+              "/kasaulicoder_contact.png",
+            ]}
+            projectLink="https://www.kasaulicoder.com/"
+            liveLink="https://www.kasaulicoder.com/"
+            featured={true}
+            reverse={false}
+          />
+          <ProjectItem
             title="The Retreat Cottage"
             description="Advanced booking system with real-time availability tracking, user authentication, and admin panel. Features interactive calendar that disables booked dates, secure payment processing, booking management, and instant confirmation system."
             tech={[
@@ -40,7 +63,7 @@ export default function Projects() {
             projectLink="https://github.com/gouravkashiv7/the-retreat-cottage"
             liveLink="https://the-retreat-cottage.vercel.app"
             featured={true}
-            reverse={false}
+            reverse={true}
           />
           <ProjectItem
             title="The Retreat Operations Manager"
@@ -68,7 +91,7 @@ export default function Projects() {
             projectLink="https://github.com/gouravkashiv7/the-retreat-operations-manager"
             liveLink="https://the-retreat-operations-manager.vercel.app/"
             featured={true}
-            reverse={true}
+            reverse={false}
           />
         </div>
 
