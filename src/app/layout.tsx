@@ -96,6 +96,7 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="dark"
           enableSystem={false}
+          themes={["light", "dark", "midnight", "rose", "forest"]}
         >
           <Preloader />
           <SplineBackgroundClient />
