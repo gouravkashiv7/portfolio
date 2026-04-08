@@ -24,10 +24,10 @@ export default function Hero() {
 
   return (
     <section className="min-h-screen flex flex-col pt-32 md:pt-40 justify-center px-6 md:px-12 lg:px-24 max-w-5xl mx-auto items-start relative overflow-visible">
-      {/* Existing Background glowing orbs */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-accent/20 rounded-full blur-3xl -z-10 mix-blend-screen opacity-50 pointer-events-none animate-pulse"></div>
+      {/* Background glowing orbs - adaptive to theme */}
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-accent/20 rounded-full blur-3xl -z-10 mix-blend-normal dark:mix-blend-screen opacity-50 pointer-events-none animate-pulse"></div>
       <div
-        className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-screen opacity-40 pointer-events-none animate-pulse"
+        className="absolute top-1/3 right-1/4 translate-x-1/2 -translate-y-1/2 w-48 h-48 md:w-80 md:h-80 bg-blue-500/10 rounded-full blur-3xl -z-10 mix-blend-normal dark:mix-blend-screen opacity-40 pointer-events-none animate-pulse"
         style={{ animationDelay: "1s" }}
       ></div>
 
@@ -40,7 +40,7 @@ export default function Hero() {
         <div className="overflow-hidden mb-4">
           <m.p
             variants={itemVariants}
-            className="text-accent font-mono text-base md:text-lg"
+            className="text-accent font-mono font-medium text-base md:text-lg"
           >
             Hi, my name is
           </m.p>
@@ -65,7 +65,7 @@ export default function Hero() {
           </m.h2>
         </div>
 
-        <p className="mt-8 max-w-lg text-gray/80 text-base md:text-lg leading-relaxed">
+        <p className="mt-8 max-w-lg text-gray text-base md:text-lg leading-relaxed">
           I architect and ship modern web applications end-to-end. My core stack
           is MERN (MongoDB, Express, React, Node.js), and I own the entire
           deployment pipeline—CI/CD, containerization with Docker, and AWS EC2
@@ -80,7 +80,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Speed</span>
             </h3>
-            <p className="text-gray-300 text-xs font-mono">
+            <p className="text-gray text-xs font-mono">
               Rapid prototyping to production-ready builds
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Ownership</span>
             </h3>
-            <p className="text-gray-300 text-xs font-mono">
+            <p className="text-gray text-xs font-mono">
               From database schema to cloud deployment
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function Hero() {
             <h3 className="text-light font-bold mb-2 flex items-center gap-2">
               <span className="text-accent">Reliability</span>
             </h3>
-            <p className="text-gray-300 text-xs font-mono">
+            <p className="text-gray text-xs font-mono">
               Automated testing, monitoring, and scalable infrastructure
             </p>
           </div>
@@ -104,7 +104,7 @@ export default function Hero() {
 
         <m.p
           variants={itemVariants}
-          className="mt-12 text-gray-400 text-sm font-mono italic"
+          className="mt-12 text-gray text-sm font-mono italic"
         >
           Currently available for new projects and opportunities. Let&apos;s
           build something that lasts.

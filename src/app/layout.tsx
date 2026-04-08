@@ -75,8 +75,9 @@ export const viewport = {
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
 import Preloader from "@/app/_components/Preloader";
+import ThemeToggle from "@/app/_components/ThemeToggle";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -84,23 +85,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://unpkg.com" />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark transition-colors duration-300`}
       >
-        <Preloader />
-        <SplineBackgroundClient />
-        <LazyMotion features={domAnimation} strict>
-          <SmoothScrolling>
-            <NoiseOverlay />
-            <CustomCursor />
-            {children}
-            <Footer />
-          </SmoothScrolling>
-        </LazyMotion>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
+          <Preloader />
+          <SplineBackgroundClient />
+          <LazyMotion features={domAnimation} strict>
+            <SmoothScrolling>
+              <NoiseOverlay />
+              <CustomCursor />
+              <ThemeToggle />
+              {children}
+              <Footer />
+            </SmoothScrolling>
+          </LazyMotion>
+        </ThemeProvider>
         {process.env.NODE_ENV === "production" && <Analytics />}
         {process.env.NODE_ENV === "production" && <SpeedInsights />}
       </body>

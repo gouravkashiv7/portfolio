@@ -23,7 +23,7 @@ export default function Contact() {
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-accent/10 blur-[80px] rounded-full pointer-events-none z-0"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-accent/10 blur-[80px] rounded-full pointer-events-none z-0 mix-blend-normal dark:mix-blend-screen"
       />
 
       <div className="relative z-10">
@@ -55,7 +55,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-gray-400 leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto text-sm md:text-base"
+          className="text-gray leading-relaxed mb-8 md:mb-10 max-w-xl mx-auto text-sm md:text-base"
         >
           I'm always open to discussing new projects or opportunities. Whether
           you have a question or just want to say hi, feel free to reach out —
@@ -80,7 +80,7 @@ export default function Contact() {
         </m.div>
 
         {/* Contact Info */}
-        <div className="mt-8 md:mt-10 text-sm text-gray-400">
+        <div className="mt-8 md:mt-10 text-sm text-gray">
           <div className="flex justify-center items-center gap-2 text-light">
             <Phone size={16} className="text-accent" />
             <span className="font-mono">+91 94598 99052</span>

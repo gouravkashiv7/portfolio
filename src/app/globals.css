@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: #f8fafc; /* Slate 50 */
+  --color-surface: #f1f5f9;    /* Slate 100 */
+  --color-accent: #0f766e;     /* Teal 700 - High Contrast for Light Mode */
+  --color-foreground: #0f172a; /* Slate 900 */
+  --color-gray: #475569;       /* Slate 600 */
+}
+
+.dark {
+  --color-background: #0a192f; /* Navy 900 */
+  --color-surface: #112240;    /* Navy 800 */
+  --color-accent: #64ffda;     /* Teal 200/400 */
+  --color-foreground: #ccd6f6; /* Slate 200 */
+  --color-gray: #8892b0;       /* Slate 400 */
 }
 
 @theme inline {
-  --color-dark: #0a192f;
-  --color-light-bg: #112240;
-  --color-accent: #64ffda;
-  --color-light: #ccd6f6;
-  --color-gray: #8892b0;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a192f;
-    --foreground: #ccd6f6;
-  }
+  --color-dark: var(--color-background);
+  --color-light-bg: var(--color-surface);
+  --color-accent: var(--color-accent);
+  --color-light: var(--color-foreground);
+  --color-gray: var(--color-gray);
 }
 
 html,
@@ -28,10 +32,11 @@ body {
 }
 
 body {
-  background-color: #0a192f;
-  color: #ccd6f6;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-inter), sans-serif;
   cursor: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Apply Inter to paragraphs specifically */
@@ -65,8 +70,8 @@ a {
 
 /* Custom selection color */
 ::selection {
-  background-color: #64ffda;
-  color: #0a192f;
+  background-color: var(--color-accent);
+  color: var(--color-background);
 }
 
 /* Vertical text styling for email */
@@ -89,7 +94,7 @@ a {
     @apply bg-dark/70 backdrop-blur-md border border-light/10;
   }
   .glass-card {
-    @apply bg-dark/40 backdrop-blur-lg border border-white/5 rounded-2xl;
+    @apply bg-dark/40 backdrop-blur-lg border border-light/5 rounded-2xl;
   }
 }
 

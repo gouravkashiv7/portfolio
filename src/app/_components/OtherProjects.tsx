@@ -105,7 +105,7 @@ const OtherProjects = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             onClick={() => setShowAll(!showAll)}
-            className="flex items-center gap-2 text-accent font-mono text-sm border border-accent px-6 py-3 rounded hover:bg-accent/10 transition-all duration-300 hover:shadow-lg hover:shadow-accent/20"
+            className="flex items-center gap-2 text-accent font-mono text-sm border border-accent px-6 py-3 rounded hover:bg-accent/10 transition-all duration-300"
           >
             {showAll ? (
               <>
@@ -132,7 +132,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="glass-card p-6 border border-gray-800/50 hover:border-accent/30 transition-all duration-300 hover:transform hover:-translate-y-2 group h-full flex flex-col"
+    className="glass-card p-6 border border-light/10 hover:border-accent/40 transition-all duration-300 hover:transform hover:-translate-y-2 group h-full flex flex-col"
   >
     <div className="flex justify-between items-start mb-4">
       <div className="text-accent">
@@ -141,7 +141,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
       <div className="flex space-x-4">
         <a
           href={project.projectLink}
-          className="text-gray-400 hover:text-accent transition-colors"
+          className="text-gray hover:text-accent transition-colors"
           aria-label="GitHub Repository"
           target="_blank"
           rel="noopener noreferrer"
@@ -150,7 +150,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
         </a>
         <a
           href={project.liveLink}
-          className="text-gray-400 hover:text-accent transition-colors"
+          className="text-gray hover:text-accent transition-colors"
           aria-label="Live Demo"
           target="_blank"
           rel="noopener noreferrer"
@@ -164,13 +164,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
       {project.title}
     </h4>
 
-    <p className="text-gray-400 text-sm mb-4 leading-relaxed grow">
+    <p className="text-gray text-sm mb-4 leading-relaxed grow">
       {project.description}
     </p>
 
     <div className="flex flex-wrap gap-2 mt-auto">
       {project.tech.map((tech, techIndex) => (
-        <span key={tech} className="text-xs text-gray-400 font-mono">
+        <span key={tech} className="text-xs text-gray font-mono">
           {tech}
         </span>
       ))}

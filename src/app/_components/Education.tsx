@@ -97,16 +97,16 @@ export default function Education() {
             02.
           </span>
           Education
-          <span className="ml-4 md:ml-6 h-px bg-gray grow max-w-20 md:max-w-60"></span>
+          <span className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60"></span>
         </m.h2>
 
         <div className="relative w-full">
           {/* Vertical Timeline Background Line */}
-          <div className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-white/10 -translate-x-1/2 z-0" />
+          <div className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-light/10 -translate-x-1/2 z-0" />
 
           {/* Vertical Timeline Animated Line */}
           <m.div
-            className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-linear-to-b from-accent/80 to-accent/20 -translate-x-1/2 z-0 origin-top shadow-[0_0_15px_rgba(100,255,218,0.5)]"
+            className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-linear-to-b from-accent/80 to-accent/20 -translate-x-1/2 z-0 origin-top"
             style={{ scaleY }}
           />
 
@@ -132,7 +132,7 @@ export default function Education() {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.5, delay: 0.2 }}
-                      className="absolute left-5 md:left-1/2 w-10 h-10 rounded-full bg-dark border-2 border-accent text-accent flex items-center justify-center -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(100,255,218,0.3)] transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(100,255,218,0.6)] hover:bg-accent/10 cursor-default"
+                      className="absolute left-5 md:left-1/2 w-10 h-10 rounded-full bg-dark border-2 border-accent text-accent flex items-center justify-center -translate-x-1/2 z-10 transition-all duration-300 hover:scale-110 hover:bg-accent/10 cursor-default"
                     >
                       {edu.icon}
                     </m.div>
@@ -166,7 +166,7 @@ export default function Education() {
                             {edu.institute}
                           </p>
 
-                          <div className="inline-block px-3 py-1 bg-white/5 rounded-full border border-white/10 mb-4">
+                          <div className="inline-block px-3 py-1 bg-light/5 rounded-full border border-light/10 mb-4">
                             <p className="text-gray text-xs font-mono">
                               {edu.duration}
                             </p>
@@ -200,7 +200,7 @@ export default function Education() {
           <button
             type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-2 px-6 py-3 rounded-full border border-accent/30 text-accent font-mono text-sm hover:bg-accent hover:text-dark transition-all duration-300 shadow-[0_0_15px_rgba(100,255,218,0.1)] hover:shadow-[0_0_20px_rgba(100,255,218,0.4)]"
+            className="flex items-center gap-2 px-6 py-3 rounded-full border border-accent/30 text-accent font-mono text-sm hover:bg-accent hover:text-dark transition-all duration-300"
           >
             {isExpanded ? (
               <>

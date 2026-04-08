@@ -11,17 +11,20 @@ export default function Projects() {
     >
       <div className="w-full">
         {/* Section Header */}
-        <m.h2
-          className="text-2xl md:text-3xl font-bold text-light mb-16 flex items-center"
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <span className="text-accent font-mono text-lg mr-4">03.</span>
-          Some Things I've Built
-          <span className="ml-6 h-px bg-gray-400 grow max-w-60"></span>
-        </m.h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-light mb-16 flex items-center">
+            <span className="text-accent font-mono text-base md:text-lg mr-3 md:mr-4">
+              03.
+            </span>
+            Projects
+            <span className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60"></span>
+          </h2>
+        </m.div>
 
         {/* Featured Projects Grid */}
         <div className="space-y-28">
@@ -41,7 +44,6 @@ export default function Projects() {
               "/kasaulicoder_home.png",
               "/kasaulicoder_programs.png",
               "/kasaulicoder_projects.png",
-              "/kasaulicoder_blogs.png",
               "/kasaulicoder_contact.png",
             ]}
             projectLink="https://www.kasaulicoder.com/"

@@ -67,7 +67,7 @@ export default function About() {
               01.
             </span>
             About Me
-            <span className="ml-4 md:ml-6 h-px bg-gray grow max-w-20 md:max-w-60"></span>
+            <span className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60"></span>
           </h2>
         </m.div>
 
@@ -131,10 +131,10 @@ export default function About() {
           {/* Location & Status Card */}
           <m.div
             variants={cardVariants}
-            className="md:col-span-4 lg:col-span-4 glass-card p-6 flex flex-col justify-center items-center text-center group hover:border-accent/40 hover:bg-white/5 transition-all duration-500 relative overflow-hidden"
+            className="md:col-span-4 lg:col-span-4 glass-card p-6 flex flex-col justify-center items-center text-center group hover:border-accent/40 hover:bg-light/5 transition-all duration-500 relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/10 text-accent mb-4 group-hover:scale-110 group-hover:bg-accent/20 group-hover:shadow-[0_0_15px_rgba(100,255,218,0.3)] transition-all duration-500 relative z-10">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/10 text-accent mb-4 group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-500 relative z-10">
               <MapPin size={24} />
             </div>
             <h3 className="text-light font-bold mb-1 relative z-10">
@@ -143,7 +143,7 @@ export default function About() {
             <p className="text-gray text-xs font-mono mb-4 relative z-10">
               Panjab University
             </p>
-            <div className="flex items-center gap-2 text-xs font-mono text-accent bg-accent/10 px-3 py-1.5 rounded-full border border-accent/20 relative z-10 shadow-[0_0_10px_rgba(100,255,218,0.1)]">
+            <div className="flex items-center gap-2 text-xs font-mono text-accent bg-accent/10 px-3 py-1.5 rounded-full border border-accent/20 relative z-10">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
@@ -166,7 +166,7 @@ export default function About() {
               <button
                 type="button"
                 onClick={() => setIsTechExpanded(!isTechExpanded)}
-                className="text-accent hover:text-white border border-accent/30 hover:bg-accent/10 p-2 rounded-full transition-colors flex items-center justify-center cursor-pointer"
+                className="text-accent hover:text-dark border border-accent/30 hover:bg-accent/10 p-2 rounded-full transition-colors flex items-center justify-center cursor-pointer"
                 title={isTechExpanded ? "Show Marquee" : "Show All"}
               >
                 {isTechExpanded ? (
@@ -181,8 +181,8 @@ export default function About() {
               {/* Gradient masks for smooth fading edges - only visible in marquee mode */}
               {!isTechExpanded && (
                 <>
-                  <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-dark/90 to-transparent z-10 pointer-events-none"></div>
-                  <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-dark/90 to-transparent z-10 pointer-events-none"></div>
+                  <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-dark to-transparent z-10 pointer-events-none"></div>
+                  <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-dark to-transparent z-10 pointer-events-none"></div>
                 </>
               )}
 
@@ -199,7 +199,7 @@ export default function About() {
                       layout
                       key={`${item.name}-${index}`}
                       tabIndex={0}
-                      className="group flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left w-full gap-2 sm:gap-3 bg-white/5 border border-white/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent focus:text-accent hover:border-accent/40 focus:border-accent/40 hover:bg-accent/10 focus:bg-accent/10 transition-colors duration-300 cursor-pointer outline-none"
+                      className="group flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left w-full gap-2 sm:gap-3 bg-light/5 border border-light/10 px-4 py-3 rounded-lg font-mono text-sm text-gray hover:text-accent focus:text-accent hover:border-accent/40 focus:border-accent/40 hover:bg-accent/10 focus:bg-accent/10 transition-colors duration-300 cursor-pointer outline-none"
                     >
                       <m.span layout className="text-accent shrink-0">
                         {item.icon}
@@ -229,7 +229,7 @@ export default function About() {
                     {[...techStack, ...techStack].map((item, index) => (
                       <div
                         key={`${item.name}-${index}`}
-                        className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full font-mono text-xs md:text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
+                        className="flex items-center gap-2 bg-light/5 border border-light/10 px-4 py-2 rounded-full font-mono text-xs md:text-sm text-gray hover:text-accent hover:border-accent/40 hover:bg-accent/10 transition-colors duration-300 cursor-default"
                       >
                         <span className="text-accent">{item.icon}</span>
                         {item.name}

@@ -58,8 +58,8 @@ export default function CustomCursor() {
         x: position.x - 16,
         y: position.y - 16,
         scale: cursorText ? 2.5 : isHovering ? 2.5 : 1,
-        backgroundColor: cursorText ? "#64ffda" : "#ffffff",
-        color: "#0a192f",
+        backgroundColor: cursorText ? "var(--color-accent)" : "#ffffff",
+        color: "var(--bg-dark)",
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     >

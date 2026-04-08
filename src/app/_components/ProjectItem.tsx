@@ -181,17 +181,17 @@ export default function ProjectItem({
                     width={700}
                     height={520}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                    className="w-full h-full object-contain bg-dark cursor-pointer"
+                    className="w-full h-full object-contain bg-light-bg cursor-pointer"
                   />
                 </m.div>
               </AnimatePresence>
             </Link>
 
             {/* Overlay tint */}
-            <div className="absolute inset-0 bg-light-bg/60 opacity-100 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none rounded-lg z-1" />
+            <div className="absolute inset-0 bg-light/30 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none rounded-lg z-1" />
 
             {/* Edge glare effect */}
-            <div className="absolute inset-0 rounded-lg shadow-[inset_0_0_20px_rgba(255,255,255,0.1)] pointer-events-none border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-1" />
+            <div className="absolute inset-0 rounded-lg pointer-events-none border border-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-1" />
 
             {/* Expand button — top-right corner, appears on hover */}
             <button
@@ -200,7 +200,7 @@ export default function ProjectItem({
                 setIsFullscreen(true);
               }}
               style={{ transform: "translateZ(20px)" }}
-              className="absolute top-2 right-2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+              className="absolute top-2 right-2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
               aria-label="View fullscreen"
             >
               <Expand size={16} />
@@ -215,7 +215,7 @@ export default function ProjectItem({
                     goPrev();
                   }}
                   style={{ transform: "translateY(-50%) translateZ(20px)" }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={18} />
@@ -226,7 +226,7 @@ export default function ProjectItem({
                     goNext();
                   }}
                   style={{ transform: "translateY(-50%) translateZ(20px)" }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-white/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
                   aria-label="Next image"
                 >
                   <ChevronRight size={18} />
@@ -236,7 +236,7 @@ export default function ProjectItem({
 
             {/* Progress bar — thin accent line at bottom */}
             {hasMultiple && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-3">
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-light/10 z-3">
                 <m.div
                   key={progressKey}
                   className="h-full bg-accent/70"
@@ -262,8 +262,8 @@ export default function ProjectItem({
                   onClick={() => goToSlide(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     i === activeIndex
-                      ? "w-6 bg-accent shadow-[0_0_8px_rgba(100,255,218,0.5)]"
-                      : "w-1.5 bg-white/20 hover:bg-white/40"
+                      ? "w-6 bg-accent"
+                      : "w-1.5 bg-light/20 hover:bg-light/40"
                   }`}
                   aria-label={`Go to image ${i + 1}`}
                 />
@@ -350,7 +350,7 @@ export default function ProjectItem({
             <button
               type="button"
               onClick={() => setIsFullscreen(false)}
-              className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
               aria-label="Close fullscreen"
             >
               <X size={20} />
@@ -395,7 +395,7 @@ export default function ProjectItem({
                   <button
                     type="button"
                     onClick={goPrev}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
                     aria-label="Previous image"
                   >
                     <ChevronLeft size={24} />
@@ -403,7 +403,7 @@ export default function ProjectItem({
                   <button
                     type="button"
                     onClick={goNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
                     aria-label="Next image"
                   >
                     <ChevronRight size={24} />
@@ -425,8 +425,8 @@ export default function ProjectItem({
                     }}
                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                       i === activeIndex
-                        ? "w-8 bg-accent shadow-[0_0_12px_rgba(100,255,218,0.6)]"
-                        : "w-2 bg-white/20 hover:bg-white/40"
+                        ? "w-8 bg-accent"
+                        : "w-2 bg-light/20 hover:bg-light/40"
                     }`}
                     aria-label={`Go to image ${i + 1}`}
                   />

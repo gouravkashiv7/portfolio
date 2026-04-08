@@ -81,7 +81,7 @@ export default function Navbar() {
     <>
       <div className="fixed top-0 inset-x-0 z-60 w-full flex justify-center pointer-events-none mt-6 px-4">
         <nav
-          className={`pointer-events-auto bg-dark/80 backdrop-blur-xl py-2 px-4 rounded-full flex items-center shadow-[0_8px_32px_0_rgba(100,255,218,0.05)] border border-white/5 transition-all duration-500 ease-out ${
+          className={`pointer-events-auto bg-dark/80 backdrop-blur-xl py-2 px-4 rounded-full flex items-center shadow-[0_8px_32px_0_rgba(13,148,136,0.1)] dark:shadow-[0_8px_32px_0_rgba(100,255,218,0.05)] border border-light/5 transition-all duration-500 ease-out ${
             showNavbar
               ? "translate-y-0 opacity-100"
               : "-translate-y-full opacity-0"
@@ -116,7 +116,7 @@ export default function Navbar() {
                   {isHovered && !isActive && (
                     <m.div
                       layoutId="navbar-hover-indicator"
-                      className="absolute inset-0 bg-white/5 rounded-full"
+                      className="absolute inset-0 bg-light/5 rounded-full"
                       transition={{
                         type: "spring",
                         bounce: 0.2,
@@ -130,7 +130,7 @@ export default function Navbar() {
                     className={`relative z-10 block px-4 py-2 text-sm font-medium transition-colors duration-300 ${
                       isActive
                         ? "text-accent"
-                        : "text-light/70 hover:text-light"
+                        : "text-light/80 hover:text-light"
                     }`}
                   >
                     {link}
@@ -139,7 +139,7 @@ export default function Navbar() {
               );
             })}
 
-            <li className="ml-2 pl-2 border-l border-white/10 hidden md:block">
+            <li className="ml-2 pl-2 border-l border-light/10 hidden md:block">
               <MagneticButton className="relative block">
                 <a
                   href="/resume.pdf"
@@ -161,7 +161,7 @@ export default function Navbar() {
             </span>
             <button
               type="button"
-              className="flex flex-col gap-1.5 justify-center items-center z-70 relative w-10 h-10 group rounded-full bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
+              className="flex flex-col gap-1.5 justify-center items-center z-70 relative w-10 h-10 group rounded-full bg-light/5 border border-light/5 hover:bg-light/10 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -249,7 +249,7 @@ export default function Navbar() {
                     className={`text-4xl font-medium flex items-center justify-center transition-colors duration-300 p-2 ${
                       isActive
                         ? "text-accent"
-                        : "text-light/70 hover:text-white"
+                        : "text-light/80 hover:text-accent"
                     }`}
                   >
                     <span>{link}</span>
