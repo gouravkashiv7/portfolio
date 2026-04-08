@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { domAnimation, LazyMotion } from "framer-motion";
+import Script from "next/script";
 import CustomCursor from "@/app/_components/CustomCursor";
 import Footer from "@/app/_components/Footer";
 import NoiseOverlay from "@/app/_components/NoiseOverlay";
@@ -88,6 +89,37 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://unpkg.com" />
+        <Script
+          id="person-jsonld"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Standard way for JSON-LD in Next.js
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Gourav Kashiv",
+              jobTitle: "Full-Stack Engineer",
+              url: "https://www.gouravkashiv.com",
+              sameAs: [
+                "https://github.com/gouravkashiv7",
+                "https://www.linkedin.com/in/gourav-kashiv/",
+              ],
+              description:
+                "Full-Stack Engineer specializing in MERN stack and Cloud Infrastructure.",
+              knowsAbout: [
+                "React",
+                "Next.js",
+                "MongoDB",
+                "Node.js",
+                "Express",
+                "AWS",
+                "Docker",
+                "DevOps",
+              ],
+            }),
+          }}
+        />
       </head>
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark transition-colors duration-300`}

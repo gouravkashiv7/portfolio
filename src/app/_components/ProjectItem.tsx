@@ -33,6 +33,7 @@ interface ProjectItemProps {
   liveLink: string;
   featured?: boolean;
   reverse?: boolean;
+  priority?: boolean;
 }
 
 const AUTOPLAY_INTERVAL = 4000;
@@ -47,6 +48,7 @@ export default function ProjectItem({
   liveLink,
   featured = false,
   reverse = false,
+  priority = false,
 }: ProjectItemProps) {
   const allImages = images && images.length > 1 ? images : [image];
   const hasMultiple = allImages.length > 1;
@@ -140,14 +142,15 @@ export default function ProjectItem({
         viewport={{ once: true }}
       >
         {/* Image Section */}
-        {/* biome-ignore lint/a11y/noStaticElementInteractions: decorative tilt effect */}
-        <div
+        <section
           className="w-full lg:w-1/2 relative group perspective-1000"
           onMouseEnter={() => hasMultiple && setIsPaused(true)}
           onMouseLeave={() => {
             hasMultiple && setIsPaused(false);
             handleMouseLeave();
           }}
+          aria-label={`${title} project preview`}
+          aria-haspopup="dialog"
         >
           <m.div
             className="relative rounded-lg overflow-hidden aspect-14/10 transform-style-3d"
@@ -182,6 +185,7 @@ export default function ProjectItem({
                     height={520}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     className="w-full h-full object-contain bg-light-bg cursor-pointer"
+                    priority={priority}
                   />
                 </m.div>
               </AnimatePresence>
@@ -270,7 +274,7 @@ export default function ProjectItem({
               ))}
             </div>
           )}
-        </div>
+        </section>
 
         {/* Content Section */}
         <div
