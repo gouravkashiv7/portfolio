@@ -88,7 +88,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="preconnect" href="https://unpkg.com" />
         <Script
           id="person-jsonld"
           type="application/ld+json"
@@ -103,7 +102,7 @@ export default function RootLayout({
               url: "https://www.gouravkashiv.com",
               sameAs: [
                 "https://github.com/gouravkashiv7",
-                "https://www.linkedin.com/in/gourav-kashiv/",
+                "https://www.linkedin.com/in/gouravkashiv7/",
               ],
               description:
                 "Full-Stack Engineer specializing in MERN stack and Cloud Infrastructure.",
@@ -142,8 +141,13 @@ export default function RootLayout({
             </SmoothScrolling>
           </LazyMotion>
         </ThemeProvider>
-        {process.env.NODE_ENV === "production" && <Analytics />}
-        {process.env.NODE_ENV === "production" && <SpeedInsights />}
+        {process.env.NODE_ENV === "production" &&
+          Boolean(process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL) && (
+            <>
+              <Analytics />
+              <SpeedInsights />
+            </>
+          )}
       </body>
     </html>
   );

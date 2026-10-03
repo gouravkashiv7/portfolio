@@ -58,6 +58,21 @@ export default function ProjectItem({
   const [progressKey, setProgressKey] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: "100px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   // 3D Tilt Effect State
   const x = useMotionValue(0);
@@ -98,9 +113,9 @@ export default function ProjectItem({
     setProgressKey((k) => k + 1);
   }, [allImages.length]);
 
-  // Auto-play (pause when fullscreen is open)
+  // Auto-play (only when in view and not paused or in fullscreen)
   useEffect(() => {
-    if (!hasMultiple || isPaused || isFullscreen) {
+    if (!hasMultiple || isPaused || isFullscreen || !isInView) {
       if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
@@ -108,7 +123,7 @@ export default function ProjectItem({
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [hasMultiple, isPaused, isFullscreen, goNext]);
+  }, [hasMultiple, isPaused, isFullscreen, isInView, goNext]);
 
   // Keyboard navigation for fullscreen
   useEffect(() => {
@@ -133,6 +148,7 @@ export default function ProjectItem({
   return (
     <>
       <m.div
+        ref={containerRef}
         className={`flex flex-col ${
           reverse ? "lg:flex-row-reverse" : "lg:flex-row"
         } gap-6 lg:gap-8 items-center`}

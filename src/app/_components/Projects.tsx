@@ -50,7 +50,6 @@ export default function Projects() {
             liveLink="https://www.kasaulicoder.com/"
             featured={true}
             reverse={false}
-            priority={true}
           />
           <ProjectItem
             title="St. Bede's ERP System"

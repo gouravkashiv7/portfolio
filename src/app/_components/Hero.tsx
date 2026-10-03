@@ -6,15 +6,15 @@ export default function Hero() {
   const lenis = useLenis();
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 40, opacity: 0 },
+    hidden: { y: 0, opacity: 1 },
     visible: {
       y: 0,
       opacity: 1,
@@ -33,7 +33,7 @@ export default function Hero() {
 
       <m.div
         variants={containerVariants}
-        initial="hidden"
+        initial={false}
         animate="visible"
         className="w-full relative z-10"
       >
@@ -113,7 +113,7 @@ export default function Hero() {
         <m.div variants={itemVariants} className="mt-8">
           <button
             type="button"
-            aria-label="Scroll to projects section"
+            aria-label="Check out my work - Scroll to projects section"
             onClick={(e) => {
               e.preventDefault();
               window.history.pushState(null, "", "#projects");

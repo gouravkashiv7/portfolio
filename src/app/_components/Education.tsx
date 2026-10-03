@@ -32,8 +32,8 @@ export default function Education() {
       details: [
         "Completed advanced studies in computer science",
         "Research focus on Large Language Models and generative AI",
-        "Published research paper on text-to-video generative models",
-        "Exploring cutting-edge AI technologies and their applications",
+        "Published research on Text-to-Video Generative Models (Presented at IICTDS-2025, NMIMS Chandigarh)",
+        "Exploring cutting-edge AI technologies, Agentic AI, and production workflows",
       ],
     },
     {
