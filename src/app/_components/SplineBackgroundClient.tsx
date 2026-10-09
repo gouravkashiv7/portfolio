@@ -94,8 +94,8 @@ export default function SplineBackgroundClient() {
         deep, and polished even on low-end CPUs, mobile devices, and older browsers.
       */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] lg:w-[750px] lg:h-[750px] rounded-full bg-accent/15 blur-[120px] transition-opacity duration-1000 pointer-events-none" />
-        <div className="absolute top-1/2 -left-40 w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] rounded-full bg-accent/10 blur-[140px] transition-opacity duration-1000 pointer-events-none" />
+        <div className="absolute -top-32 -right-32 w-125 h-125 lg:w-187.5 lg:h-187.5 rounded-full bg-accent/15 blur-[120px] transition-opacity duration-1000 pointer-events-none" />
+        <div className="absolute top-1/2 -left-40 w-100 h-100 lg:w-150 lg:h-150 rounded-full bg-accent/10 blur-[140px] transition-opacity duration-1000 pointer-events-none" />
       </div>
 
       {/* Protective edge gradients for navigation and footer contrast */}

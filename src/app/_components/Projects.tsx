@@ -97,7 +97,7 @@ export default function Projects() {
               "/theretreat_amenities.png",
             ]}
             projectLink="https://github.com/gouravkashiv7/the-retreat-cottage"
-            liveLink="https://the-retreat-cottage.vercel.app"
+            liveLink="https://retreatcottage.in"
             featured={true}
             reverse={false}
           />
