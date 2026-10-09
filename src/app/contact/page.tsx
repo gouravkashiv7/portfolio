@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
+import { AnimatePresence, m, type Variants } from "framer-motion";
 import { ArrowLeft, Mail, MessageCircle } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -18,7 +18,7 @@ export default function ContactPage() {
     },
   };
 
-  const itemVariants: any = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,

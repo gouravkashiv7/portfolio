@@ -4,7 +4,7 @@ import { AnimatePresence, m } from "framer-motion";
 import { useEffect, useState } from "react";
 import MagneticButton from "./MagneticButton";
 
-const links = ["About", "Education", "Projects", "Contact"];
+const links = ["About", "Experience", "Projects", "Education", "Contact"];
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("");

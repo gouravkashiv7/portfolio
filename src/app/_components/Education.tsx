@@ -1,217 +1,139 @@
 "use client";
-import { AnimatePresence, m, useScroll, useTransform } from "framer-motion";
-import {
-  Award,
-  BookOpen,
-  ChevronDown,
-  ChevronUp,
-  GraduationCap,
-  School,
-} from "lucide-react";
-import { useRef, useState } from "react";
+import { m } from "framer-motion";
+import { GraduationCap, Trophy } from "lucide-react";
 
 export default function Education() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  // Track scroll progress through this section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end center"],
-  });
-
-  // Grow the central line based on scroll
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  const educationData = [
+  const degrees = [
     {
-      level: "M.Tech in CSE",
-      institute: "Panjab University, Chandigarh",
-      duration: "2023 – 2025",
-      icon: <GraduationCap size={24} className="text-accent" />,
-      details: [
-        "Completed advanced studies in computer science",
-        "Research focus on Large Language Models and generative AI",
-        "Published research on Text-to-Video Generative Models (Presented at IICTDS-2025, NMIMS Chandigarh)",
-        "Exploring cutting-edge AI technologies, Agentic AI, and production workflows",
+      degree: "M.Tech in Computer Science & Engineering",
+      institution: "Panjab University, Chandigarh",
+      period: "2023 – 2025",
+      highlights: [
+        "Specialized in Advanced Algorithms, Distributed Cloud Computing, and Machine Learning Systems.",
+        'Authored research: "Performance Comparison of Text-to-Video Generative Models", co-authored with Sarbjeet Singh and presented at IICTDS-2025 (NMIMS Chandigarh).',
+        "Investigated practical LLM reasoning workflows, Retrieval-Augmented Generation (RAG), and evaluation frameworks.",
       ],
     },
     {
-      level: "B.E. in CSE",
-      institute: "Chitkara University, Rajpura",
-      duration: "2018 – 2022",
-      icon: <Award size={24} className="text-accent" />,
-      details: [
-        "Graduated with distinction (CGPA: 9.58/10) focusing on software engineering principles",
-        "Built multiple scalable cloud projects using AWS, Node.js, and CI/CD pipelines",
-        "Achieved Quarter-finalist in Smart India Hackathon with IoT-based agricultural monitoring system",
-        "Secured Semi-finalist position in IICDC for the same project featuring image processing capabilities",
-        "Guided team to runners-up position in Octahacks hackathon",
-      ],
-    },
-    {
-      level: "Secondary Education",
-      institute: "St. Mary's Senior Secondary School, Kasauli",
-      duration: "2016 – 2018",
-      icon: <BookOpen size={24} className="text-accent" />,
-      details: [
-        "Specialized in Physics, Chemistry, and Mathematics (PCM)",
-        "Achieved 82.2% in CBSE Board examinations",
-        "Secured 2nd position in district-level Mathematics Olympiad",
-        "Demonstrated strong analytical and problem-solving abilities",
-      ],
-    },
-    {
-      level: "Primary Education",
-      institute: "St. Mary's Senior Secondary School, Kasauli",
-      duration: "2008 – 2016",
-      icon: <School size={24} className="text-accent" />,
-      details: [
-        "Completed foundational education with outstanding academic performance (CGPA: 9.8/10)",
-        "Actively participated in inter-school competitions and cultural events",
-        "Developed strong foundational knowledge and extracurricular skills",
+      degree: "B.E. in Computer Science & Engineering",
+      institution: "Chitkara University, Rajpura",
+      period: "2018 – 2022",
+      highlights: [
+        "Comprehensive foundations in Software Architecture, Relational Database Systems, Operating Systems, and Networking.",
+        "Built IoT-driven agricultural intrusion detection systems and full-stack cloud prototypes deployed on AWS.",
+        "Led engineering teams in national coding competitions and hackathon challenges.",
       ],
     },
   ];
 
-  const displayedEducation = isExpanded
-    ? educationData
-    : educationData.slice(0, 2);
+  const honors = [
+    {
+      title: "Quarterfinalist — Smart India Hackathon (SIH)",
+      detail:
+        "Engineered an IoT-enabled agricultural intrusion detection and crop monitoring system.",
+      year: "2018",
+    },
+    {
+      title: "Runners-Up — Octahacks Hackathon",
+      detail:
+        "Developed a rapid collaborative software solution under strict 36-hour sprint constraints.",
+      year: "Hackathon",
+    },
+    {
+      title: "Semifinalist — IICDC (Texas Instruments / DST)",
+      detail:
+        "Selected among national innovators for embedded image processing and hardware automation.",
+      year: "2019",
+    },
+    {
+      title: "Certified Web Professional — Web Developer",
+      detail:
+        "Industry credentials validating professional JavaScript, semantic DOM architecture, and web systems.",
+      year: "Certified",
+    },
+  ];
 
   return (
-    <section
-      id="education"
-      className="min-h-screen flex flex-col justify-center px-6 md:px-20 py-16 md:py-20 max-w-5xl mx-auto"
-      ref={containerRef}
-    >
-      <div className="w-full">
-        {/* Section Header */}
-        <m.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl font-bold text-light mb-10 md:mb-16 flex items-center"
-        >
-          <span className="text-accent font-mono text-base md:text-lg mr-3 md:mr-4">
-            02.
-          </span>
-          Education
-          <span className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60"></span>
-        </m.h2>
+    <section id="education" className="py-24 max-w-5xl mx-auto px-6">
+      <m.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-3 mb-12"
+      >
+        <span className="font-mono text-accent text-sm md:text-base">04.</span>
+        <h2 className="text-2xl sm:text-3xl font-bold text-light tracking-tight">
+          Education & Recognized Honors
+        </h2>
+        <div className="h-px bg-light/10 grow max-w-xs" />
+      </m.div>
 
-        <div className="relative w-full">
-          {/* Vertical Timeline Background Line */}
-          <div className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-light/10 -translate-x-1/2 z-0" />
-
-          {/* Vertical Timeline Animated Line */}
+      {/* Degrees Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {degrees.map((deg) => (
           <m.div
-            className="absolute left-5 md:left-1/2 top-4 bottom-4 w-0.5 bg-linear-to-b from-accent/80 to-accent/20 -translate-x-1/2 z-0 origin-top"
-            style={{ scaleY }}
-          />
-
-          <div className="flex flex-col gap-8 md:gap-12 w-full">
-            <AnimatePresence>
-              {displayedEducation.map((edu, index) => {
-                const isEven = index % 2 === 0;
-
-                return (
-                  <m.div
-                    key={edu.duration}
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className={`relative flex flex-col md:flex-row items-center w-full ${
-                      isEven ? "md:justify-start" : "md:justify-end"
-                    }`}
-                  >
-                    {/* Glowing Node on Timeline */}
-                    <m.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                      className="absolute left-5 md:left-1/2 w-10 h-10 rounded-full bg-dark border-2 border-accent text-accent flex items-center justify-center -translate-x-1/2 z-10 transition-all duration-300 hover:scale-110 hover:bg-accent/10 cursor-default"
-                    >
-                      {edu.icon}
-                    </m.div>
-
-                    {/* Content Card */}
-                    <div
-                      className={`w-full pl-15 md:pl-0 md:w-[45%] ${
-                        isEven ? "md:pr-12" : "md:pl-12"
-                      }`}
-                    >
-                      <m.div
-                        initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
-                        whileInView={{ opacity: 1, x: 0, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{
-                          duration: 0.6,
-                          type: "spring",
-                          stiffness: 70,
-                          damping: 15,
-                        }}
-                        className="glass-card p-5 md:p-6 rounded-xl relative overflow-hidden group hover:border-accent/40 transition-colors duration-500"
-                      >
-                        {/* Decorative Background Glow */}
-                        <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
-
-                        <div className="relative z-10">
-                          <h3 className="text-xl md:text-2xl font-bold text-light mb-1">
-                            {edu.level}
-                          </h3>
-                          <p className="text-accent text-sm md:text-base font-medium mb-3">
-                            {edu.institute}
-                          </p>
-
-                          <div className="inline-block px-3 py-1 bg-light/5 rounded-full border border-light/10 mb-4">
-                            <p className="text-gray text-xs font-mono">
-                              {edu.duration}
-                            </p>
-                          </div>
-
-                          <ul className="space-y-2 md:space-y-3">
-                            {edu.details.map((point) => (
-                              <li
-                                key={point}
-                                className="flex items-start gap-3 text-gray text-xs md:text-sm"
-                              >
-                                <span className="text-accent mt-0.5 shrink-0 opacity-70">
-                                  ▹
-                                </span>
-                                <span className="leading-relaxed">{point}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </m.div>
-                    </div>
-                  </m.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Toggle Expand Button */}
-        <div className="mt-12 flex justify-center relative z-20">
-          <button
-            type="button"
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-2 px-6 py-3 rounded-full border border-accent/30 text-accent font-mono text-sm hover:bg-accent hover:text-dark transition-all duration-300"
+            key={deg.degree}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="p-6 rounded-xl border border-light/10 bg-dark/50 hover:border-accent/40 transition-colors flex flex-col justify-between"
           >
-            {isExpanded ? (
-              <>
-                Show Less <ChevronUp size={16} />
-              </>
-            ) : (
-              <>
-                Show Early Education <ChevronDown size={16} />
-              </>
-            )}
-          </button>
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-xs font-mono text-accent bg-accent/10 px-2.5 py-0.5 rounded border border-accent/20 flex items-center gap-1.5">
+                  <GraduationCap size={13} />
+                  {deg.period}
+                </span>
+              </div>
+              <h3 className="text-lg font-bold text-light mb-1">
+                {deg.degree}
+              </h3>
+              <p className="text-xs font-mono text-gray mb-4">
+                {deg.institution}
+              </p>
+
+              <ul className="space-y-2.5">
+                {deg.highlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-gray text-xs sm:text-sm leading-relaxed"
+                  >
+                    <span className="text-accent mt-0.5 shrink-0">▹</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </m.div>
+        ))}
+      </div>
+
+      {/* Honors and Competitions */}
+      <div className="p-6 rounded-xl border border-light/10 bg-dark/30">
+        <h3 className="text-sm font-mono uppercase tracking-wider text-accent font-semibold flex items-center gap-2 mb-4">
+          <Trophy size={16} />
+          Verified Competitions & Hackathon Achievements
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {honors.map((h) => (
+            <div
+              key={h.title}
+              className="p-3.5 rounded-lg border border-light/5 bg-light/2"
+            >
+              <div className="flex items-center justify-between mb-1">
+                <h4 className="text-xs sm:text-sm font-semibold text-light">
+                  {h.title}
+                </h4>
+                <span className="text-[10px] font-mono text-gray px-1.5 py-0.5 rounded bg-light/5">
+                  {h.year}
+                </span>
+              </div>
+              <p className="text-xs text-gray leading-relaxed">{h.detail}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -16,28 +16,90 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="mb-16"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-light mb-16 flex items-center">
-            <span className="text-accent font-mono text-base md:text-lg mr-3 md:mr-4">
+          <div className="flex items-center gap-3">
+            <span className="text-accent font-mono text-base md:text-lg">
               03.
             </span>
-            Projects
-            <span className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60"></span>
-          </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-light tracking-tight">
+              Selected Production Systems
+            </h2>
+            <div className="ml-4 md:ml-6 h-px bg-accent/20 grow max-w-20 md:max-w-60" />
+          </div>
+          <p className="text-gray text-xs sm:text-sm font-mono mt-2">
+            Architected and shipped end-to-end: guest booking engines,
+            enterprise ERPs, and cloud infrastructure.
+          </p>
         </m.div>
 
         {/* Featured Projects Grid */}
         <div className="space-y-28">
+          {/* Flagship: The Retreat Cottage + Operations Manager */}
           <ProjectItem
-            title="Kasauli Coder"
-            description="A comprehensive digital agency and tech community ecosystem. Features high-performance SaaS development, automated content workflows, and a technical learning platform with integrated hackathons and career acceleration programs. Includes a sophisticated blog ecosystem for technical knowledge sharing."
+            title="The Retreat Cottage & Operations Manager"
+            description="A unified hospitality platform integrating a public guest booking application with a real-time operational ERP. Features dynamic date blackout scheduling, serverless Supabase Edge Functions for two-way live calendar sync with MakeMyTrip and Goibibo (via iCal format), a digital food ordering portal, and automated client PDF invoicing."
             tech={[
-              "MERN Stack",
+              "Next.js 15",
+              "React 19",
+              "Supabase & Edge Functions",
+              "React Query",
+              "Styled Components",
+              "iCal OTA Sync",
+            ]}
+            image="/theretreat_home.png"
+            images={[
+              "/theretreat_home.png",
+              "/theoperations.png",
+              "/theoperations2.png",
+              "/theretreat_rooms.png",
+              "/theoperations3.png",
+            ]}
+            projectLink="https://github.com/gouravkashiv7/the-retreat-operations-manager"
+            liveLink="https://the-retreat-operations-manager.vercel.app/"
+            featured={true}
+            reverse={false}
+            priority={true}
+          />
+
+          {/* St. Bede's ERP System */}
+          <ProjectItem
+            title="St. Bede's ERP System (CampusEvo)"
+            description="Enterprise institutional ERP platform managing academic workflows, faculty records, dynamic course catalogs, and administrative operations. Architected the custom Question Bank & Dynamic Exam Generator, real-time Google Maps transit tracking for student fleet routing, and cut initial load times 6× (30s to 5s) by migrating build pipelines from Webpack to Vite + pnpm."
+            tech={[
+              "React",
+              "Node.js & Express",
+              "MongoDB",
+              "AWS EC2 & Route 53",
+              "Vite + pnpm (6× Speedup)",
+              "Google Maps API",
+            ]}
+            image="/erp_dashboard.png"
+            images={[
+              "/erp_dashboard.png",
+              "/erp_academics.png",
+              "/erp_students.png",
+              "/erp_faculty.png",
+              "/erp_branding.png",
+              "/erp_reports.png",
+            ]}
+            projectLink="https://stbedes.campusevo.com/"
+            liveLink="https://stbedes.campusevo.com/"
+            featured={true}
+            reverse={true}
+          />
+
+          {/* KasauliCoder */}
+          <ProjectItem
+            title="KasauliCoder Digital Platform"
+            description="Full-scale digital agency platform and technical community ecosystem. Features high-performance SaaS development tooling, automated developer content workflows, and an integrated learning platform with structured hackathons and engineering acceleration tracks."
+            tech={[
               "Next.js",
               "React",
               "Tailwind CSS",
-              "Lucide React",
+              "Server Actions",
               "Framer Motion",
+              "Lucide Icons",
             ]}
             image="/kasaulicoder_home.png"
             images={[
@@ -50,84 +112,6 @@ export default function Projects() {
             liveLink="https://www.kasaulicoder.com/"
             featured={true}
             reverse={false}
-          />
-          <ProjectItem
-            title="St. Bede's ERP System"
-            description="A comprehensive institutional ERP system developed and deployed during my internship. Manages critical operations for St. Bede's College including centralized student and faculty records, academic course management, and institutional branding tools. Architected and managed the end-to-end deployment on AWS for high availability and performance."
-            tech={[
-              "AWS (EC2, S3)",
-              "React",
-              "Node.js",
-              "Express",
-              "MongoDB",
-              "Tailwind CSS",
-              "Lucide React",
-            ]}
-            image="/erp_dashboard.png"
-            images={[
-              "/erp_dashboard.png",
-              "/erp_academics.png",
-              "/erp_branding.png",
-              "/erp_faculty.png",
-              "/erp_students.png",
-              "/erp_reports.png",
-            ]}
-            projectLink="https://stbedes.campusevo.com/"
-            liveLink="https://stbedes.campusevo.com/"
-            featured={true}
-            reverse={true}
-          />
-          <ProjectItem
-            title="The Retreat Cottage"
-            description="Advanced booking system with real-time availability tracking, user authentication, and admin panel. Features interactive calendar that disables booked dates, secure payment processing, booking management, and instant confirmation system."
-            tech={[
-              "Next.js",
-              "React",
-              "Tailwind",
-              "Supabase",
-              "NextAuth.js",
-              "Context API",
-            ]}
-            image="/theretreat_home.png"
-            images={[
-              "/theretreat_home.png",
-              "/theretreat_retreats.png",
-              "/theretreat_rooms.png",
-              "/theretreat_location.png",
-              "/theretreat_amenities.png",
-            ]}
-            projectLink="https://github.com/gouravkashiv7/the-retreat-cottage"
-            liveLink="https://retreatcottage.in"
-            featured={true}
-            reverse={false}
-          />
-          <ProjectItem
-            title="The Retreat Operations Manager"
-            description="A comprehensive React internal management system & guest portal. Key features include live availability syncing with external OTAs (MMT/Goibibo) via Edge Functions, a digital menu for guest ordering with real-time status tracking, and automated PDF receipt generation for stays and orders."
-            tech={[
-              "React",
-              "React Query",
-              "React Router",
-              "Styled Components",
-              "Supabase",
-              "Edge Functions",
-              "Framer Motion",
-              "iCal API",
-              "Context API",
-              "Gemini AI",
-              "react-image-crop",
-            ]}
-            image="/theoperations.png"
-            images={[
-              "/theoperations.png",
-              "/theoperations2.png",
-              "/theoperations3.png",
-              "/theoperations4.png",
-            ]}
-            projectLink="https://github.com/gouravkashiv7/the-retreat-operations-manager"
-            liveLink="https://the-retreat-operations-manager.vercel.app/"
-            featured={true}
-            reverse={true}
           />
         </div>
 

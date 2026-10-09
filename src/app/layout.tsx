@@ -21,9 +21,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.gouravkashiv.com"),
-  title: "Gourav Kashiv | Full-Stack Engineer | MERN Specialist",
+  title:
+    "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
   description:
-    "Full-Stack Engineer specializing in MERN stack and Cloud Infrastructure. End-to-end architect owning CI/CD pipelines, Docker, and AWS EC2 deployments.",
+    "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, high-performance web architectures, and AI-enabled product engineering.",
   keywords: [
     "Gourav Kashiv",
     "Full-Stack Engineer",
@@ -45,9 +46,10 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
   },
   openGraph: {
-    title: "Gourav Kashiv | DevOps Developer",
+    title:
+      "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
     description:
-      "Full-Stack Engineer specializing in MERN stack, DevOps, and Cloud Infrastructure.",
+      "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, and high-performance web systems.",
     url: "https://www.gouravkashiv.com",
     siteName: "Gourav Kashiv Portfolio",
     images: [
@@ -63,9 +65,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gourav Kashiv | DevOps Developer",
+    title:
+      "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
     description:
-      "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines. Currently open to new projects.",
+      "Full-Stack Engineer specializing in scalable cloud applications, infrastructure automation, and AI-enabled products. Currently open to new projects.",
     images: ["/og-image.png"],
   },
 };
@@ -105,16 +108,19 @@ export default function RootLayout({
                 "https://www.linkedin.com/in/gouravkashiv7/",
               ],
               description:
-                "Full-Stack Engineer specializing in MERN stack and Cloud Infrastructure.",
+                "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, and AI-enabled products.",
               knowsAbout: [
                 "React",
                 "Next.js",
-                "MongoDB",
+                "TypeScript",
                 "Node.js",
                 "Express",
+                "MongoDB",
+                "PostgreSQL",
                 "AWS",
                 "Docker",
-                "DevOps",
+                "CI/CD",
+                "Generative AI & LLMs",
               ],
             }),
           }}

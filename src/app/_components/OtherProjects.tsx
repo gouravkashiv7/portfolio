@@ -169,7 +169,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => (
     </p>
 
     <div className="flex flex-wrap gap-2 mt-auto">
-      {project.tech.map((tech, techIndex) => (
+      {project.tech.map((tech) => (
         <span key={tech} className="text-xs text-gray font-mono">
           {tech}
         </span>

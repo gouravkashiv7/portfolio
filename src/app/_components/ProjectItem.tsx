@@ -216,7 +216,7 @@ export default function ProjectItem({
             {/* Expand button — top-right corner, appears on hover */}
             <button
               type="button"
-              onClick={(e) => {
+              onClick={() => {
                 setIsFullscreen(true);
               }}
               style={{ transform: "translateZ(20px)" }}
@@ -231,7 +231,7 @@ export default function ProjectItem({
               <>
                 <button
                   type="button"
-                  onClick={(e) => {
+                  onClick={() => {
                     goPrev();
                   }}
                   style={{ transform: "translateY(-50%) translateZ(20px)" }}
@@ -242,7 +242,7 @@ export default function ProjectItem({
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => {
+                  onClick={() => {
                     goNext();
                   }}
                   style={{ transform: "translateY(-50%) translateZ(20px)" }}
