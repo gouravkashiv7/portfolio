@@ -37,7 +37,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col pt-32 md:pt-40 justify-center px-6 md:px-12 lg:px-24 max-w-5xl mx-auto items-start relative overflow-visible">
+    <section
+      id="home"
+      className="min-h-[92vh] flex flex-col pt-28 md:pt-36 justify-center px-6 md:px-12 lg:px-20 max-w-5xl mx-auto items-start relative overflow-visible"
+    >
       {/* Background ambient accents */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 h-72 md:w-96 md:h-96 bg-accent/15 rounded-full blur-3xl -z-10 pointer-events-none animate-pulse" />
       <div
@@ -52,72 +55,90 @@ export default function Hero() {
         className="w-full relative z-10"
       >
         <div className="overflow-hidden mb-3">
-          <m.p
-            variants={itemVariants}
-            className="text-accent font-mono font-medium text-xs md:text-sm tracking-wider uppercase"
-          >
-            Senior Full-Stack & Cloud Engineer
-          </m.p>
+          <m.div variants={itemVariants}>
+            <button
+              type="button"
+              onClick={() => scrollTo("contact")}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent font-mono text-xs font-medium hover:bg-accent/15 hover:border-accent/40 transition-colors group cursor-pointer"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+              </span>
+              <span>Available for Full-Time Roles & High-Impact Projects</span>
+              <span className="text-accent/60 group-hover:text-accent transition-colors">
+                • Connect →
+              </span>
+            </button>
+          </m.div>
         </div>
 
         <div className="overflow-hidden mb-3">
           <m.h1
             variants={itemVariants}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold text-light leading-[1.08] tracking-tight"
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-light leading-[1.06] tracking-tight"
           >
-            Gourav Kashiv
+            From idea to <span className="text-accent">production</span>.
           </m.h1>
         </div>
 
-        <div className="overflow-hidden mb-6">
+        <div className="overflow-hidden mb-5">
           <m.h2
             variants={itemVariants}
-            className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray/90 leading-[1.2] tracking-tight"
+            className="text-lg sm:text-2xl md:text-3xl font-semibold text-gray/90 leading-tight tracking-tight"
           >
-            Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products
+            I'm <span className="text-light">Gourav Kashiv</span> — Full-Stack
+            Engineer & Cloud Infrastructure Architect
           </m.h2>
         </div>
 
-        <p className="max-w-2xl text-gray text-base md:text-lg leading-relaxed">
-          I build and maintain production web systems from conception to cloud
-          deployment. Specializing in end-to-end architecture, frontend
-          engineering with Next.js/React, distributed backend APIs, AWS
-          infrastructure automation, and applied generative AI workflows.
-        </p>
+        <m.p
+          variants={itemVariants}
+          className="max-w-2xl text-gray text-base md:text-lg leading-relaxed mb-8"
+        >
+          I design, engineer, and operate resilient web applications end-to-end.
+          Specializing in modern Next.js/React architectures, distributed
+          backend APIs with Node.js & databases, automated AWS cloud
+          deployments, and applied AI systems.
+        </m.p>
 
-        {/* Engineering Pillars */}
+        {/* Verifiable Engineering Metrics Strip */}
         <m.div
           variants={itemVariants}
-          className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-8"
         >
-          <div className="glass-card p-5 border border-accent/20 hover:border-accent/40 transition-colors group">
-            <h3 className="text-light font-bold text-sm mb-1.5 flex items-center gap-2">
-              <span className="text-accent font-mono text-xs">01.</span>
-              End-to-End Ownership
-            </h3>
-            <p className="text-gray text-xs leading-relaxed">
-              From database schema and API contracts to automated CI/CD and AWS
-              EC2 hosting.
+          <div className="glass-card p-4 border border-light/10 hover:border-accent/40 transition-colors">
+            <div className="text-accent font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+              6× Optimization
+            </div>
+            <div className="text-light font-bold text-sm">
+              Reduced Load Time
+            </div>
+            <p className="text-gray text-xs mt-1 leading-snug">
+              Migrated legacy ERP from Webpack to Vite + pnpm, cutting load from
+              30s to 5s.
             </p>
           </div>
-          <div className="glass-card p-5 border border-accent/20 hover:border-accent/40 transition-colors group">
-            <h3 className="text-light font-bold text-sm mb-1.5 flex items-center gap-2">
-              <span className="text-accent font-mono text-xs">02.</span>
-              Proven Performance
-            </h3>
-            <p className="text-gray text-xs leading-relaxed">
-              Measured optimizations, including cutting an enterprise ERP load
-              time 6× (30s to 5s).
+          <div className="glass-card p-4 border border-light/10 hover:border-accent/40 transition-colors">
+            <div className="text-accent font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+              Full-Stack Scope
+            </div>
+            <div className="text-light font-bold text-sm">Concept to Cloud</div>
+            <p className="text-gray text-xs mt-1 leading-snug">
+              MERN, Next.js, PostgreSQL/Supabase, Docker, and AWS EC2 with SSL &
+              Route 53.
             </p>
           </div>
-          <div className="glass-card p-5 border border-accent/20 hover:border-accent/40 transition-colors group">
-            <h3 className="text-light font-bold text-sm mb-1.5 flex items-center gap-2">
-              <span className="text-accent font-mono text-xs">03.</span>
-              Applied AI Systems
-            </h3>
-            <p className="text-gray text-xs leading-relaxed">
-              Production LLM integrations and peer-reviewed generative model
-              research (IICTDS-2025).
+          <div className="glass-card p-4 border border-light/10 hover:border-accent/40 transition-colors">
+            <div className="text-accent font-mono text-xs uppercase tracking-wider mb-1 font-semibold">
+              Applied AI
+            </div>
+            <div className="text-light font-bold text-sm">
+              Research & Agents
+            </div>
+            <p className="text-gray text-xs mt-1 leading-snug">
+              Published Generative AI research (IICTDS-2025) and integrated
+              LLM/MCP workflows.
             </p>
           </div>
         </m.div>

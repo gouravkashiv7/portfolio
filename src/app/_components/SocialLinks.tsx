@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SocialLinks() {
   return (
-    <div className="fixed left-8 bottom-0 flex flex-col items-center gap-6">
+    <div className="hidden 2xl:flex fixed left-8 bottom-0 flex-col items-center gap-6 z-40">
       <Link
         href="https://github.com/gouravkashiv7"
         target="_blank"

@@ -61,7 +61,6 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-inter), sans-serif;
-  cursor: none !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -91,7 +90,6 @@ h6 {
 button,
 a {
   transition: all 0.3s ease;
-  cursor: none !important;
 }
 
 /* Custom selection color */
@@ -111,7 +109,7 @@ a {
 }
 
 .interactive {
-  cursor: none !important;
+  cursor: pointer;
 }
 
 /* Glassmorphism Utilities */

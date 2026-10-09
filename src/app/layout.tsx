@@ -101,25 +101,46 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Gourav Kashiv",
-              jobTitle: "Full-Stack Engineer",
+              jobTitle: "Full-Stack Engineer & Cloud Infrastructure Architect",
               url: "https://www.gouravkashiv.com",
+              email: "mailto:gouravkashiv@zohomail.in",
+              telephone: "+919459899052",
+              worksFor: {
+                "@type": "Organization",
+                name: "Kasauli Coder",
+                url: "https://www.kasaulicoder.com/",
+              },
+              alumnusOf: [
+                {
+                  "@type": "CollegeOrUniversity",
+                  name: "Panjab University, Chandigarh",
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  name: "Chitkara University",
+                },
+              ],
               sameAs: [
                 "https://github.com/gouravkashiv7",
                 "https://www.linkedin.com/in/gouravkashiv7/",
+                "https://x.com/KashivGourav",
               ],
               description:
-                "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, and AI-enabled products.",
+                "Full-Stack Engineer specializing in high-performance web applications, scalable backend systems, AWS cloud infrastructure, and AI engineering.",
               knowsAbout: [
-                "React",
+                "React 19",
                 "Next.js",
                 "TypeScript",
                 "Node.js",
                 "Express",
                 "MongoDB",
                 "PostgreSQL",
-                "AWS",
+                "Supabase",
+                "AWS (EC2, S3, Route 53, Lambda)",
                 "Docker",
-                "CI/CD",
+                "CI/CD Pipelines",
+                "Vite & Build Optimization",
+                "Agentic AI",
                 "Generative AI & LLMs",
               ],
             }),
@@ -127,7 +148,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans cursor-none selection:bg-accent selection:text-dark transition-colors duration-300`}
+        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans selection:bg-accent selection:text-dark transition-colors duration-300`}
       >
         <ThemeProvider
           attribute="class"

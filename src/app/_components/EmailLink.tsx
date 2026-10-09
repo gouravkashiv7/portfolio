@@ -3,7 +3,7 @@ import { m } from "framer-motion";
 
 export default function EmailLink() {
   return (
-    <div className="fixed right-8 bottom-0 flex flex-col items-center gap-6">
+    <div className="hidden 2xl:flex fixed right-8 bottom-0 flex-col items-center gap-6 z-40">
       <m.a
         href="mailto:gouravkashiv@zohomail.in"
         className="text-gray hover:text-accent transition-colors duration-300 font-mono text-sm writing-mode-vertical rotate-360"

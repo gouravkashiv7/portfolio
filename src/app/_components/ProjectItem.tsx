@@ -6,11 +6,14 @@ import {
   useTransform,
 } from "framer-motion";
 import {
+  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   Expand,
   ExternalLink,
   Github,
+  Layers,
+  Sparkles,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -23,9 +26,14 @@ import {
   useState,
 } from "react";
 
-interface ProjectItemProps {
+export interface ProjectItemProps {
   title: string;
+  subtitle?: string;
+  category?: string;
+  projectRole?: string;
+  impact?: string;
   description: string;
+  highlights?: string[];
   tech: string[];
   image: string;
   images?: string[];
@@ -36,28 +44,31 @@ interface ProjectItemProps {
   priority?: boolean;
 }
 
-const AUTOPLAY_INTERVAL = 4000;
+const AUTOPLAY_INTERVAL = 4500;
 
 export default function ProjectItem({
   title,
+  subtitle,
+  category = "Production System",
+  projectRole,
+  impact,
   description,
+  highlights = [],
   tech,
   image,
   images,
   projectLink,
   liveLink,
-  featured = false,
+  featured = true,
   reverse = false,
   priority = false,
 }: ProjectItemProps) {
-  const allImages = images && images.length > 1 ? images : [image];
+  const allImages = images && images.length > 0 ? images : [image];
   const hasMultiple = allImages.length > 1;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [progressKey, setProgressKey] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -74,21 +85,18 @@ export default function ProjectItem({
     return () => observer.disconnect();
   }, []);
 
-  // 3D Tilt Effect State
+  // 3D subtle tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(x, [-0.5, 0.5], ["-10deg", "10deg"]);
+  const rotateX = useTransform(y, [-0.5, 0.5], ["5deg", "-5deg"]);
+  const rotateY = useTransform(x, [-0.5, 0.5], ["-5deg", "5deg"]);
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
+    const xPct = mouseX / rect.width - 0.5;
+    const yPct = mouseY / rect.height - 0.5;
     x.set(xPct);
     y.set(yPct);
   };
@@ -96,36 +104,33 @@ export default function ProjectItem({
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+    setIsPaused(false);
   };
 
   const goToSlide = useCallback((index: number) => {
     setActiveIndex(index);
-    setProgressKey((k) => k + 1);
   }, []);
 
   const goNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % allImages.length);
-    setProgressKey((k) => k + 1);
   }, [allImages.length]);
 
   const goPrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-    setProgressKey((k) => k + 1);
   }, [allImages.length]);
 
-  // Auto-play (only when in view and not paused or in fullscreen)
+  // Autoplay cycle
   useEffect(() => {
-    if (!hasMultiple || isPaused || isFullscreen || !isInView) {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      return;
-    }
-    intervalRef.current = setInterval(goNext, AUTOPLAY_INTERVAL);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [hasMultiple, isPaused, isFullscreen, isInView, goNext]);
+    if (!hasMultiple || isPaused || isFullscreen || !isInView) return;
 
-  // Keyboard navigation for fullscreen
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % allImages.length);
+    }, AUTOPLAY_INTERVAL);
+
+    return () => clearInterval(timer);
+  }, [hasMultiple, isPaused, isFullscreen, isInView, allImages.length]);
+
+  // Keyboard navigation for lightbox
   useEffect(() => {
     if (!isFullscreen) return;
 
@@ -135,287 +140,323 @@ export default function ProjectItem({
       if (e.key === "ArrowLeft") goPrev();
     };
 
-    // Prevent body scroll when fullscreen is open
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isFullscreen, goNext, goPrev]);
+
+  const isGitHubLink = projectLink.includes("github.com");
 
   return (
     <>
-      <m.div
+      <m.article
         ref={containerRef}
-        className={`flex flex-col ${
-          reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-        } gap-6 lg:gap-8 items-center`}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: "-80px" }}
+        className="w-full bg-light/2 border border-light/10 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 relative overflow-hidden group hover:border-accent/30 transition-all duration-500 shadow-xl"
       >
-        {/* Image Section */}
-        <section
-          className="w-full lg:w-1/2 relative group perspective-1000"
-          onMouseEnter={() => hasMultiple && setIsPaused(true)}
-          onMouseLeave={() => {
-            hasMultiple && setIsPaused(false);
-            handleMouseLeave();
-          }}
-          aria-label={`${title} project preview`}
-          aria-haspopup="dialog"
-        >
-          <m.div
-            className="relative rounded-lg overflow-hidden aspect-14/10 transform-style-3d"
-            style={{
-              rotateX,
-              rotateY,
-              transition: "all 0.1s ease",
-            }}
-            onMouseMove={handleMouseMove}
+        {/* Ambient background glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10 group-hover:bg-accent/10 transition-colors duration-700" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Visual Showcase (Screenshots) */}
+          <div
+            className={`w-full lg:col-span-7 ${
+              reverse ? "lg:order-2" : "lg:order-1"
+            }`}
           >
-            {/* Image with AnimatePresence crossfade */}
-            <Link
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full h-full cursor-view"
-              aria-label={`View live site for ${title}`}
-            >
-              <AnimatePresence mode="wait">
-                <m.div
-                  key={activeIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={allImages[activeIndex]}
-                    alt={`${title} - Screenshot ${activeIndex + 1}`}
-                    width={700}
-                    height={520}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                    className="w-full h-full object-contain bg-light-bg cursor-pointer"
-                    priority={priority}
-                  />
-                </m.div>
-              </AnimatePresence>
-            </Link>
-
-            {/* Overlay tint */}
-            <div className="absolute inset-0 bg-light/30 lg:group-hover:opacity-0 transition-opacity duration-300 pointer-events-none rounded-lg z-1" />
-
-            {/* Edge glare effect */}
-            <div className="absolute inset-0 rounded-lg pointer-events-none border border-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-1" />
-
-            {/* Expand button — top-right corner, appears on hover */}
-            <button
-              type="button"
-              onClick={() => {
-                setIsFullscreen(true);
+            <section
+              aria-label={`${title} screenshot showcase`}
+              className="relative w-full rounded-xl md:rounded-2xl overflow-hidden border border-light/15 bg-dark/60 shadow-2xl transition-all duration-300"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{
+                perspective: 1000,
               }}
-              style={{ transform: "translateZ(20px)" }}
-              className="absolute top-2 right-2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
-              aria-label="View fullscreen"
             >
-              <Expand size={16} />
-            </button>
-
-            {/* Chevron Arrows — appear on hover */}
-            {hasMultiple && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => {
-                    goPrev();
-                  }}
-                  style={{ transform: "translateY(-50%) translateZ(20px)" }}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    goNext();
-                  }}
-                  style={{ transform: "translateY(-50%) translateZ(20px)" }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-30 w-9 h-9 rounded-full bg-dark/80 backdrop-blur-sm border border-light/10 flex items-center justify-center text-light hover:text-accent hover:border-accent/40 hover:bg-dark/90 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-300 cursor-pointer"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={18} />
-                </button>
-              </>
-            )}
-
-            {/* Progress bar — thin accent line at bottom */}
-            {hasMultiple && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-light/10 z-3">
-                <m.div
-                  key={progressKey}
-                  className="h-full bg-accent/70"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: isPaused ? undefined : 1 }}
-                  transition={{
-                    duration: AUTOPLAY_INTERVAL / 1000,
-                    ease: "linear",
-                  }}
-                  style={{ transformOrigin: "left" }}
-                />
+              {/* Browser-style Top Bar */}
+              <div className="px-4 py-2.5 bg-dark/80 border-b border-light/10 flex items-center justify-between text-xs font-mono text-gray">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/70 inline-block" />
+                  <span className="ml-2 text-light/50 text-[11px] truncate max-w-50 sm:max-w-none">
+                    {liveLink.replace("https://", "")}
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  {hasMultiple && (
+                    <span className="text-[11px] text-accent/80 font-mono">
+                      {activeIndex + 1} / {allImages.length}
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => setIsFullscreen(true)}
+                    className="p-1 rounded hover:bg-light/10 text-gray hover:text-accent transition-colors"
+                    aria-label={`View fullscreen screenshot of ${title}`}
+                  >
+                    <Expand size={14} />
+                  </button>
+                </div>
               </div>
-            )}
-          </m.div>
 
-          {/* Navigation Dots — below the image */}
-          {hasMultiple && (
-            <div className="flex justify-center gap-2 mt-3">
-              {allImages.map((_, i) => (
-                <button
-                  type="button"
-                  key={`dot-${allImages[i]}`}
-                  onClick={() => goToSlide(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === activeIndex
-                      ? "w-6 bg-accent"
-                      : "w-1.5 bg-light/20 hover:bg-light/40"
-                  }`}
-                  aria-label={`Go to image ${i + 1}`}
-                />
-              ))}
+              {/* Image Preview Container */}
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(true)}
+                className="relative aspect-16/10 w-full block overflow-hidden bg-black/40 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-accent/50"
+                aria-label={`Open fullscreen view of ${title} screenshot`}
+              >
+                <m.div
+                  style={{ rotateX, rotateY }}
+                  className="w-full h-full relative"
+                >
+                  <AnimatePresence mode="wait">
+                    <m.div
+                      key={activeIndex}
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={allImages[activeIndex]}
+                        alt={`${title} - Preview ${activeIndex + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 55vw"
+                        className="object-cover object-top transition-transform duration-700 group-hover:scale-102"
+                        priority={priority}
+                      />
+                    </m.div>
+                  </AnimatePresence>
+
+                  {/* Left/Right Chevrons */}
+                  {hasMultiple && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          goPrev();
+                        }}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-dark/80 backdrop-blur-md border border-light/20 flex items-center justify-center text-light/80 hover:text-accent hover:border-accent transition-all opacity-80 hover:opacity-100 z-10"
+                        aria-label="Previous screenshot"
+                      >
+                        <ChevronLeft size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          goNext();
+                        }}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-dark/80 backdrop-blur-md border border-light/20 flex items-center justify-center text-light/80 hover:text-accent hover:border-accent transition-all opacity-80 hover:opacity-100 z-10"
+                        aria-label="Next screenshot"
+                      >
+                        <ChevronRight size={16} />
+                      </button>
+                    </>
+                  )}
+                </m.div>
+              </button>
+
+              {/* Thumbnails row */}
+              {hasMultiple && (
+                <div className="p-2.5 bg-dark/90 border-t border-light/10 flex items-center gap-2 overflow-x-auto scrollbar-none">
+                  {allImages.map((img, i) => (
+                    <button
+                      key={`thumb-${img}`}
+                      type="button"
+                      onClick={() => goToSlide(i)}
+                      className={`relative w-14 h-9 rounded overflow-hidden shrink-0 border transition-all ${
+                        i === activeIndex
+                          ? "border-accent ring-1 ring-accent/40"
+                          : "border-light/20 opacity-50 hover:opacity-80"
+                      }`}
+                      aria-label={`Switch to screenshot ${i + 1}`}
+                    >
+                      <Image
+                        src={img}
+                        alt={`Thumbnail ${i + 1}`}
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </section>
+          </div>
+
+          {/* Detailed Engineering Case Study Breakdown */}
+          <div
+            className={`w-full lg:col-span-5 flex flex-col justify-between ${
+              reverse ? "lg:order-1" : "lg:order-2"
+            }`}
+          >
+            <div>
+              {/* Category & Scope badges */}
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="font-mono text-xs font-semibold text-accent px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/20">
+                  {category}
+                </span>
+                {featured && (
+                  <span className="font-mono text-xs font-semibold text-emerald-400 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                    Flagship
+                  </span>
+                )}
+                {projectRole && (
+                  <span className="font-mono text-xs text-gray px-2.5 py-0.5 rounded-full bg-light/5 border border-light/10">
+                    {projectRole}
+                  </span>
+                )}
+              </div>
+
+              {/* Title & Subtitle */}
+              <h3 className="text-2xl md:text-3xl font-bold text-light mb-1 tracking-tight">
+                {title}
+              </h3>
+              {subtitle && (
+                <p className="text-gray text-xs md:text-sm font-medium mb-4">
+                  {subtitle}
+                </p>
+              )}
+
+              {/* Impact Callout */}
+              {impact && (
+                <div className="my-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-medium">
+                  <Sparkles size={14} className="shrink-0" />
+                  <span>{impact}</span>
+                </div>
+              )}
+
+              {/* Problem & Architectural Solution */}
+              <p className="text-gray text-sm md:text-base leading-relaxed my-4">
+                {description}
+              </p>
+
+              {/* Engineering Highlights */}
+              {highlights.length > 0 && (
+                <div className="mb-6 space-y-2">
+                  <div className="text-xs font-mono uppercase tracking-wider text-light/70 font-semibold mb-2 flex items-center gap-1.5">
+                    <Layers size={13} className="text-accent" />
+                    <span>Engineering Decisions & Scope</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {highlights.map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-2.5 text-xs md:text-sm text-gray"
+                      >
+                        <CheckCircle2
+                          size={14}
+                          className="text-accent shrink-0 mt-0.5"
+                        />
+                        <span className="leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Tech Stack Chips */}
+              <div className="flex flex-wrap gap-1.5 md:gap-2 mb-6 font-mono text-xs text-gray">
+                {tech.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 rounded bg-light/5 border border-light/10 text-light/80 hover:text-accent hover:border-accent/40 transition-colors"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
-          )}
-        </section>
 
-        {/* Content Section */}
-        <div
-          className={`w-full lg:w-1/2 ${
-            reverse ? "lg:text-left" : "lg:text-right"
-          } relative z-10 lg:-mx-16`}
-        >
-          {featured && (
-            <p className="text-accent font-mono text-xs lg:text-sm mb-2">
-              Featured Project
-            </p>
-          )}
+            {/* Direct Links */}
+            <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-light/10">
+              <Link
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-dark font-mono text-xs font-semibold hover:bg-accent/90 transition-all duration-300 shadow-md shadow-accent/10"
+                aria-label={`Visit live website for ${title}`}
+              >
+                <span>Live System</span>
+                <ExternalLink size={13} />
+              </Link>
 
-          <h3 className="text-xl lg:text-2xl font-bold text-light mb-4">
-            {title}
-          </h3>
-
-          <div
-            className={`bg-light-bg p-4 lg:p-6 rounded-lg mb-4 lg:mb-6 text-left`}
-          >
-            <p className="text-gray leading-relaxed text-sm lg:text-base">
-              {description}
-            </p>
-          </div>
-
-          {/* Tech Stack */}
-          <div
-            className={`flex flex-wrap gap-2 lg:gap-3 mb-4 lg:mb-6 font-mono text-xs lg:text-sm text-gray ${
-              reverse ? "justify-start" : "lg:justify-end justify-start"
-            }`}
-          >
-            {tech.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-
-          {/* Links */}
-          <div
-            className={`flex gap-4 ${
-              reverse ? "justify-start" : "lg:justify-end justify-start"
-            }`}
-          >
-            <Link
-              href={projectLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
-              aria-label={`View GitHub repository for ${title}`}
-            >
-              <Github size={18} className="lg:size-5" />
-            </Link>
-            <Link
-              href={liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray hover:text-accent transition-colors duration-300 p-1 active:scale-95"
-              aria-label={`View live site for ${title}`}
-            >
-              <ExternalLink size={18} className="lg:size-5" />
-            </Link>
+              {isGitHubLink && (
+                <Link
+                  href={projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-light/5 border border-light/15 text-light hover:text-accent hover:border-accent/40 font-mono text-xs transition-colors"
+                  aria-label={`View GitHub source code for ${title}`}
+                >
+                  <Github size={14} />
+                  <span>Repository</span>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-      </m.div>
+      </m.article>
 
       {/* Fullscreen Lightbox Modal */}
       <AnimatePresence>
         {isFullscreen && (
           <m.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${title} screenshot preview`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-dark/95 backdrop-blur-xl cursor-auto"
-            onClick={() => setIsFullscreen(false)}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-100 flex items-center justify-center bg-dark/95 backdrop-blur-2xl p-4 md:p-8"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setIsFullscreen(false);
+            }}
           >
-            {/* Close button */}
-            <button
-              type="button"
-              onClick={() => setIsFullscreen(false)}
-              className="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
-              aria-label="Close fullscreen"
-            >
-              <X size={20} />
-            </button>
-
-            {/* Image counter */}
-            {hasMultiple && (
-              <div className="absolute top-7 left-6 text-gray/70 font-mono text-sm z-10">
-                {activeIndex + 1} / {allImages.length}
+            {/* Top Bar with Title and Close Button */}
+            <div className="absolute top-4 inset-x-4 md:inset-x-8 flex items-center justify-between z-10 pointer-events-auto">
+              <div className="flex items-center gap-3 font-mono text-xs text-light">
+                <span className="font-bold text-accent">{title}</span>
+                <span className="text-gray">
+                  ({activeIndex + 1} of {allImages.length})
+                </span>
               </div>
-            )}
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(false)}
+                className="w-10 h-10 rounded-full bg-light/10 hover:bg-accent hover:text-dark border border-light/20 flex items-center justify-center text-light transition-all cursor-pointer"
+                aria-label="Close fullscreen view"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-            {/* Fullscreen image */}
-            <m.div
-              className="relative w-[90vw] h-[85vh] flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <AnimatePresence mode="wait">
-                <m.div
-                  key={activeIndex}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="w-full h-full flex items-center justify-center"
-                >
-                  <Image
-                    src={allImages[activeIndex]}
-                    alt={`${title} - Screenshot ${activeIndex + 1}`}
-                    width={1920}
-                    height={1080}
-                    sizes="90vw"
-                    className="max-w-full max-h-full object-contain rounded-lg"
-                    priority
-                  />
-                </m.div>
-              </AnimatePresence>
+            {/* Active Image */}
+            <div className="relative max-w-6xl w-full h-[80vh] flex items-center justify-center">
+              <Image
+                src={allImages[activeIndex]}
+                alt={`${title} - High resolution view ${activeIndex + 1}`}
+                fill
+                sizes="95vw"
+                className="object-contain rounded-lg"
+                priority
+              />
 
-              {/* Fullscreen chevrons */}
               {hasMultiple && (
                 <>
                   <button
                     type="button"
                     onClick={goPrev}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-dark/80 backdrop-blur-md border border-light/20 flex items-center justify-center text-light hover:text-accent hover:border-accent transition-all"
                     aria-label="Previous image"
                   >
                     <ChevronLeft size={24} />
@@ -423,36 +464,14 @@ export default function ProjectItem({
                   <button
                     type="button"
                     onClick={goNext}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-light/5 border border-light/10 flex items-center justify-center text-light/70 hover:text-accent hover:border-accent/40 hover:bg-light/10 transition-all duration-300 cursor-pointer"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-dark/80 backdrop-blur-md border border-light/20 flex items-center justify-center text-light hover:text-accent hover:border-accent transition-all"
                     aria-label="Next image"
                   >
                     <ChevronRight size={24} />
                   </button>
                 </>
               )}
-            </m.div>
-
-            {/* Fullscreen dots */}
-            {hasMultiple && (
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5 z-10">
-                {allImages.map((_, i) => (
-                  <button
-                    type="button"
-                    key={`fs-dot-${allImages[i]}`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      goToSlide(i);
-                    }}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      i === activeIndex
-                        ? "w-8 bg-accent"
-                        : "w-2 bg-light/20 hover:bg-light/40"
-                    }`}
-                    aria-label={`Go to image ${i + 1}`}
-                  />
-                ))}
-              </div>
-            )}
+            </div>
           </m.div>
         )}
       </AnimatePresence>
