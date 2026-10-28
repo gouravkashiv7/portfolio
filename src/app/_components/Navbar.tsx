@@ -3,6 +3,8 @@
 import { FileText, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { links } from "@/app/_data/site";
+import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Work", id: "work" },
@@ -76,12 +78,7 @@ export default function Navbar() {
         className="page-x flex h-16 items-center justify-between"
       >
         <a href="#home" className="flex items-center gap-2.5 text-fg">
-          <span
-            aria-hidden="true"
-            className="grid h-8 w-8 place-items-center rounded-lg border border-line-strong bg-surface font-mono text-xs font-semibold text-accent"
-          >
-            GK
-          </span>
+          <Logo className="h-8 w-8" />
           <span className="text-[0.95rem] font-medium tracking-tight">
             Gourav Kashiv
           </span>
@@ -102,6 +99,9 @@ export default function Navbar() {
             </li>
           ))}
           <li className="ml-3">
+            <ThemeToggle />
+          </li>
+          <li className="ml-2">
             <a
               href={links.resume}
               target="_blank"
@@ -114,16 +114,19 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button
-          type="button"
-          className="md:hidden grid h-10 w-10 place-items-center rounded-lg border border-line-strong text-fg"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="grid h-10 w-10 place-items-center rounded-lg border border-line-strong text-fg"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
       {open && (

@@ -50,7 +50,8 @@ export default function SystemDiagram() {
             y1="0"
             x2="0.5"
             y2="100%"
-            stroke="rgb(114 200 240 / 0.45)"
+            stroke="var(--accent)"
+            strokeOpacity="0.5"
             strokeWidth="1"
             strokeDasharray="4 6"
           />

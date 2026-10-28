@@ -38,9 +38,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: links.site,
   },
-  icons: {
-    icon: "/favicon.png",
-  },
   openGraph: {
     title,
     description,
@@ -66,8 +63,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1220",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0b1220" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fb" },
+  ],
 };
+
+// Applies the saved theme before first paint so there is no flash.
+const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -105,7 +108,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: Inline script must run before paint
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <script
           type="application/ld+json"
@@ -114,7 +123,7 @@ export default function RootLayout({
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-bg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-on-accent"
         >
           Skip to content
         </a>

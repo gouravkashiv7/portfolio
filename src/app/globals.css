@@ -1,25 +1,61 @@
 @import "tailwindcss";
 
-/* Design tokens: one calm dark palette with a single teal-blue accent. */
-@theme {
-  --color-bg: #0b1220;
-  --color-surface: #111b2c;
-  --color-elevated: #172338;
-  --color-fg: #f3f6fc;
-  --color-muted: #a7b4c8;
-  --color-subtle: #8a98ad;
-  --color-accent: #72c8f0;
-  --color-accent-strong: #9ad8f5;
-  --color-line: rgb(167 180 200 / 0.14);
-  --color-line-strong: rgb(167 180 200 / 0.26);
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* Design tokens. Values live in CSS variables so the theme can switch. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-on-accent: var(--on-accent);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
+/* Dark (default): deep navy with one teal-blue accent */
+:root {
+  color-scheme: dark;
+  --bg: #0b1220;
+  --surface: #111b2c;
+  --elevated: #172338;
+  --fg: #f3f6fc;
+  --muted: #a7b4c8;
+  --subtle: #8a98ad;
+  --accent: #72c8f0;
+  --accent-strong: #9ad8f5;
+  --on-accent: #06111d;
+  --line: rgb(167 180 200 / 0.14);
+  --line-strong: rgb(167 180 200 / 0.26);
+  --grid: rgb(167 180 200 / 0.06);
+}
+
+/* Light: soft off-white with the same accent, deepened for contrast */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8fb;
+  --surface: #edf1f7;
+  --elevated: #ffffff;
+  --fg: #0b1220;
+  --muted: #445069;
+  --subtle: #5a677e;
+  --accent: #0a6a93;
+  --accent-strong: #08597c;
+  --on-accent: #ffffff;
+  --line: rgb(11 18 32 / 0.1);
+  --line-strong: rgb(11 18 32 / 0.18);
+  --grid: rgb(11 18 32 / 0.05);
+}
+
 @layer base {
   html {
-    color-scheme: dark;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
@@ -45,7 +81,7 @@
   }
 
   ::selection {
-    background-color: rgb(114 200 240 / 0.3);
+    background-color: color-mix(in srgb, var(--accent) 30%, transparent);
     color: var(--color-fg);
   }
 
@@ -95,7 +131,7 @@
   }
   .btn-primary {
     background: var(--color-accent);
-    color: #06111d;
+    color: var(--color-on-accent);
   }
   .btn-primary:hover {
     background: var(--color-accent-strong);
@@ -105,14 +141,14 @@
     color: var(--color-fg);
   }
   .btn-secondary:hover {
-    border-color: rgb(114 200 240 / 0.55);
-    background: rgb(114 200 240 / 0.06);
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
   }
 
   .text-link {
     color: var(--color-fg);
     text-decoration: underline;
-    text-decoration-color: rgb(114 200 240 / 0.45);
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
     text-underline-offset: 4px;
     transition:
       text-decoration-color 0.2s ease,
@@ -126,8 +162,8 @@
   /* Faint engineering grid behind the hero, fading out at the edges */
   .hero-grid {
     background-image:
-      linear-gradient(to right, rgb(167 180 200 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(167 180 200 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, var(--grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 70% 60% at 60% 35%, #000 30%, transparent 75%);
   }
