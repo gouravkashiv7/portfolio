@@ -31,10 +31,10 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "erp",
-    title: "St. Bede's ERP",
-    kind: "Technoledge ERP · Institutional",
+    title: "Technoledge ERP",
+    kind: "Institutional ERP · Multi-campus",
     summary:
-      "Technoledge's MERN-based ERP, running academics, HR, examinations and student transport for colleges and schools such as St. Bede's.",
+      "A MERN-based ERP that runs academics, HR, examinations and student transport for colleges and schools.",
     problem:
       "Institutions were managing sessions, departments, staff records, exams and bus routes across disconnected tools and spreadsheets.",
     role: "Full-stack development and deployment: React client, Express/MongoDB APIs, and the AWS EC2 server it runs on.",
