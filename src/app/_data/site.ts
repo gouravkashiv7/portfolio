@@ -3,7 +3,7 @@
 
 export const links = {
   site: "https://www.gouravkashiv.com",
-  email: "gouravkashiv@zohomail.in",
+  email: "gouravkashiv3@gmail.com",
   phoneDisplay: "+91 94598 99052",
   whatsapp: "https://wa.me/919459899052",
   github: "https://github.com/gouravkashiv7",
@@ -32,22 +32,22 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "erp",
     title: "St. Bede's ERP",
-    kind: "Institutional ERP · Multi-campus",
+    kind: "Technoledge ERP · Institutional",
     summary:
-      "A MERN-based ERP that runs academics, HR, examinations and student transport for colleges and schools.",
+      "Technoledge's MERN-based ERP, running academics, HR, examinations and student transport for colleges and schools such as St. Bede's.",
     problem:
       "Institutions were managing sessions, departments, staff records, exams and bus routes across disconnected tools and spreadsheets.",
-    role: "Full-stack development and deployment: React client, Express/MongoDB APIs, and the Linux server it runs on.",
+    role: "Full-stack development and deployment: React client, Express/MongoDB APIs, and the AWS EC2 server it runs on.",
     decisions: [
       "Modelled a Session → Institution → Department → Course → Branch hierarchy so every module shares one academic structure.",
-      "Moved the client build from Webpack to Vite + pnpm to make a large React codebase quicker to load and iterate on.",
+      "Moved the client build from Webpack to Vite + pnpm, and optimised what the browser loads in production.",
       "Stored documents in S3 and generated reports server-side with PDFKit; scheduled jobs run with node-cron.",
       "Built the transport module on the Google Maps JavaScript API for routes, stops and allocations.",
     ],
     challenge:
       "Adding the institution hierarchy to a codebase with many existing modules meant migrating data and updating each module without breaking live workflows.",
     outcome:
-      "In production on an Nginx/Ubuntu server with Let's Encrypt TLS, serving multiple institutions from one codebase. Initial load dropped from roughly 30 s to 5 s after the Vite migration.",
+      "In production on AWS EC2 behind Nginx with Let's Encrypt TLS, serving multiple institutions from one codebase. The Vite migration cut dev-server start-up from about 30 s to 5 s, and production load times improved too.",
     stack: [
       "React",
       "Redux",
@@ -56,7 +56,8 @@ export const caseStudies: CaseStudy[] = [
       "Node.js",
       "Express",
       "MongoDB",
-      "AWS S3",
+      "AWS EC2",
+      "S3",
       "Nginx",
     ],
     live: "https://stbedes.campusevo.com/",
@@ -132,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
       "Tailwind CSS",
       "Vercel",
     ],
-    live: "https://retreatcottage.in",
+    live: "https://www.retreatcottage.in/",
     source: "https://github.com/gouravkashiv7/the-retreat-cottage",
     images: [
       { src: "/theretreat_home.png", alt: "Home page" },
@@ -182,30 +183,30 @@ export interface SmallProject {
   title: string;
   description: string;
   stack: string[];
-  source: string;
+  live: string;
 }
 
 export const smallProjects: SmallProject[] = [
   {
-    title: "GoGlobe",
+    title: "Kaala Panchang",
     description:
-      "Travel log for marking visited cities on an interactive map, with notes per city.",
-    stack: ["React", "React Router", "Context API", "Leaflet"],
-    source: "https://github.com/gouravkashiv7/goGlobe",
+      "Hindu Panchang for your city: tithi, nakshatra, Rahu Kaal, muhurat and festival dates, on the web and as an Android app.",
+    stack: ["Next.js", "Expo", "Express", "MongoDB", "AWS EC2"],
+    live: "https://www.kaalapanchang.com/",
   },
   {
-    title: "StarFlicks",
+    title: "OffersNudge",
     description:
-      "Movie search and personal ratings, with data fetched from the OMDb API.",
-    stack: ["React", "OMDb API"],
-    source: "https://github.com/gouravkashiv7/StarFlicks",
+      "Coupon and deals platform with verified codes by store and category, newsletter double opt-in and code submissions.",
+    stack: ["Next.js", "MongoDB", "NextAuth", "Tailwind CSS"],
+    live: "https://www.offersnudge.com/",
   },
   {
-    title: "IDACPS",
+    title: "Best eSIM Provider",
     description:
-      "Intrusion detection for crop protection, using Haar cascade image processing.",
-    stack: ["Python", "OpenCV"],
-    source: "https://github.com/gouravkashiv7/IDACPS",
+      "Travel eSIM comparison: plans for a whole trip, with the source and check date shown on every price.",
+    stack: ["Next.js", "TypeScript", "Zod", "Playwright"],
+    live: "https://www.bestesimprovider.com/",
   },
 ];
 
@@ -224,7 +225,7 @@ export const roles: Role[] = [
     title: "Software Developer — Expert & Trainer",
     period: "Oct 2026 — Present",
     summary:
-      "Teaching and building: I train students in web development and Python and work on the ERP.",
+      "Teaching and building: I train students in web development and Python and develop the Technoledge ERP.",
     points: [
       "Run hands-on, project-based sessions on web development and Python.",
       "Develop and maintain ERP modules across the React client and Node.js API.",
@@ -235,9 +236,10 @@ export const roles: Role[] = [
     url: "https://www.kasaulicoder.com/",
     title: "Full-Stack & DevOps Developer",
     period: "Jun 2025 — Sep 2026",
-    summary: "EdTech and ERP products, from feature work to deployment.",
+    summary:
+      "EdTech products and the Technoledge ERP, from feature work to deployment.",
     points: [
-      "Migrated the ERP client from Webpack to Vite + pnpm; initial load fell from about 30 s to 5 s.",
+      "Migrated the ERP client from Webpack to Vite + pnpm: dev-server start-up fell from about 30 s to 5 s, and production load got faster too.",
       "Built the Question Bank & Exam Generator and a Transport module on Google Maps.",
       "Rebuilt HR workflows: attendance, leave management and secure documents.",
       "Deployed to AWS (EC2, Route 53) with TLS, and added role-based access across a 250+ file MERN codebase.",
@@ -309,7 +311,7 @@ export const skillGroups: SkillGroup[] = [
       "Vercel",
       "Docker",
     ],
-    evidence: "ERP production server, Vercel deployments",
+    evidence: "ERP and Kaala backends on EC2, Vercel deployments",
   },
   {
     title: "AI & emerging tech",

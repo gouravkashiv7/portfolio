@@ -2,7 +2,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import MotionProvider from "@/app/_components/MotionProvider";
 import { links } from "@/app/_data/site";
 import "./globals.css";
 
@@ -119,7 +118,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <MotionProvider>{children}</MotionProvider>
+        {children}
         {process.env.NODE_ENV === "production" &&
           Boolean(process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL) && (
             <>

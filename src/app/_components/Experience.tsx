@@ -21,10 +21,7 @@ export default function Experience() {
         <ol className="space-y-px overflow-hidden rounded-[14px] border border-line bg-line">
           {roles.map((role, i) => (
             <li key={role.company} className="bg-bg">
-              <Reveal
-                delay={i * 0.05}
-                className="grid gap-4 p-6 md:grid-cols-[13rem_1fr] md:gap-10 md:p-8"
-              >
+              <Reveal className="grid gap-4 p-6 md:grid-cols-[13rem_1fr] md:gap-10 md:p-8">
                 <div>
                   <p className="font-mono text-[0.8rem] text-subtle">
                     {role.period}

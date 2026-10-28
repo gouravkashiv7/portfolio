@@ -97,10 +97,7 @@ function CaseStudyArticle({
         </div>
       </Reveal>
 
-      <Reveal
-        delay={0.05}
-        className="mt-10 grid gap-8 rounded-[14px] border border-line bg-surface/60 p-6 md:grid-cols-[1.6fr_1fr] md:p-8"
-      >
+      <Reveal className="mt-10 grid gap-8 rounded-[14px] border border-line bg-surface/60 p-6 md:grid-cols-[1.6fr_1fr] md:p-8">
         <div>
           <h4 className="eyebrow mb-4">Engineering decisions</h4>
           <ul className="space-y-3 text-[0.95rem] leading-relaxed text-muted">

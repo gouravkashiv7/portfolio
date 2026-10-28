@@ -8,10 +8,10 @@ export default function OtherProjects() {
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h3 className="text-xl font-semibold tracking-tight text-fg">
-            Smaller projects
+            More products I&apos;ve shipped
           </h3>
           <p className="mt-2 text-muted">
-            Earlier builds and experiments, with source on GitHub.
+            Live products I build and run independently. Source is private.
           </p>
         </div>
         <a
@@ -28,7 +28,7 @@ export default function OtherProjects() {
         {smallProjects.map((p) => (
           <li key={p.title} className="bg-bg">
             <a
-              href={p.source}
+              href={p.live}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex h-full flex-col p-6 transition-colors hover:bg-surface"
@@ -47,7 +47,10 @@ export default function OtherProjects() {
               <span className="mt-4 font-mono text-[0.75rem] text-subtle">
                 {p.stack.join(" · ")}
               </span>
-              <span className="sr-only">(source on GitHub)</span>
+              <span className="mt-3 text-sm text-accent">
+                {new URL(p.live).hostname.replace(/^www\./, "")}
+              </span>
+              <span className="sr-only">(opens live site)</span>
             </a>
           </li>
         ))}

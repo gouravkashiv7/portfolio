@@ -52,8 +52,9 @@ export default function Contact({ as: Heading = "h2" }: { as?: "h1" | "h2" }) {
             Hiring, planning a product, or want to compare notes?
           </Heading>
           <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-muted">
-            Email is the best way to reach me. Tell me a little about the role
-            or project and I&apos;ll reply.
+            I&apos;m always available for new discussions. Email is the best way
+            to reach me: tell me a little about the role or project and
+            I&apos;ll reply.
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-3">

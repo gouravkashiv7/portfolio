@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     minimumCacheTTL: 31536000,
   },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

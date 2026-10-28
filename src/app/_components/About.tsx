@@ -5,14 +5,14 @@ import SectionHeading from "./SectionHeading";
 
 const education = [
   {
-    degree: "Master's in Computer Science & Engineering",
+    degree: "M.Tech in Computer Science & Engineering",
     school: "Panjab University, Chandigarh",
     period: "2023 — 2025",
   },
   {
-    degree: "Bachelor's in Computer Science & Engineering",
+    degree: "B.E. in Computer Science & Engineering",
     school: "Chitkara University",
-    period: "2018 — 2022",
+    period: "2018 — 2022 · Distinction, CGPA 9.58 / 10",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function About() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.08} className="space-y-10">
+          <Reveal className="space-y-10">
             <div className="relative aspect-square w-40 overflow-hidden rounded-2xl border border-line-strong lg:w-full">
               <Image
                 src={gourav}

@@ -18,8 +18,8 @@ export default function Skills() {
         />
 
         <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {skillGroups.map((group, i) => (
-            <Reveal key={group.title} delay={(i % 3) * 0.05}>
+          {skillGroups.map((group) => (
+            <Reveal key={group.title}>
               <div className="border-t border-line-strong pt-5">
                 <h3 className="font-medium text-fg">{group.title}</h3>
                 <p className="mt-3 leading-7 text-muted">

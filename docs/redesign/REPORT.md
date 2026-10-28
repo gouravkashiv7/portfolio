@@ -44,7 +44,7 @@ I inspected the live site at desktop (1440 and 1024 px), tablet (820 px) and mob
 - Four case studies, each with Problem, My role, Outcome, Engineering decisions, The hard part, Stack, and Live site and Source links (labelled "Private client codebase" where there is no public repo).
 - A real screenshot gallery in a quiet browser frame, with thumbnails and a native `<dialog>` lightbox that supports Esc and arrow keys.
 - All copy rewritten against the repositories; see section 4.
-- The secondary projects are a compact list of three: GoGlobe, StarFlicks and IDACPS. Source links only, because the demos are down. Travel List and Eat N Split were dropped as tutorial-level.
+- "More products I've shipped" lists Kaala Panchang, OffersNudge and Best eSIM Provider with live links (their repos are private). GoGlobe, StarFlicks, IDACPS, Travel List and Eat N Split were removed.
 
 **Experience**
 - Technoledge (Oct 2026 — Present) added. Kasauli Coder now ends Sep 2026.
@@ -69,9 +69,8 @@ I inspected the live site at desktop (1440 and 1024 px), tablet (820 px) and mob
 - Manifest colours and text fixed. Duplicate public sitemap and robots files removed.
 
 **Motion**
-- One short fade-up on scroll (`Reveal`), hover transitions, native smooth anchor scrolling.
-- Everything respects `prefers-reduced-motion`: framer-motion `MotionConfig reducedMotion="user"` plus a CSS override.
-- No constant motion.
+- One short fade-up on scroll, done with CSS scroll timelines (`.reveal`) rather than JavaScript. Content is visible without JS, in browsers without scroll timelines, and with reduced motion. framer-motion was removed.
+- Hover transitions and native smooth anchor scrolling. No constant motion.
 
 ## 3. Checks run
 
@@ -93,9 +92,9 @@ I inspected the live site at desktop (1440 and 1024 px), tablet (820 px) and mob
 | | Perf | A11y | Best practices | SEO | FCP | Speed Index | LCP | TBT | Weight |
 |---|---|---|---|---|---|---|---|---|---|
 | Before (live, Vercel CDN) | 85 | 100 | 96 | 100 | 1.0 s | 8.4 s | 3.0 s | 140 ms | 422 KiB (+ deferred 3D) |
-| After (local `next start`) | 92 | 100 | 100 | 100 | 0.9 s | 0.9 s | 3.4 s | 0 ms | 360 KiB |
+| After (local `next start`) | 96 | 100 | 100 | 100 | 0.9 s | 0.9 s | 2.8 s | 0 ms | 329 KiB |
 
-The after run is on a local server, not a CDN, so these numbers are not a like-for-like comparison. LCP is the hero heading: render delay while the web font swaps in. Re-measure after deploying.
+The after run is on a local server, not a CDN, so these numbers are not a like-for-like comparison. Re-measure after deploying.
 
 ## 4. Verified claims and links
 
@@ -110,13 +109,19 @@ The after run is on a local server, not a CDN, so these numbers are not a like-f
 - These return 200: kasaulicoder.com, stbedes.campusevo.com, retreatcottage.in, the-retreat-operations-manager.vercel.app, every linked GitHub repo, your GitHub profile, x.com/KashivGourav.
 - LinkedIn returns 999, which is its bot block; the URL is the one from your site and resume.
 
-## 5. Needs your input
+## 5. Your answers, applied
 
-1. **The 30 s → 5 s ERP figure.** The ERP repo's history starts after the Vite migration, so git can't confirm it. The site now says "initial load dropped from roughly 30 s to 5 s after the Vite migration". Please confirm what was measured: dev-server start, or page load in production.
-2. **Which email to show.** The site uses `gouravkashiv@zohomail.in`; the resume uses `gouravkashiv3@gmail.com`. Pick one and I'll make both match.
-3. **ERP ownership and timeline.** The ERP appears under both Kasauli Coder (resume bullets) and Technoledge (current role, repo name). Confirm how to attribute it.
-4. **"Deployed on AWS (EC2, Route 53)"** in the Kasauli Coder experience comes from your resume. The ERP server runs Nginx on Ubuntu, but I couldn't confirm EC2 from outside.
-5. **Grades and degree names.** The old site said "M.Tech" and "B.E., CGPA 9.58"; the resume says "Master in CSE" and "Bachelor in CSE". I used the resume wording and left the CGPA out. Add it back if you want it shown.
-6. **Availability.** I removed the "open to full-time / freelance only" badges because they contradicted each other. Tell me what you're open to and I'll add one honest line to Contact.
-7. **Dead demos.** Re-enable the Vercel deployments for GoGlobe and StarFlicks if you want live links back.
-8. **LinkedIn.** Its headline and current role should be updated to Technoledge so the profiles match. I can't edit LinkedIn.
+1. **ERP 30 s → 5 s** is dev-server start-up; production load was optimised too. Both the site and the resume now say exactly that.
+2. **Email** is `gouravkashiv3@gmail.com` everywhere: hero, contact, `/contact`, JSON-LD and the resume.
+3. **The ERP belongs to Technoledge.** The case study is labelled "Technoledge ERP", and the Technoledge and Kasauli Coder roles both refer to "the Technoledge ERP".
+4. **The ERP is hosted on EC2.** The case study outcome, role and stack say AWS EC2 behind Nginx with Let's Encrypt.
+5. **Degrees** use the original terms: M.Tech (Panjab University) and B.E. (Chitkara University), Distinction, CGPA 9.58 / 10.
+6. **Availability:** Contact says "I'm always available for new discussions."
+7. **Old demos** removed. Kaala Panchang (kaalapanchang.com), OffersNudge (offersnudge.com) and Best eSIM Provider (bestesimprovider.com) were added after checking their repos and live sites.
+8. **Retreat Cottage** links to https://www.retreatcottage.in/ (the apex retreatcottage.in redirects there).
+
+## 6. Still open
+
+- **LinkedIn** should show Technoledge as your current role so your profiles match.
+- **Resume vs site:** the resume still says "Master/Bachelor in CSE" and lists "secure payments" for Retreat Cottage, but guests receive payment instructions by email; the code has no payment gateway. The site uses M.Tech/B.E. and makes no payment claim.
+- **Ops Manager** still links to its Vercel URL (the-retreat-operations-manager.vercel.app). No retreatcottage.in subdomain points to it yet.
