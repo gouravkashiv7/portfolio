@@ -1,181 +1,57 @@
-"use client";
-import { m } from "framer-motion";
-import {
-  ChevronDown,
-  ChevronUp,
-  ExternalLink,
-  Folder,
-  Github,
-} from "lucide-react";
-import { useState } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { links, smallProjects } from "@/app/_data/site";
+import Reveal from "./Reveal";
 
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  projectLink: string;
-  liveLink: string;
-}
-
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
-
-const OtherProjects = () => {
-  const [showAll, setShowAll] = useState(false);
-
-  const otherProjects: Project[] = [
-    {
-      title: "GoGlobe",
-      description:
-        "A modern travel tracking app built with React, React Router, and Context API. Users can mark visited cities, add notes, and visualize their journeys on an interactive world map.",
-      tech: [
-        "React",
-        "Vite",
-        "React Router",
-        "Context API",
-        "Styled Components",
-      ],
-      projectLink: "https://github.com/gouravkashiv7/goGlobe",
-      liveLink: "https://go-globe-sepia.vercel.app",
-    },
-    {
-      title: "StarFlicks",
-      description:
-        "A movie discovery and rating app powered by the OMDb API. Built with React using useEffect, useState, and useRef for fetching, managing, and displaying film data seamlessly.",
-      tech: ["React", "OMDb API", "JavaScript", "CSS"],
-      projectLink: "https://github.com/gouravkashiv7/StarFlicks",
-      liveLink: "https://star-flicks-one.vercel.app",
-    },
-    {
-      title: "Travel List",
-      description:
-        "A simple React app for organizing travel packing lists. Demonstrates key React concepts like state management, conditional rendering, and component composition.",
-      tech: ["React", "CSS", "JavaScript"],
-      projectLink: "https://github.com/gouravkashiv7/travel-list",
-      liveLink: "https://travel-list-nine-tau.vercel.app",
-    },
-    {
-      title: "Eat N Split",
-      description:
-        "A clean React app that helps users split bills among friends. Focuses on controlled components and state management for a smooth and intuitive experience.",
-      tech: ["React", "JavaScript", "CSS"],
-      projectLink: "https://github.com/gouravkashiv7/eat-n-split",
-      liveLink: "https://eat-n-split-three-tan.vercel.app",
-    },
-    {
-      title: "IDACPS",
-      description:
-        "Intrusion Detection and Crop Protection System using image processing techniques like Haar Cascades. Focused on applying computer vision for smart agriculture.",
-      tech: ["Python", "OpenCV", "Image Processing"],
-      projectLink: "https://github.com/gouravkashiv7/IDACPS",
-      liveLink: "#",
-    },
-  ];
-
-  const displayedProjects = showAll ? otherProjects : otherProjects.slice(0, 3);
-
+export default function OtherProjects() {
   return (
-    <m.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.2 }}
-      viewport={{ once: true }}
-      className="mt-32"
-    >
-      <div className="flex items-center justify-center mb-12">
-        <h3 className="text-2xl font-bold text-light">
-          Other Noteworthy Projects
-        </h3>
-      </div>
-
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {displayedProjects.map((project, index) => (
-          <ProjectCard key={project.title} project={project} index={index} />
-        ))}
-      </div>
-
-      {/* Show More/Less Button */}
-      {otherProjects.length > 3 && (
-        <div className="flex justify-center mt-12">
-          <m.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            onClick={() => setShowAll(!showAll)}
-            className="flex items-center gap-2 text-accent font-mono text-sm border border-accent px-6 py-3 rounded hover:bg-accent/10 transition-all duration-300"
-          >
-            {showAll ? (
-              <>
-                Show Less
-                <ChevronUp size={16} />
-              </>
-            ) : (
-              <>
-                Show More
-                <ChevronDown size={16} />
-              </>
-            )}
-          </m.button>
+    <Reveal className="mt-8 border-t border-line pt-14 md:pt-20">
+      <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-semibold tracking-tight text-fg">
+            Smaller projects
+          </h3>
+          <p className="mt-2 text-muted">
+            Earlier builds and experiments, with source on GitHub.
+          </p>
         </div>
-      )}
-    </m.div>
+        <a
+          href={links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-link text-sm"
+        >
+          All repositories on GitHub
+        </a>
+      </div>
+
+      <ul className="grid gap-px overflow-hidden rounded-[14px] border border-line bg-line md:grid-cols-3">
+        {smallProjects.map((p) => (
+          <li key={p.title} className="bg-bg">
+            <a
+              href={p.source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex h-full flex-col p-6 transition-colors hover:bg-surface"
+            >
+              <span className="flex items-center justify-between">
+                <span className="font-medium text-fg">{p.title}</span>
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden="true"
+                  className="text-subtle transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                />
+              </span>
+              <span className="mt-2 flex-1 text-sm leading-relaxed text-muted">
+                {p.description}
+              </span>
+              <span className="mt-4 font-mono text-[0.75rem] text-subtle">
+                {p.stack.join(" · ")}
+              </span>
+              <span className="sr-only">(source on GitHub)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Reveal>
   );
-};
-
-// Separate ProjectCard component for better organization
-const ProjectCard = ({ project, index }: ProjectCardProps) => (
-  <m.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: index * 0.1 }}
-    viewport={{ once: true }}
-    className="glass-card p-6 border border-light/10 hover:border-accent/40 transition-all duration-300 hover:transform hover:-translate-y-2 group h-full flex flex-col"
-  >
-    <div className="flex justify-between items-start mb-4">
-      <div className="text-accent">
-        <Folder size={24} />
-      </div>
-      <div className="flex space-x-4">
-        <a
-          href={project.projectLink}
-          className="text-gray hover:text-accent transition-colors"
-          aria-label="GitHub Repository"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Github size={20} />
-        </a>
-        <a
-          href={project.liveLink}
-          className="text-gray hover:text-accent transition-colors"
-          aria-label="Live Demo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <ExternalLink size={20} />
-        </a>
-      </div>
-    </div>
-
-    <h4 className="text-lg font-semibold text-light mb-3 group-hover:text-accent transition-colors grow-0">
-      {project.title}
-    </h4>
-
-    <p className="text-gray text-sm mb-4 leading-relaxed grow">
-      {project.description}
-    </p>
-
-    <div className="flex flex-wrap gap-2 mt-auto">
-      {project.tech.map((tech) => (
-        <span key={tech} className="text-xs text-gray font-mono">
-          {tech}
-        </span>
-      ))}
-    </div>
-  </m.div>
-);
-
-export default OtherProjects;
+}

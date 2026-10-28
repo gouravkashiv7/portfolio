@@ -1,208 +1,107 @@
 "use client";
 
-import { AnimatePresence, m } from "framer-motion";
 import {
   Check,
   Copy,
-  ExternalLink,
+  Download,
   Github,
   Linkedin,
   Mail,
   MessageCircle,
-  Send,
-  X,
 } from "lucide-react";
 import { useState } from "react";
+import { links } from "@/app/_data/site";
+import Reveal from "./Reveal";
 
-export default function Contact() {
+export default function Contact({ as: Heading = "h2" }: { as?: "h1" | "h2" }) {
   const [copied, setCopied] = useState(false);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("gouravkashiv@zohomail.in");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3000);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(links.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      // Clipboard can be blocked; the mailto link is still available.
+    }
   };
+
+  const secondary = [
+    { label: "LinkedIn", href: links.linkedin, icon: Linkedin },
+    { label: "GitHub", href: links.github, icon: Github },
+    { label: "WhatsApp", href: links.whatsapp, icon: MessageCircle },
+  ];
 
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 px-6 md:px-12 max-w-4xl mx-auto text-center relative overflow-hidden"
+      aria-labelledby="contact-title"
+      className="py-24 md:py-32"
     >
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <Reveal className="page-x">
+        <div className="relative overflow-hidden rounded-2xl border border-line-strong bg-surface px-6 py-12 md:px-14 md:py-16">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
+          />
+          <p className="eyebrow mb-4">Contact</p>
+          <Heading
+            id="contact-title"
+            className="max-w-[22ch] text-3xl font-semibold tracking-tight text-fg md:text-[2.6rem] md:leading-[1.15]"
+          >
+            Hiring, planning a product, or want to compare notes?
+          </Heading>
+          <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-muted">
+            Email is the best way to reach me. Tell me a little about the role
+            or project and I&apos;ll reply.
+          </p>
 
-      <div className="relative z-10">
-        {/* Eyebrow */}
-        <m.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent font-mono text-xs mb-4"
-        >
-          <span className="font-semibold">06.</span>
-          <span>Initiate Contact</span>
-        </m.div>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a href={`mailto:${links.email}`} className="btn btn-primary">
+              <Mail size={16} aria-hidden="true" />
+              {links.email}
+            </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="btn btn-secondary"
+              aria-live="polite"
+            >
+              {copied ? (
+                <Check size={16} aria-hidden="true" />
+              ) : (
+                <Copy size={16} aria-hidden="true" />
+              )}
+              {copied ? "Copied" : "Copy email"}
+            </button>
+            <a
+              href={links.resume}
+              download="Gourav-Kashiv-Resume.pdf"
+              className="btn btn-secondary"
+            >
+              <Download size={16} aria-hidden="true" />
+              Resume
+            </a>
+          </div>
 
-        {/* Heading */}
-        <m.h2
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl sm:text-5xl md:text-6xl font-bold text-light mb-5 tracking-tight"
-        >
-          Let&apos;s Build Something{" "}
-          <span className="text-accent">Lasting</span>.
-        </m.h2>
-
-        {/* Narrative */}
-        <m.p
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-gray text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10"
-        >
-          Whether you&apos;re recruiting for a full-stack engineering position,
-          looking to architect a new platform from concept through AWS
-          production, or want to collaborate on AI-driven systems—I&apos;d love
-          to connect.
-        </m.p>
-
-        {/* Primary Contact Cards Grid */}
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mb-10 text-left"
-        >
-          {/* Email Card */}
-          <div className="glass-card p-5 rounded-2xl border border-light/10 hover:border-accent/40 transition-colors flex flex-col justify-between group">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2.5 rounded-xl bg-accent/10 border border-accent/20 text-accent">
-                  <Mail size={18} />
-                </div>
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className="p-1.5 rounded-lg bg-light/5 hover:bg-light/10 border border-light/10 text-gray hover:text-accent transition-colors flex items-center gap-1.5 font-mono text-[11px]"
-                  title="Copy email to clipboard"
-                  aria-label="Copy email address"
+          <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3 border-t border-line pt-6 text-sm">
+            {secondary.map(({ label, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-muted hover:text-fg"
                 >
-                  {copied ? (
-                    <>
-                      <Check size={12} className="text-accent" />
-                      <span className="text-accent">Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={12} />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
-              <h3 className="text-light font-bold text-sm mb-1">
-                Direct Email
-              </h3>
-              <p className="text-accent font-mono text-xs truncate">
-                gouravkashiv@zohomail.in
-              </p>
-            </div>
-
-            <a
-              href="mailto:gouravkashiv@zohomail.in?subject=Engineering%20Opportunity%20-%20Gourav%20Kashiv"
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono text-light/80 hover:text-accent transition-colors"
-            >
-              <span>Compose message</span>
-              <Send size={12} />
-            </a>
-          </div>
-
-          {/* WhatsApp Card */}
-          <div className="glass-card p-5 rounded-2xl border border-light/10 hover:border-accent/40 transition-colors flex flex-col justify-between group">
-            <div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                  <MessageCircle size={18} />
-                </div>
-                <span className="text-[11px] font-mono text-emerald-400/80 bg-emerald-500/10 px-2 py-0.5 rounded">
-                  Instant response
-                </span>
-              </div>
-              <h3 className="text-light font-bold text-sm mb-1">
-                WhatsApp & Call
-              </h3>
-              <p className="text-gray font-mono text-xs">+91 94598 99052</p>
-            </div>
-
-            <a
-              href="https://wa.me/919459899052?text=Hi%20Gourav,%20I%20viewed%20your%20portfolio%20and%20would%20like%20to%20connect%20regarding..."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-mono text-light/80 hover:text-emerald-400 transition-colors"
-            >
-              <span>Start WhatsApp chat</span>
-              <ExternalLink size={12} />
-            </a>
-          </div>
-        </m.div>
-
-        {/* Social Links Bar */}
-        <m.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-3 font-mono text-xs"
-        >
-          <a
-            href="https://github.com/gouravkashiv7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-light/5 border border-light/10 text-gray hover:text-accent hover:border-accent/40 transition-colors inline-flex items-center gap-2"
-          >
-            <Github size={15} />
-            <span>GitHub Profile</span>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/gouravkashiv7/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-light/5 border border-light/10 text-gray hover:text-accent hover:border-accent/40 transition-colors inline-flex items-center gap-2"
-          >
-            <Linkedin size={15} />
-            <span>LinkedIn Profile</span>
-          </a>
-          <a
-            href="https://x.com/KashivGourav"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-light/5 border border-light/10 text-gray hover:text-accent hover:border-accent/40 transition-colors inline-flex items-center gap-2"
-          >
-            <X size={15} />
-            <span>X (Twitter)</span>
-          </a>
-        </m.div>
-      </div>
-
-      {/* Copy Toast Alert */}
-      <AnimatePresence>
-        {copied && (
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-accent text-dark font-mono text-xs font-bold px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2"
-          >
-            <Check size={14} />
-            <span>Email copied to clipboard: gouravkashiv@zohomail.in</span>
-          </m.div>
-        )}
-      </AnimatePresence>
+                  <Icon size={16} aria-hidden="true" />
+                  {label}
+                </a>
+              </li>
+            ))}
+            <li className="text-subtle">Based in Solan, Himachal Pradesh</li>
+          </ul>
+        </div>
+      </Reveal>
     </section>
   );
 }

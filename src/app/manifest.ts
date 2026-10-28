@@ -2,23 +2,18 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Gourav Kashiv | DevOps Developer",
+    name: "Gourav Kashiv — Full-Stack Engineer",
     short_name: "Gourav Kashiv",
     description:
-      "DevOps Developer specializing in scalable cloud applications, infrastructure automation, and modern CI/CD pipelines.",
+      "Gourav Kashiv builds and ships full-stack products, from application architecture to production.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0a192f",
-    theme_color: "#64ffda",
+    background_color: "#0b1220",
+    theme_color: "#0b1220",
     icons: [
       {
-        src: "/favicon.png", // Or a 192x192 icon if available
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "/favicon.png", // Or a 512x512 icon if available
-        sizes: "512x512",
+        src: "/favicon.png",
+        sizes: "180x180",
         type: "image/png",
       },
     ],

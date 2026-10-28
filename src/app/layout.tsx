@@ -1,30 +1,29 @@
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import MotionProvider from "@/app/_components/MotionProvider";
+import { links } from "@/app/_data/site";
 import "./globals.css";
-import { domAnimation, LazyMotion } from "framer-motion";
-import Script from "next/script";
-import CustomCursor from "@/app/_components/CustomCursor";
-import Footer from "@/app/_components/Footer";
-import NoiseOverlay from "@/app/_components/NoiseOverlay";
-import SmoothScrolling from "@/app/_components/SmoothScrolling";
-import SplineBackgroundClient from "@/app/_components/SplineBackgroundClient";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const title = "Gourav Kashiv — Full-Stack Engineer";
+const description =
+  "Gourav Kashiv builds and ships full-stack products: React and Next.js interfaces, Node.js APIs, databases, and production deployments on AWS and Vercel.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.gouravkashiv.com"),
-  title:
-    "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
-  description:
-    "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, high-performance web architectures, and AI-enabled product engineering.",
+  metadataBase: new URL(links.site),
+  title,
+  description,
   keywords: [
     "Gourav Kashiv",
     "Full-Stack Engineer",
@@ -33,31 +32,27 @@ export const metadata: Metadata = {
     "Next.js",
     "React",
     "Node.js",
-    "DevOps",
-    "Cloud Infrastructure",
     "AWS",
-    "Docker",
-    "CI/CD",
+    "ERP",
+    "Supabase",
   ],
   alternates: {
-    canonical: "https://www.gouravkashiv.com",
+    canonical: links.site,
   },
   icons: {
     icon: "/favicon.png",
   },
   openGraph: {
-    title:
-      "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
-    description:
-      "Full-Stack Engineer specializing in scalable cloud applications, AWS infrastructure, and high-performance web systems.",
-    url: "https://www.gouravkashiv.com",
-    siteName: "Gourav Kashiv Portfolio",
+    title,
+    description,
+    url: links.site,
+    siteName: "Gourav Kashiv",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Gourav Kashiv - Full-Stack Engineer Portfolio",
+        alt: "Gourav Kashiv — I build and ship full-stack products.",
       },
     ],
     locale: "en_US",
@@ -65,23 +60,45 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Gourav Kashiv | Full-Stack Engineer | Cloud, DevOps & AI-Enabled Products",
-    description:
-      "Full-Stack Engineer specializing in scalable cloud applications, infrastructure automation, and AI-enabled products. Currently open to new projects.",
+    title,
+    description,
     images: ["/og-image.png"],
   },
 };
 
-export const viewport = {
-  themeColor: "#0a192f",
+export const viewport: Viewport = {
+  themeColor: "#0b1220",
 };
 
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import Preloader from "@/app/_components/Preloader";
-import ThemeToggle from "@/app/_components/ThemeToggle";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Gourav Kashiv",
+  jobTitle: "Software Developer",
+  url: links.site,
+  email: `mailto:${links.email}`,
+  worksFor: {
+    "@type": "Organization",
+    name: "Technoledge",
+  },
+  alumnusOf: [
+    { "@type": "CollegeOrUniversity", name: "Panjab University, Chandigarh" },
+    { "@type": "CollegeOrUniversity", name: "Chitkara University" },
+  ],
+  sameAs: [links.github, links.linkedin, links.x],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Express",
+    "MongoDB",
+    "PostgreSQL",
+    "Supabase",
+    "AWS",
+    "Generative AI",
+  ],
+};
 
 export default function RootLayout({
   children,
@@ -89,85 +106,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script
-          id="person-jsonld"
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <script
           type="application/ld+json"
-          strategy="afterInteractive"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Standard way for JSON-LD in Next.js
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Gourav Kashiv",
-              jobTitle: "Full-Stack Engineer & Cloud Infrastructure Architect",
-              url: "https://www.gouravkashiv.com",
-              email: "mailto:gouravkashiv@zohomail.in",
-              telephone: "+919459899052",
-              worksFor: {
-                "@type": "Organization",
-                name: "Kasauli Coder",
-                url: "https://www.kasaulicoder.com/",
-              },
-              alumnusOf: [
-                {
-                  "@type": "CollegeOrUniversity",
-                  name: "Panjab University, Chandigarh",
-                },
-                {
-                  "@type": "CollegeOrUniversity",
-                  name: "Chitkara University",
-                },
-              ],
-              sameAs: [
-                "https://github.com/gouravkashiv7",
-                "https://www.linkedin.com/in/gouravkashiv7/",
-                "https://x.com/KashivGourav",
-              ],
-              description:
-                "Full-Stack Engineer specializing in high-performance web applications, scalable backend systems, AWS cloud infrastructure, and AI engineering.",
-              knowsAbout: [
-                "React 19",
-                "Next.js",
-                "TypeScript",
-                "Node.js",
-                "Express",
-                "MongoDB",
-                "PostgreSQL",
-                "Supabase",
-                "AWS (EC2, S3, Route 53, Lambda)",
-                "Docker",
-                "CI/CD Pipelines",
-                "Vite & Build Optimization",
-                "Agentic AI",
-                "Generative AI & LLMs",
-              ],
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-      </head>
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased font-sans selection:bg-accent selection:text-dark transition-colors duration-300`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          themes={["light", "dark", "midnight", "rose", "forest"]}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-2 focus:text-bg"
         >
-          <Preloader />
-          <SplineBackgroundClient />
-          <LazyMotion features={domAnimation} strict>
-            <SmoothScrolling>
-              <NoiseOverlay />
-              <CustomCursor />
-              <ThemeToggle />
-              {children}
-              <Footer />
-            </SmoothScrolling>
-          </LazyMotion>
-        </ThemeProvider>
+          Skip to content
+        </a>
+        <MotionProvider>{children}</MotionProvider>
         {process.env.NODE_ENV === "production" &&
           Boolean(process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.VERCEL) && (
             <>
