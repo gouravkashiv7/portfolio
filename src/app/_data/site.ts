@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
       "S3",
       "Nginx",
     ],
-    live: "https://stbedes.campusevo.com/",
+    live: "https://test.campusevo.com/",
     images: [
       { src: "/erp_dashboard.png", alt: "ERP admin dashboard" },
       { src: "/erp_academics.png", alt: "Academics module" },
@@ -68,42 +68,6 @@ export const caseStudies: CaseStudy[] = [
       { src: "/erp_faculty.png", alt: "Faculty management" },
       { src: "/erp_reports.png", alt: "Reports" },
       { src: "/erp_branding.png", alt: "Institution branding settings" },
-    ],
-  },
-  {
-    id: "operations",
-    title: "The Retreat Operations Manager",
-    kind: "Internal tool · Hospitality",
-    summary:
-      "The staff-facing system for a boutique cottage: bookings, check-in/out, room inventory, guest orders and channel calendars.",
-    problem:
-      "Bookings arrived from the direct site and from OTA channels, and staff tracked availability, guests and meal orders by hand.",
-    role: "Sole developer: product design, React front end, Supabase schema and Edge Functions.",
-    decisions: [
-      "Used Supabase (Postgres, auth, storage) so a single developer could own the whole backend.",
-      "Wrote Edge Functions that import and export iCal feeds to keep OTA calendars such as Goibibo in step with direct bookings.",
-      "Used TanStack Query for server state and caching across bookings, rooms and guest views.",
-      "Generated booking receipts as PDFs in the browser with jsPDF.",
-    ],
-    challenge:
-      "OTA calendars only expose iCal feeds, so availability had to be reconciled from imported events without creating double bookings.",
-    outcome:
-      "Live and used for daily operations, alongside the public booking site that shares the same Supabase backend.",
-    stack: [
-      "React 19",
-      "Vite",
-      "TanStack Query",
-      "Supabase",
-      "Edge Functions",
-      "Styled Components",
-    ],
-    live: "https://the-retreat-operations-manager.vercel.app/",
-    source: "https://github.com/gouravkashiv7/the-retreat-operations-manager",
-    images: [
-      { src: "/theoperations.png", alt: "Operations dashboard" },
-      { src: "/theoperations2.png", alt: "Bookings table" },
-      { src: "/theoperations3.png", alt: "Room inventory" },
-      { src: "/theoperations4.png", alt: "Booking details" },
     ],
   },
   {
@@ -175,6 +139,42 @@ export const caseStudies: CaseStudy[] = [
       { src: "/kasaulicoder_programs.png", alt: "Programs" },
       { src: "/kasaulicoder_projects.png", alt: "Projects" },
       { src: "/kasaulicoder_contact.png", alt: "Contact page" },
+    ],
+  },
+  {
+    id: "operations",
+    title: "The Retreat Operations Manager",
+    kind: "Internal tool · Hospitality",
+    summary:
+      "The staff-facing system for a boutique cottage: bookings, check-in/out, room inventory, guest orders and channel calendars.",
+    problem:
+      "Bookings arrived from the direct site and from OTA channels, and staff tracked availability, guests and meal orders by hand.",
+    role: "Sole developer: product design, React front end, Supabase schema and Edge Functions.",
+    decisions: [
+      "Used Supabase (Postgres, auth, storage) so a single developer could own the whole backend.",
+      "Wrote Edge Functions that import and export iCal feeds to keep OTA calendars such as Goibibo in step with direct bookings.",
+      "Used TanStack Query for server state and caching across bookings, rooms and guest views.",
+      "Generated booking receipts as PDFs in the browser with jsPDF.",
+    ],
+    challenge:
+      "OTA calendars only expose iCal feeds, so availability had to be reconciled from imported events without creating double bookings.",
+    outcome:
+      "Live and used for daily operations, alongside the public booking site that shares the same Supabase backend.",
+    stack: [
+      "React 19",
+      "Vite",
+      "TanStack Query",
+      "Supabase",
+      "Edge Functions",
+      "Styled Components",
+    ],
+    live: "https://the-retreat-operations-manager.vercel.app/",
+    source: "https://github.com/gouravkashiv7/the-retreat-operations-manager",
+    images: [
+      { src: "/theoperations.png", alt: "Operations dashboard" },
+      { src: "/theoperations2.png", alt: "Bookings table" },
+      { src: "/theoperations3.png", alt: "Room inventory" },
+      { src: "/theoperations4.png", alt: "Booking details" },
     ],
   },
 ];
