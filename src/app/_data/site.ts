@@ -179,34 +179,58 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export interface SmallProject {
+export interface Product {
   title: string;
+  kind: string;
   description: string;
+  highlights: string[];
   stack: string[];
   live: string;
+  image: { src: string; alt: string };
 }
 
-export const smallProjects: SmallProject[] = [
+export const products: Product[] = [
   {
     title: "Kaala Panchang",
+    kind: "Web + Android · Calendar",
     description:
-      "Hindu Panchang for your city: tithi, nakshatra, Rahu Kaal, muhurat and festival dates, on the web and as an Android app.",
+      "A Hindu Panchang calculated from each city's own sunrise: tithi, nakshatra, Rahu Kaal, muhurat, festivals and Kundli.",
+    highlights: [
+      "pnpm/Turborepo monorepo: Next.js 16 web, Expo React Native app and an Express 5 API sharing one calculation package.",
+      "Astronomical timings computed with astronomy-engine, in five languages, with programmatic city × date pages for search.",
+      "Backend self-hosted on AWS EC2 with push notifications and generated PDF calendars and Kundlis.",
+    ],
     stack: ["Next.js", "Expo", "Express", "MongoDB", "AWS EC2"],
     live: "https://www.kaalapanchang.com/",
+    image: { src: "/kaala_home.png", alt: "Today's Panchang home page" },
   },
   {
     title: "OffersNudge",
+    kind: "Web app · Deals",
     description:
-      "Coupon and deals platform with verified codes by store and category, newsletter double opt-in and code submissions.",
-    stack: ["Next.js", "MongoDB", "NextAuth", "Tailwind CSS"],
+      "A coupon and deals platform that lists verified codes by store and category, with an admin dashboard to manage them.",
+    highlights: [
+      "Next.js 16 App Router on MongoDB Atlas, with NextAuth-protected admin tools.",
+      "Newsletter with double opt-in, code submissions and partner inquiries.",
+      "Honeypot spam traps and MongoDB-backed rate limiting on every public form.",
+    ],
+    stack: ["Next.js", "MongoDB", "NextAuth", "Zod", "Vercel"],
     live: "https://www.offersnudge.com/",
+    image: { src: "/offersnudge_home.png", alt: "Deals home page" },
   },
   {
     title: "Best eSIM Provider",
+    kind: "Web app · Comparison",
     description:
-      "Travel eSIM comparison: plans for a whole trip, with the source and check date shown on every price.",
-    stack: ["Next.js", "TypeScript", "Zod", "Playwright"],
+      "Compares travel eSIM plans for a whole trip and shows where every price came from and when it was checked.",
+    highlights: [
+      "Every plan carries a source URL and check date; the ranking formula is published and ignores commission.",
+      "Fifteen languages with right-to-left support, and multi-currency prices.",
+      "Next.js 16 with Cache Components on AWS EC2 behind Cloudflare and Nginx, tested with Vitest and Playwright + axe.",
+    ],
+    stack: ["Next.js", "TypeScript", "Zod", "Playwright", "AWS EC2"],
     live: "https://www.bestesimprovider.com/",
+    image: { src: "/esim_home.png", alt: "Trip eSIM search page" },
   },
 ];
 

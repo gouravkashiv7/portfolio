@@ -1,5 +1,5 @@
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
-import { caseStudies, links } from "@/app/_data/site";
+import { caseStudies, links, products } from "@/app/_data/site";
 import SystemDiagram from "./SystemDiagram";
 
 const strengths = [
@@ -129,6 +129,13 @@ export default function Hero() {
             {caseStudies.map((p) => (
               <li key={p.id}>
                 <a href={`#${p.id}`} className="text-muted hover:text-fg">
+                  {p.title}
+                </a>
+              </li>
+            ))}
+            {products.map((p) => (
+              <li key={p.title}>
+                <a href="#products" className="text-muted hover:text-fg">
                   {p.title}
                 </a>
               </li>

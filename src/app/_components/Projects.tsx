@@ -139,7 +139,7 @@ export default function Projects() {
           id="work"
           eyebrow="Selected work"
           title="Products I've built and run"
-          intro="Four systems in production. For each one I worked across the interface, the backend, the data model and the deployment."
+          intro="Seven products in production. For each one I worked across the interface, the backend, the data model and the deployment."
         />
         <div>
           {caseStudies.map((p, i) => (
