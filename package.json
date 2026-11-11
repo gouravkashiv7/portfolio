@@ -38,12 +38,5 @@
       "biome check --write",
       "biome format --write"
     ]
-  },
-  "browserslist": [
-    ">0.3%",
-    "defaults",
-    "supports es6-module",
-    "not dead",
-    "not op_mini all"
-  ]
+  }
 }

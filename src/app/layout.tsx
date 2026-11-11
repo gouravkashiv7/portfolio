@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const title = "Gourav Kashiv — Full-Stack Engineer";
 const description =
-  "Gourav Kashiv builds and ships full-stack products: React and Next.js interfaces, Node.js APIs, databases, and production deployments on AWS and Vercel.";
+  "Gourav Kashiv, a full-stack engineer in Solan, India, builds and ships products: React and Next.js interfaces, Node.js APIs, databases, and deployments on AWS and Vercel.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(links.site),
@@ -36,7 +36,8 @@ export const metadata: Metadata = {
     "Supabase",
   ],
   alternates: {
-    canonical: links.site,
+    // Resolved per route against metadataBase, so new pages never inherit "/".
+    canonical: "./",
   },
   openGraph: {
     title,
@@ -76,8 +77,15 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Gourav Kashiv",
-  jobTitle: "Software Developer",
+  jobTitle: "Full-Stack Engineer",
   url: links.site,
+  image: `${links.site}/og-image.png`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Solan",
+    addressRegion: "Himachal Pradesh",
+    addressCountry: "IN",
+  },
   email: `mailto:${links.email}`,
   worksFor: {
     "@type": "Organization",

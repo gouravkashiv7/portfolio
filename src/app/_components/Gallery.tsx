@@ -21,6 +21,7 @@ export default function Gallery({
   priority?: boolean;
 }) {
   const [index, setIndex] = useState(0);
+  const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const count = images.length;
   const current = images[index];
@@ -31,7 +32,10 @@ export default function Gallery({
     [count],
   );
 
-  const openLightbox = () => dialogRef.current?.showModal();
+  const openLightbox = () => {
+    setOpen(true);
+    dialogRef.current?.showModal();
+  };
   const closeLightbox = () => dialogRef.current?.close();
 
   useEffect(() => {
@@ -124,6 +128,7 @@ export default function Gallery({
         onClick={(e) => {
           if (e.target === e.currentTarget) closeLightbox();
         }}
+        onClose={() => setOpen(false)}
         onKeyDown={() => {}}
       >
         <div className="flex h-full flex-col">
@@ -142,13 +147,15 @@ export default function Gallery({
             </button>
           </div>
           <div className="relative flex-1">
-            <Image
-              src={current.src}
-              alt={`${title} — ${current.alt}`}
-              fill
-              sizes="94vw"
-              className="object-contain p-3"
-            />
+            {open && (
+              <Image
+                src={current.src}
+                alt={`${title} — ${current.alt}`}
+                fill
+                sizes="94vw"
+                className="object-contain p-3"
+              />
+            )}
             {count > 1 && (
               <>
                 <button
