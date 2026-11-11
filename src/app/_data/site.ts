@@ -180,6 +180,7 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 export interface Product {
+  id: string;
   title: string;
   kind: string;
   description: string;
@@ -191,6 +192,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    id: "kaala-panchang",
     title: "Kaala Panchang",
     kind: "Web + Android · Calendar",
     description:
@@ -205,6 +207,7 @@ export const products: Product[] = [
     image: { src: "/kaala_home.png", alt: "Today's Panchang home page" },
   },
   {
+    id: "offersnudge",
     title: "OffersNudge",
     kind: "Web app · Deals",
     description:
@@ -219,6 +222,7 @@ export const products: Product[] = [
     image: { src: "/offersnudge_home.png", alt: "Deals home page" },
   },
   {
+    id: "best-esim-provider",
     title: "Best eSIM Provider",
     kind: "Web app · Comparison",
     description:

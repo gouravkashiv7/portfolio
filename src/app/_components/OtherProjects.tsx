@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { products } from "@/app/_data/site";
 import Reveal from "./Reveal";
 
@@ -71,7 +72,14 @@ export default function OtherProjects() {
                   <p className="mt-5 font-mono text-[0.75rem] leading-6 text-subtle">
                     {p.stack.join(" · ")}
                   </p>
-                  <div className="mt-auto pt-5">
+                  <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-5">
+                    <Link
+                      href={`/work/${p.id}`}
+                      className="text-sm font-medium text-fg hover:text-accent"
+                    >
+                      Details
+                      <span className="sr-only"> for {p.title}</span>
+                    </Link>
                     <a
                       href={p.live}
                       target="_blank"
