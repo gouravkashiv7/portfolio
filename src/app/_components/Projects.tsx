@@ -1,4 +1,5 @@
 import { ArrowUpRight, Github } from "lucide-react";
+import Link from "next/link";
 import { type CaseStudy, caseStudies } from "@/app/_data/site";
 import Gallery from "./Gallery";
 import OtherProjects from "./OtherProjects";
@@ -65,6 +66,10 @@ function CaseStudyArticle({
           </dl>
 
           <div className="mt-8 flex flex-wrap gap-3">
+            <Link href={`/work/${project.id}`} className="btn btn-primary">
+              Case study
+              <span className="sr-only"> for {project.title}</span>
+            </Link>
             {project.live && (
               <a
                 href={project.live}
