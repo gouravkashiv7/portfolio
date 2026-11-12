@@ -256,6 +256,17 @@ function ProductPage({ product }: { product: Product }) {
           </div>
 
           <div className="mt-14 grid max-w-4xl gap-12">
+            <section aria-labelledby="about">
+              <h2 id="about" className="eyebrow mb-4">
+                About
+              </h2>
+              <div className="space-y-4 leading-relaxed text-muted">
+                {product.about.map((para) => (
+                  <p key={para}>{para}</p>
+                ))}
+              </div>
+            </section>
+
             <section aria-labelledby="highlights">
               <h2 id="highlights" className="eyebrow mb-4">
                 Highlights

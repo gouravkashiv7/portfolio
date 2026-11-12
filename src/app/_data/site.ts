@@ -181,6 +181,7 @@ export const caseStudies: CaseStudy[] = [
 
 export interface Product {
   id: string;
+  about: string[];
   title: string;
   kind: string;
   description: string;
@@ -193,6 +194,10 @@ export interface Product {
 export const products: Product[] = [
   {
     id: "kaala-panchang",
+    about: [
+      "Most Panchang sites show one set of timings for the whole country. Kaala Panchang works out tithi, nakshatra, Rahu Kaal, Choghadiya and Abhijit Muhurat from the sunrise and sunset of the city you pick, so the windows are correct where you live. Festival and vrat dates are computed from the Panchang rather than copied from a fixed calendar, so each one lands on the tithi it actually falls on.",
+      "It's free, with no ads and no astrologer upsells, and it works in five languages. It also offers printable festival cards (PDF and PNG), a Kundli behind sign-in, and texts such as the Gita, chalisas and aartis to read. I built the web app, the Android app and the API on one shared calculation package, so every platform gives the same answers.",
+    ],
     title: "Kaala Panchang",
     kind: "Web + Android · Calendar",
     description:
@@ -208,6 +213,10 @@ export const products: Product[] = [
   },
   {
     id: "offersnudge",
+    about: [
+      "OffersNudge is a coupon site built around one rule: a code is only listed after it has been checked at a real checkout, and each deal shows when it was last verified. It's organised by store and by category (AI UGC tools, SaaS, travel, health and wellness, hosting, e-commerce), so you can browse to a niche instead of scrolling a generic coupon list.",
+      "The site discloses that it earns affiliate commissions and sells sponsored slots to partners. I built the public site and the admin dashboard where offers are managed. Every public form (newsletter, code submissions, partner inquiries) is protected by a honeypot and database-backed rate limiting, and the newsletter uses double opt-in.",
+    ],
     title: "OffersNudge",
     kind: "Web app · Deals",
     description:
@@ -223,6 +232,10 @@ export const products: Product[] = [
   },
   {
     id: "best-esim-provider",
+    about: [
+      "Picking a travel eSIM usually means opening a dozen provider sites and comparing plans that don't line up. Best eSIM Provider prices plans for the whole trip: you enter your destinations, and it ranks the options. Every plan links to the provider's own page and shows the date the price was checked, and the ranking formula is published and ignores commission.",
+      "The site is available in 15 languages, including right-to-left Arabic, and shows prices in about 30 currencies, converted at a stated ECB rate. It also has destination pages, guides, a data-usage calculator and a phone compatibility check. I built it on Next.js with Cache Components, hosted on AWS EC2 behind Cloudflare and Nginx, and tested it with Vitest and Playwright plus axe for accessibility.",
+    ],
     title: "Best eSIM Provider",
     kind: "Web app · Comparison",
     description:
